@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cada usuario ve y edita solo lo suyo: listas, pedidos, promos, matches, config.
+    match /usuarios/{uid}/{documento=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // precios, historialPrecios y busquedas: solo el server (firebase-admin).
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}

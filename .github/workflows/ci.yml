@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  # Pega a los sitios reales (bajo volumen). No bloquea el CI si un súper falla,
+  # pero deja el reporte y las respuestas reales capturadas como artefactos.
+  smoke:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Diagnóstico de endpoints
+        run: node scripts/diagnostico-sitios.js
+        continue-on-error: true
+      - name: Smoke contra los sitios reales
+        run: npm run smoke
+        continue-on-error: true
+      - run: cat smoke-reporte.json
+        if: always()
+      - name: Capturar fixtures reales
+        run: npm run fixtures:capturar
+        continue-on-error: true
+      - name: Tests de scrapers contra los fixtures capturados
+        run: node --test tests/scrapers.test.js
+        continue-on-error: true
+      - name: Mostrar resumen de lo capturado
+        if: always()
+        run: |
+          for f in tests/fixtures/*.json; do echo "== $f"; head -c 3000 "$f"; echo; done
+      # Con "[capturar]" en el mensaje del commit, guarda los fixtures reales en la rama.
+      - name: Commitear fixtures capturados
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[capturar]')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp smoke-reporte.json tests/fixtures/smoke-reporte.json || true
+          git add tests/fixtures
+          git commit -m "Fixtures reales capturados por CI (${GITHUB_SHA::7})" || echo "sin cambios"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-y-fixtures
+          path: |
+            smoke-reporte.json
+            tests/fixtures/

@@ -1,0 +1,2789 @@
+{
+ "@type": "PageSlot",
+ "contents": [
+  {
+   "@type": "Category_LandingPage",
+   "Main": [
+    {
+     "@type": "Main_Slot",
+     "contents": [
+      {
+       "@type": "Category_ResultsList",
+       "totalNumRecs": 12,
+       "records": [
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/coca-cola-sabor-liviano-2-25-lt/_/A-00080951-00080951-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Coca-Cola Sabor Liviano 2,25 Lt"
+          ],
+          "product.repositoryId": [
+           "prod00080951"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/coca-cola-sabor-liviano-2-25-lt/_/R-00080951-00080951-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Coca-Cola Sabor Liviano 2,25 Lt"
+            ],
+            "product.brand": [
+             "COCA COLA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Coca-Cola Sabor Liviano 2,25 Lt"
+            ],
+            "sku.displayName": [
+             "Coca-Cola Sabor Liviano 2,25 Lt"
+            ],
+            "sku.referencePrice": [
+             "2266.660000"
+            ],
+            "product.CONTENIDO": [
+             "2.25 L"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00080900/00080951.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "974170800000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "19"
+            ],
+            "sku.repositoryId": [
+             "sku00080951"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "GASEOS.COLA.BOTX2.25"
+            ],
+            "product.category": [
+             "Gaseosas"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "974170800000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "BEBIDAS SIN ALCOHOL"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00080951\",\"skuId\":\"sku00080951\",\"precioLista\":6000.0,\"precio\":2666.66,\"precioSinImp\":4958.68,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.DEPTO": [
+             "37"
+            ],
+            "product.daysAvailable": [
+             "9461"
+            ],
+            "sku.quantity": [
+             "2250"
+            ],
+            "product.dateAvailable": [
+             "974170800000"
+            ],
+            "product.BOTELLA RETORNABLE": [
+             "NO"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001256",
+             "catv00001301",
+             "catv00001540"
+            ],
+            "product.TOTALDEVENTAS": [
+             "337.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_05_102_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Coca-Cola Sabor Liviano 2,25 Lt"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Coca-Cola Sabor Liviano 2,25 Lt"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00080951"
+            ],
+            "product.categoryRank": [
+             "20000000000000000044"
+            ],
+            "product.eanPrincipal": [
+             "7790895005312"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00080951"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "COCA COLA"
+            ],
+            "record.id": [
+             "00080951-00080951-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "5100.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00080951?_product=prod00080951&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00080951\",\"skuId\":\"sku00080951\",\"precioLista\":5100.0,\"precio\":2266.66,\"precioSinImp\":4214.88,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00080951?_product=prod00080951&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Bebidas",
+             "Bebidas sin Alcohol",
+             "CotoDigital",
+             "Gaseosas"
+            ],
+            "parentCategory.displayName": [
+             "Gaseosas"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00080900/00080951.jpg"
+            ],
+            "product.proveedorChico": [
+             "No"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00080951"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/gaseosa-coca-cola-sabor-original-2-25-lt/_/A-00014450-00014450-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+          ],
+          "product.repositoryId": [
+           "prod00014450"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/gaseosa-coca-cola-sabor-original-2-25-lt/_/R-00014450-00014450-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+            ],
+            "product.brand": [
+             "COCA COLA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+            ],
+            "sku.displayName": [
+             "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+            ],
+            "sku.referencePrice": [
+             "2266.660000"
+            ],
+            "product.CONTENIDO": [
+             "2.25 L"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00014400/00014450.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "929674800000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "19"
+            ],
+            "sku.repositoryId": [
+             "sku00014450"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "GASEOS.COLA.BOTX2.25"
+            ],
+            "product.category": [
+             "Gaseosas"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "929674800000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "BEBIDAS SIN ALCOHOL"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00014450\",\"skuId\":\"sku00014450\",\"precioLista\":6000.0,\"precio\":2666.66,\"precioSinImp\":4958.68,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.DEPTO": [
+             "37"
+            ],
+            "product.daysAvailable": [
+             "9976"
+            ],
+            "sku.quantity": [
+             "2250"
+            ],
+            "product.dateAvailable": [
+             "929674800000"
+            ],
+            "product.BOTELLA RETORNABLE": [
+             "NO"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001256",
+             "catv00001301",
+             "catv00001540"
+            ],
+            "product.TOTALDEVENTAS": [
+             "1307.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_05_102_010"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Gaseosa Coca-Cola Sabor Original  2,25 Lt"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00014450"
+            ],
+            "product.categoryRank": [
+             "20000000000000000018"
+            ],
+            "product.eanPrincipal": [
+             "7790895000997"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00014450"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "COCA COLA"
+            ],
+            "record.id": [
+             "00014450-00014450-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "5100.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00014450?_product=prod00014450&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00014450\",\"skuId\":\"sku00014450\",\"precioLista\":5100.0,\"precio\":2266.66,\"precioSinImp\":4214.88,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00014450?_product=prod00014450&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Bebidas",
+             "Bebidas sin Alcohol",
+             "CotoDigital",
+             "Gaseosas"
+            ],
+            "parentCategory.displayName": [
+             "Gaseosas"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00014400/00014450.jpg"
+            ],
+            "product.proveedorChico": [
+             "No"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00014450"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/yerba-mate-playadito-hierbas-naturales-con-palo-paquete-500-gr/_/A-00186014-00186014-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+          ],
+          "product.repositoryId": [
+           "prod00186014"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/yerba-mate-playadito-hierbas-naturales-con-palo-paquete-500-gr/_/R-00186014-00186014-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+            ],
+            "product.brand": [
+             "PLAYADITO"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+            ],
+            "sku.displayName": [
+             "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+            ],
+            "sku.referencePrice": [
+             "6698.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00186000/00186014.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "1"
+            ],
+            "sku.creationDate": [
+             "1189738800000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "28"
+            ],
+            "sku.repositoryId": [
+             "sku00186014"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "INFUSION YERBA"
+            ],
+            "product.category": [
+             "Yerba"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1189738800000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "NO"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00186014\",\"skuId\":\"sku00186014\",\"precioLista\":3349.0,\"precio\":6698.0,\"precioSinImp\":2767.77}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "6966"
+            ],
+            "sku.quantity": [
+             "500"
+            ],
+            "product.dateAvailable": [
+             "1189738800000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001275",
+             "catv00001416",
+             "catv00002896",
+             "catv2000082",
+             "catv2000084",
+             "catv2006001"
+            ],
+            "product.TOTALDEVENTAS": [
+             "95.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_01_218_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Yerba Mate PLAYADITO Hierbas Naturales Con Palo Paquete 500 Gr"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00186014"
+            ],
+            "product.categoryRank": [
+             "999999999999999999999999999999"
+            ],
+            "product.eanPrincipal": [
+             "7793704000508"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00186014"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "PLAYADITO"
+            ],
+            "record.id": [
+             "00186014-00186014-200"
+            ],
+            "product.cFormato": [
+             "Kilo "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "3349.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00186014?_product=prod00186014&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Yerba"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00186014\",\"skuId\":\"sku00186014\",\"precioLista\":3349.0,\"precio\":6698.0,\"precioSinImp\":2767.77}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00186014?_product=prod00186014&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "ALIMENTOS SECOS",
+             "Almacén",
+             "CotoDigital",
+             "INFUSIONES",
+             "Infusiones",
+             "Mate",
+             "YERBA",
+             "Yerba"
+            ],
+            "parentCategory.displayName": [
+             "YERBA",
+             "Yerba"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00186000/00186014.jpg"
+            ],
+            "product.proveedorChico": [
+             "Si"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00186014"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/yerba-mate-playadito-paquete-500-gr/_/A-00269852-00269852-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Yerba Mate PLAYADITO Paquete 500 Gr"
+          ],
+          "product.repositoryId": [
+           "prod00269852"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/yerba-mate-playadito-paquete-500-gr/_/R-00269852-00269852-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Yerba Mate PLAYADITO Paquete 500 Gr"
+            ],
+            "product.brand": [
+             "PLAYADITO"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Yerba Mate PLAYADITO Paquete 500 Gr"
+            ],
+            "sku.displayName": [
+             "Yerba Mate PLAYADITO Paquete 500 Gr"
+            ],
+            "sku.referencePrice": [
+             "7938.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00269800/00269852.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "1"
+            ],
+            "sku.creationDate": [
+             "1418353200000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "28"
+            ],
+            "sku.repositoryId": [
+             "sku00269852"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "INFUSION YERBA"
+            ],
+            "product.category": [
+             "Yerba"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1418353200000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "NO"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00269852\",\"skuId\":\"sku00269852\",\"precioLista\":3969.0,\"precio\":7938.0,\"precioSinImp\":3280.17}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "4320"
+            ],
+            "sku.quantity": [
+             "500"
+            ],
+            "product.dateAvailable": [
+             "1418353200000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001275",
+             "catv00001416",
+             "catv00002896"
+            ],
+            "product.TOTALDEVENTAS": [
+             "119.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_01_218_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Yerba Mate PLAYADITO Paquete 500 Gr"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Yerba Mate PLAYADITO Paquete 500 Gr"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00269852"
+            ],
+            "product.categoryRank": [
+             "10030000010000000119"
+            ],
+            "product.eanPrincipal": [
+             "7793704000881"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00269852"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "PLAYADITO"
+            ],
+            "record.id": [
+             "00269852-00269852-200"
+            ],
+            "product.cFormato": [
+             "Kilo "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "3969.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00269852?_product=prod00269852&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Yerba"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00269852\",\"skuId\":\"sku00269852\",\"precioLista\":3969.0,\"precio\":7938.0,\"precioSinImp\":3280.17}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00269852?_product=prod00269852&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Almacén",
+             "CotoDigital",
+             "Infusiones",
+             "Mate",
+             "Yerba"
+            ],
+            "parentCategory.displayName": [
+             "Yerba"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00269800/00269852.jpg"
+            ],
+            "product.proveedorChico": [
+             "Si"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00269852"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/leche-entera-clasica-la-serenisima-botella-larga-vida-1l/_/A-00253103-00253103-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+          ],
+          "product.repositoryId": [
+           "prod00253103"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/leche-entera-clasica-la-serenisima-botella-larga-vida-1l/_/R-00253103-00253103-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+            ],
+            "product.brand": [
+             "LA SERENISIMA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+            ],
+            "sku.displayName": [
+             "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+            ],
+            "sku.referencePrice": [
+             "3060.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00253100/00253103.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1372042800000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "4"
+            ],
+            "sku.repositoryId": [
+             "sku00253103"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "LECHES LARGA VIDA"
+            ],
+            "product.category": [
+             "Leches Enteras"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1372042800000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "LACTEOS"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00253103\",\"skuId\":\"sku00253103\",\"precioLista\":3060.0,\"precio\":3060.0,\"precioSinImp\":2528.93}"
+            ],
+            "product.DEPTO": [
+             "3"
+            ],
+            "product.daysAvailable": [
+             "4856"
+            ],
+            "sku.quantity": [
+             "1"
+            ],
+            "product.dateAvailable": [
+             "1372042800000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001255",
+             "catv00001295",
+             "catv00003266",
+             "catv00003281",
+             "catv00004111"
+            ],
+            "product.TOTALDEVENTAS": [
+             "292.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_04_100_013"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Leche Entera Clasica LA SERENISIMA Botella Larga Vida 1l"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00253103"
+            ],
+            "product.categoryRank": [
+             "999999999999999999999999999999"
+            ],
+            "product.eanPrincipal": [
+             "7790742335500"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00253103"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "LA SERENISIMA"
+            ],
+            "record.id": [
+             "00253103-00253103-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "3060.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00253103?_product=prod00253103&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Leches Enteras"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00253103\",\"skuId\":\"sku00253103\",\"precioLista\":3060.0,\"precio\":3060.0,\"precioSinImp\":2528.93}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00253103?_product=prod00253103&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "CotoDigital",
+             "Frescos",
+             "Leches",
+             "Leches Enteras",
+             "Leches Larga Vida",
+             "Lácteos"
+            ],
+            "parentCategory.displayName": [
+             "Leches Enteras"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00253100/00253103.jpg"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00253103"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/leche-entera-clasica-la-serenisima-sachet-1l/_/A-00015929-00015929-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+          ],
+          "product.repositoryId": [
+           "prod00015929"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/leche-entera-clasica-la-serenisima-sachet-1l/_/R-00015929-00015929-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+            ],
+            "product.brand": [
+             "LA SERENISIMA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+            ],
+            "sku.displayName": [
+             "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+            ],
+            "sku.referencePrice": [
+             "2050.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00015900/00015929.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "940474800000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "3"
+            ],
+            "sku.repositoryId": [
+             "sku00015929"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "LECHES FRESCAS"
+            ],
+            "product.category": [
+             "Leches Enteras"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "940474800000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "LACTEOS"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00015929\",\"skuId\":\"sku00015929\",\"precioLista\":2050.0,\"precio\":2050.0,\"precioSinImp\":1694.21,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.DEPTO": [
+             "3"
+            ],
+            "product.daysAvailable": [
+             "9851"
+            ],
+            "sku.quantity": [
+             "1"
+            ],
+            "product.dateAvailable": [
+             "940474800000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001255",
+             "catv00001295",
+             "catv00003266",
+             "catv00003282",
+             "catv00004112"
+            ],
+            "product.TOTALDEVENTAS": [
+             "82.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_04_100_012"
+            ],
+            "product.dtoDescuentos": [
+             "[{\"id\":\"38325895\",\"textoVigencia\":\" \",\"textoPrecioRegular\":\"Precio Contado:\",\"precioRegular\":\"\",\"textoDescuento\":\"\",\"precioDescuento\":\"$2050.00\",\"precioDesc\":\"2050.00\",\"precioDescTextoAdicional\":\"\",\"imagenDescuento\":\" \",\"comentarios\":\" \"}]"
+            ],
+            "product.displayName": [
+             "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Leche Entera Clasica LA SERENISIMA Sachet 1l"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00015929"
+            ],
+            "product.categoryRank": [
+             "30000000010020000001"
+            ],
+            "product.eanPrincipal": [
+             "7790742448309"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00015929"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "LA SERENISIMA"
+            ],
+            "record.id": [
+             "00015929-00015929-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.tipoOferta": [
+             "Otras Ofertas",
+             "Todas las Ofertas"
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "2050.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00015929?_product=prod00015929&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Leches Enteras"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00015929\",\"skuId\":\"sku00015929\",\"precioLista\":2050.0,\"precio\":2050.0,\"precioSinImp\":1694.21,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00015929?_product=prod00015929&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "CotoDigital",
+             "Frescos",
+             "Leches",
+             "Leches Enteras",
+             "Leches Frescas",
+             "Lácteos"
+            ],
+            "parentCategory.displayName": [
+             "Leches Enteras"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00015900/00015929.jpg"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00015929"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/arroz-parboil-gallo-oro-1kg/_/A-00561454-00561454-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Arroz Parboil Gallo Oro 1kg"
+          ],
+          "product.repositoryId": [
+           "prod00561454"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/arroz-parboil-gallo-oro-1kg/_/R-00561454-00561454-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Arroz Parboil Gallo Oro 1kg"
+            ],
+            "product.brand": [
+             "GALLO"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Arroz Parboil Gallo Oro 1kg"
+            ],
+            "sku.displayName": [
+             "Arroz Parboil Gallo Oro 1kg"
+            ],
+            "sku.referencePrice": [
+             "2980.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00561400/00561454.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1682305200000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "13"
+            ],
+            "sku.repositoryId": [
+             "sku00561454"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "ARROZ"
+            ],
+            "product.category": [
+             "Arroz"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1682305200000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00561454\",\"skuId\":\"sku00561454\",\"precioLista\":2980.0,\"precio\":2980.0,\"precioSinImp\":2462.81,\"imagenOferta1\":\"oferta.png\"}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "1265"
+            ],
+            "sku.quantity": [
+             "1"
+            ],
+            "product.dateAvailable": [
+             "1682305200000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001269",
+             "catv00001279",
+             "catv00002977"
+            ],
+            "product.TOTALDEVENTAS": [
+             "2820.0"
+            ],
+            "product.dtoDescuentos": [
+             "[{\"id\":\"38344975\",\"textoVigencia\":\" \",\"textoPrecioRegular\":\"Precio Contado: $2980\",\"precioRegular\":\"\",\"textoDescuento\":\"35%Dto\",\"precioDescuento\":\"$1937.00\",\"precioDesc\":\"1937.00\",\"precioDescTextoAdicional\":\"\",\"imagenDescuento\":\" \",\"comentarios\":\" No acumulable con otras promos\"}]"
+            ],
+            "product.displayName": [
+             "Arroz Parboil Gallo Oro 1kg"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Arroz Parboil Gallo Oro 1kg"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00561454"
+            ],
+            "product.eanPrincipal": [
+             "7790070431417"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00561454"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "GALLO"
+            ],
+            "record.id": [
+             "00561454-00561454-200"
+            ],
+            "product.cFormato": [
+             "Kilogramo "
+            ],
+            "product.tipoOferta": [
+             "Hasta 40% DTO!!",
+             "Todas las Ofertas"
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "2980.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00561454?_product=prod00561454&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Arroz"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00561454\",\"skuId\":\"sku00561454\",\"precioLista\":2980.0,\"precio\":2980.0,\"precioSinImp\":2462.81,\"imagenOferta1\":\"oferta.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00561454?_product=prod00561454&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Almacén",
+             "Arroz",
+             "Arroz y Legumbres",
+             "CotoDigital"
+            ],
+            "parentCategory.displayName": [
+             "Arroz"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00561400/00561454.jpg"
+            ],
+            "product.proveedorChico": [
+             "No"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00561454"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/arroz-parboil-seleccion-gallo-oro-1kg/_/A-00577884-00577884-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Arroz Parboil Seleccion Gallo Oro 1kg"
+          ],
+          "product.repositoryId": [
+           "prod00577884"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/arroz-parboil-seleccion-gallo-oro-1kg/_/R-00577884-00577884-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Arroz Parboil Seleccion Gallo Oro 1kg"
+            ],
+            "product.brand": [
+             "GALLO"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Arroz Parboil Seleccion Gallo Oro 1kg"
+            ],
+            "sku.displayName": [
+             "Arroz Parboil Seleccion Gallo Oro 1kg"
+            ],
+            "sku.referencePrice": [
+             "3730.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00577800/00577884.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1701918000000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "13"
+            ],
+            "sku.repositoryId": [
+             "sku00577884"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "ARROZ"
+            ],
+            "product.category": [
+             "Arroz"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1701918000000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00577884\",\"skuId\":\"sku00577884\",\"precioLista\":3730.0,\"precio\":3730.0,\"precioSinImp\":3082.64,\"imagenOferta1\":\"oferta.png\"}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "1038"
+            ],
+            "sku.quantity": [
+             "1"
+            ],
+            "product.dateAvailable": [
+             "1701918000000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001269",
+             "catv00001279",
+             "catv00002977"
+            ],
+            "product.TOTALDEVENTAS": [
+             "557.0"
+            ],
+            "product.dtoDescuentos": [
+             "[{\"id\":\"38345135\",\"textoVigencia\":\" \",\"textoPrecioRegular\":\"Precio Contado: $3730\",\"precioRegular\":\"\",\"textoDescuento\":\"35%Dto\",\"precioDescuento\":\"$2398.76\",\"precioDesc\":\"2398.76\",\"precioDescTextoAdicional\":\"\",\"imagenDescuento\":\" \",\"comentarios\":\" No acumulable con otras promos\"}]"
+            ],
+            "product.displayName": [
+             "Arroz Parboil Seleccion Gallo Oro 1kg"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Arroz Parboil Seleccion Gallo Oro 1kg"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00577884"
+            ],
+            "product.eanPrincipal": [
+             "7790070433091"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00577884"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "GALLO"
+            ],
+            "record.id": [
+             "00577884-00577884-200"
+            ],
+            "product.cFormato": [
+             "Kilogramo "
+            ],
+            "product.tipoOferta": [
+             "Hasta 40% DTO!!",
+             "Todas las Ofertas"
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "3730.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00577884?_product=prod00577884&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Arroz"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00577884\",\"skuId\":\"sku00577884\",\"precioLista\":3730.0,\"precio\":3730.0,\"precioSinImp\":3082.64,\"imagenOferta1\":\"oferta.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00577884?_product=prod00577884&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Almacén",
+             "Arroz",
+             "Arroz y Legumbres",
+             "CotoDigital"
+            ],
+            "parentCategory.displayName": [
+             "Arroz"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00577800/00577884.jpg"
+            ],
+            "product.proveedorChico": [
+             "No"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00577884"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/aceite-girasol-natura-rocio-vegetal-aerosol-120-gr/_/A-00263797-00263797-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+          ],
+          "product.repositoryId": [
+           "prod00263797"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/aceite-girasol-natura-rocio-vegetal-aerosol-120-gr/_/R-00263797-00263797-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+            ],
+            "product.brand": [
+             "NATURA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+            ],
+            "sku.displayName": [
+             "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+            ],
+            "sku.referencePrice": [
+             "35150.790000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00263700/00263797.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1401937200000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "1"
+            ],
+            "sku.repositoryId": [
+             "sku00263797"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "ACEITES"
+            ],
+            "product.category": [
+             "Aceite Aerosol"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1401937200000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00263797\",\"skuId\":\"sku00263797\",\"precioLista\":4429.0,\"precio\":35150.79,\"precioSinImp\":3660.33,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "4510"
+            ],
+            "sku.quantity": [
+             "126"
+            ],
+            "product.dateAvailable": [
+             "1401937200000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001264",
+             "catv00002218",
+             "catv00002975"
+            ],
+            "product.TOTALDEVENTAS": [
+             "694.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_01_121_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Aceite Girasol  NATURA Rocio Vegetal Aerosol 120 Gr"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00263797"
+            ],
+            "product.categoryRank": [
+             "10090000000000000003"
+            ],
+            "product.eanPrincipal": [
+             "7790272000831"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00263797"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "NATURA"
+            ],
+            "record.id": [
+             "00263797-00263797-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "4429.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00263797?_product=prod00263797&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Aceite Aerosol"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00263797\",\"skuId\":\"sku00263797\",\"precioLista\":4429.0,\"precio\":35150.79,\"precioSinImp\":3660.33,\"imagenOferta2\":\"NoAcumulable.png\"}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00263797?_product=prod00263797&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Aceite Aerosol",
+             "Aceites",
+             "Aceites y Condimentos",
+             "Almacén",
+             "CotoDigital"
+            ],
+            "parentCategory.displayName": [
+             "Aceite Aerosol"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00263700/00263797.jpg"
+            ],
+            "product.TIPO DE PRODUCTO": [
+             "GIRASOL"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00263797"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/aceite-mezcla-girasol-y-oliva-natura-botella-1-5-l/_/A-00268145-00268145-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+          ],
+          "product.repositoryId": [
+           "prod00268145"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/aceite-mezcla-girasol-y-oliva-natura-botella-1-5-l/_/R-00268145-00268145-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+            ],
+            "product.brand": [
+             "NATURA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+            ],
+            "sku.displayName": [
+             "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+            ],
+            "sku.referencePrice": [
+             "6833.340000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00268100/00268145.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1414551600000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "1"
+            ],
+            "sku.repositoryId": [
+             "sku00268145"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "ACEITES"
+            ],
+            "product.category": [
+             "Aceite Mezcla"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1414551600000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "ALMACEN"
+            ],
+            "product.SIN TACC": [
+             "SI"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00268145\",\"skuId\":\"sku00268145\",\"precioLista\":10250.0,\"precio\":6833.34,\"precioSinImp\":8471.07}"
+            ],
+            "product.DEPTO": [
+             "1"
+            ],
+            "product.daysAvailable": [
+             "4364"
+            ],
+            "sku.quantity": [
+             "1"
+            ],
+            "product.dateAvailable": [
+             "1414551600000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001254",
+             "catv00001264",
+             "catv00002787",
+             "catv00002975"
+            ],
+            "product.TOTALDEVENTAS": [
+             "94.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_01_121_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Aceite Mezcla Girasol Y Oliva  NATURA   Botella 1.5 L"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00268145"
+            ],
+            "product.categoryRank": [
+             "10090000050000000007"
+            ],
+            "product.eanPrincipal": [
+             "7790272000053"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00268145"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "NATURA"
+            ],
+            "record.id": [
+             "00268145-00268145-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "10250.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00268145?_product=prod00268145&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Aceite Mezcla"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00268145\",\"skuId\":\"sku00268145\",\"precioLista\":10250.0,\"precio\":6833.34,\"precioSinImp\":8471.07}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00268145?_product=prod00268145&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Aceite Mezcla",
+             "Aceites",
+             "Aceites y Condimentos",
+             "Almacén",
+             "CotoDigital"
+            ],
+            "parentCategory.displayName": [
+             "Aceite Mezcla"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00268100/00268145.jpg"
+            ],
+            "product.TIPO DE PRODUCTO": [
+             "MEZCLA GIRASOL Y OLIVA"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00268145"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/fernet-branca-botella-750-cc/_/A-00005525-00005525-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Fernet BRANCA   Botella 750 Cc"
+          ],
+          "product.repositoryId": [
+           "prod00005525"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/fernet-branca-botella-750-cc/_/R-00005525-00005525-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Fernet BRANCA   Botella 750 Cc"
+            ],
+            "product.brand": [
+             "BRANCA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Fernet BRANCA   Botella 750 Cc"
+            ],
+            "sku.displayName": [
+             "Fernet BRANCA   Botella 750 Cc"
+            ],
+            "sku.referencePrice": [
+             "26266.660000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.CATEGORIA": [
+             "FERNET"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00005500/00005525.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "916887600000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "1"
+            ],
+            "sku.repositoryId": [
+             "sku00005525"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "APERITIVO"
+            ],
+            "product.category": [
+             "Fernet"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.PAIS": [
+             "ARGENTINA"
+            ],
+            "product.creationDate": [
+             "916887600000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "BEBIDAS C/ALCOHOL"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00005525\",\"skuId\":\"sku00005525\",\"precioLista\":19700.0,\"precio\":26266.66,\"precioSinImp\":16280.99}"
+            ],
+            "product.DEPTO": [
+             "2"
+            ],
+            "product.daysAvailable": [
+             "10124"
+            ],
+            "sku.quantity": [
+             "750"
+            ],
+            "product.dateAvailable": [
+             "916887600000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001256",
+             "catv00001300",
+             "catv00001524",
+             "catv00002986",
+             "catv2000165",
+             "catv2000167",
+             "catv2006003"
+            ],
+            "product.TOTALDEVENTAS": [
+             "959.0"
+            ],
+            "product.RELEVANCIA": [
+             "2_2_15_385_009"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Fernet BRANCA   Botella 750 Cc"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Fernet BRANCA   Botella 750 Cc"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00005525"
+            ],
+            "product.categoryRank": [
+             "20010020050000000000"
+            ],
+            "product.eanPrincipal": [
+             "7790290101602"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.VOLUMEN": [
+             "750 CC"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00005525"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "BRANCA"
+            ],
+            "record.id": [
+             "00005525-00005525-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "19700.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00005525?_product=prod00005525&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Fernet"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00005525\",\"skuId\":\"sku00005525\",\"precioLista\":19700.0,\"precio\":26266.66,\"precioSinImp\":16280.99}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00005525?_product=prod00005525&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "APERITIVOS",
+             "Aperitivos",
+             "BEBIDAS CON ALCOHOL",
+             "Bebidas",
+             "Bebidas con Alcohol",
+             "CotoDigital",
+             "Fernet"
+            ],
+            "parentCategory.displayName": [
+             "APERITIVOS",
+             "Fernet"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00005500/00005525.jpg"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00005525"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        },
+        {
+         "@class": "com.endeca.infront.cartridge.model.Record",
+         "detailsAction": {
+          "recordState": "/fernet-180-aniversario-branca-750ml/_/A-00614121-00614121-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "attributes": {
+          "product.displayName": [
+           "Fernet 180 Aniversario Branca 750ml"
+          ],
+          "product.repositoryId": [
+           "prod00614121"
+          ]
+         },
+         "records": [
+          {
+           "@class": "com.endeca.infront.cartridge.model.Record",
+           "detailsAction": {
+            "recordState": "/fernet-180-aniversario-branca-750ml/_/R-00614121-00614121-200?Dy=1&format=json"
+           },
+           "numRecords": 0,
+           "attributes": {
+            "product.language": [
+             "español"
+            ],
+            "product.description": [
+             "Fernet 180 Aniversario Branca 750ml"
+            ],
+            "product.brand": [
+             "BRANCA"
+            ],
+            "record.type": [
+             "Producto",
+             "SKU"
+            ],
+            "sku.description": [
+             "Fernet 180 Aniversario Branca 750ml"
+            ],
+            "sku.displayName": [
+             "Fernet 180 Aniversario Branca 750ml"
+            ],
+            "sku.referencePrice": [
+             "25200.000000"
+            ],
+            "product.averageCustomerRating": [
+             "0"
+            ],
+            "product.mediumImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/medium/00614100/00614121.jpg"
+            ],
+            "sku.unit_of_measure": [
+             "litres"
+            ],
+            "product.disallowAsRecommendation": [
+             "0"
+            ],
+            "sku.creationDate": [
+             "1758769200000"
+            ],
+            "sku.endDate": [
+             "32506394714894"
+            ],
+            "product.esPeque": [
+             "1"
+            ],
+            "product.cantForm": [
+             "1"
+            ],
+            "product.CLASE": [
+             "1"
+            ],
+            "sku.repositoryId": [
+             "sku00614121"
+            ],
+            "product.unidades.descUnidad": [
+             "UNI"
+            ],
+            "product.LCLASE": [
+             "APERITIVO"
+            ],
+            "product.category": [
+             "Fernet"
+            ],
+            "product.idTipoGrupo": [
+             "1"
+            ],
+            "product.creationDate": [
+             "1758769200000"
+            ],
+            "product.nonreturnable": [
+             "0"
+            ],
+            "product.LDEPAR": [
+             "BEBIDAS C/ALCOHOL"
+            ],
+            "sku.dtoPrice078": [
+             "{\"id\":\"pl078_00614121\",\"skuId\":\"sku00614121\",\"precioLista\":18900.0,\"precio\":25200.0,\"precioSinImp\":15619.83}"
+            ],
+            "product.DEPTO": [
+             "2"
+            ],
+            "product.daysAvailable": [
+             "380"
+            ],
+            "sku.quantity": [
+             "750"
+            ],
+            "product.dateAvailable": [
+             "1758769200000"
+            ],
+            "allAncestors.repositoryId": [
+             "CDigiRootCategory",
+             "catv00001256",
+             "catv00001300",
+             "catv00001524",
+             "catv00002986"
+            ],
+            "product.TOTALDEVENTAS": [
+             "8.0"
+            ],
+            "product.dtoDescuentos": [
+             "[]"
+            ],
+            "product.displayName": [
+             "Fernet 180 Aniversario Branca 750ml"
+            ],
+            "product.dtoDescuentosMediosPago": [
+             "[]"
+            ],
+            "product.unidades.esPesable": [
+             "0"
+            ],
+            "product.priceListPair": [
+             "priceList200"
+            ],
+            "sku.siteId": [
+             "CotoDigital"
+            ],
+            "product.briefDescription": [
+             "Fernet 180 Aniversario Branca 750ml"
+            ],
+            "sku.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00614121"
+            ],
+            "product.eanPrincipal": [
+             "7790290101794"
+            ],
+            "product.siteId": [
+             "CotoDigital"
+            ],
+            "sku.startDate": [
+             "0"
+            ],
+            "product.catalogId": [
+             "CDigiCatalog"
+            ],
+            "product.repositoryId": [
+             "prod00614121"
+            ],
+            "sku.margin": [
+             "0.000000"
+            ],
+            "product.MARCA": [
+             "BRANCA"
+            ],
+            "record.id": [
+             "00614121-00614121-200"
+            ],
+            "product.cFormato": [
+             "Litro "
+            ],
+            "product.endDate": [
+             "32506394714894"
+            ],
+            "sku.activePrice": [
+             "18900.000000"
+            ],
+            "sku.url": [
+             "atgrep:/ProductCatalog/sku/sku00614121?_product=prod00614121&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "product.FAMILIA": [
+             "Fernet"
+            ],
+            "record.source": [
+             "ProductCatalog"
+            ],
+            "product.startDate": [
+             "0"
+            ],
+            "sku.dtoPrice": [
+             "{\"id\":\"pl200_00614121\",\"skuId\":\"sku00614121\",\"precioLista\":18900.0,\"precio\":25200.0,\"precioSinImp\":15619.83}"
+            ],
+            "product.url": [
+             "atgrep:/ProductCatalog/sku/sku00614121?_product=prod00614121&catalog=CDigiCatalog&locale=es_AR&priceListPair=priceList200"
+            ],
+            "allAncestors.displayName": [
+             "Aperitivos",
+             "Bebidas",
+             "Bebidas con Alcohol",
+             "CotoDigital",
+             "Fernet"
+            ],
+            "parentCategory.displayName": [
+             "Fernet"
+            ],
+            "product.largeImage.url": [
+             "https://static.cotodigital3.com.ar/sitios/fotos/large/00614100/00614121.jpg"
+            ],
+            "product.baseUrl": [
+             "atgrep:/ProductCatalog/sku/sku00614121"
+            ],
+            "sku.onSaleText": [
+             "0"
+            ]
+           },
+           "records": null
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

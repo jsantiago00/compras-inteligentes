@@ -1,175 +1,104 @@
 [
  {
-  "productId": "6200",
-  "productName": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "brand": "Coca-Cola",
-  "brandId": 2000000,
-  "linkText": "gaseosa-coca-cola-sabor-original-2-25-l",
-  "productReference": "1200",
-  "categoryId": "10",
-  "productTitle": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "metaTagDescription": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "630677",
+  "productName": "Gaseosa cola Coca Cola sabor original 1,75 lts",
+  "brand": "Coca Cola",
+  "brandId": 2000477,
+  "linkText": "gaseosa-cola-coca-cola-sabor-original-175-lts-630677",
+  "productReference": "630677",
+  "categoryId": "278",
   "categories": [
    "/Bebidas/Gaseosas/Gaseosas cola/",
    "/Bebidas/Gaseosas/",
    "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/0/"
+   "/255/277/278/",
+   "/255/277/",
+   "/255/"
   ],
-  "link": "https://www.carrefour.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
-  "description": "",
+  "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-sabor-original-175-lts-630677/p",
   "items": [
    {
-    "itemId": "1200",
-    "name": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-    "nameComplete": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "itemId": "73254",
+    "name": "Gaseosa cola Coca Cola sabor original 1,75 lts",
+    "nameComplete": "Gaseosa cola Coca Cola sabor original 1,75 lts",
     "complementName": "",
-    "ean": "7790895000997",
+    "ean": "7790895007217",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1200"
+      "Value": "7790895007217"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1200",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1200/gaseosa-coca-cola-sabor-original-2-25-l.jpg",
-      "imageText": "gaseosa-coca-cola-sabor-original-2-25-l"
+      "imageId": "332253",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/332253/7790895007217_E01.jpg?v=638211437709500000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1200&qty=1&seller=1&sc=1&price=390000&cv=_&sc=1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=73254&qty=1&seller=1&sc=1&price=525000&cv=_&sc=1",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 3900,
-       "ListPrice": 3900,
-       "PriceWithoutDiscount": 3900,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 5250,
+       "ListPrice": 5250,
+       "PriceWithoutDiscount": 5250,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
-      }
-     }
-    ]
-   }
-  ]
- },
- {
-  "productId": "6201",
-  "productName": "Yerba Mate Playadito Suave 1 Kg",
-  "brand": "Playadito",
-  "brandId": 2000001,
-  "linkText": "yerba-mate-playadito-suave-1-kg",
-  "productReference": "1201",
-  "categoryId": "11",
-  "productTitle": "Yerba Mate Playadito Suave 1 Kg",
-  "metaTagDescription": "Yerba Mate Playadito Suave 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
-  "categories": [
-   "/Almacén/Infusiones/Yerba/",
-   "/Almacén/Infusiones/",
-   "/Almacén/"
-  ],
-  "categoriesIds": [
-   "/1/1/"
-  ],
-  "link": "https://www.carrefour.com.ar/yerba-mate-playadito-suave-1-kg/p",
-  "description": "",
-  "items": [
-   {
-    "itemId": "1201",
-    "name": "Yerba Mate Playadito Suave 1 Kg",
-    "nameComplete": "Yerba Mate Playadito Suave 1 Kg",
-    "complementName": "",
-    "ean": "7793704000010",
-    "referenceId": [
-     {
-      "Key": "RefId",
-      "Value": "1201"
-     }
-    ],
-    "measurementUnit": "un",
-    "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
-    "images": [
-     {
-      "imageId": "1201",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1201/yerba-mate-playadito-suave-1-kg.jpg",
-      "imageText": "yerba-mate-playadito-suave-1-kg"
-     }
-    ],
-    "sellers": [
-     {
-      "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1201&qty=1&seller=1&sc=1&price=520000&cv=_&sc=1",
-      "sellerDefault": true,
-      "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
        "Teasers": [
         {
-         "name": "2do al 70% Yerbas",
-         "generalValues": {},
-         "conditions": {
-          "minimumQuantity": 2,
-          "parameters": []
-         },
-         "effects": {
-          "parameters": [
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
            {
-            "name": "PercentualDiscount",
-            "value": "35"
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
            }
           ]
          }
         }
        ],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 5200,
-       "ListPrice": 5200,
-       "PriceWithoutDiscount": 5200,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
-       "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -177,79 +106,127 @@
   ]
  },
  {
-  "productId": "6202",
-  "productName": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "brand": "La Serenísima",
-  "brandId": 2000002,
-  "linkText": "leche-entera-la-serenisima-clasica-1-l",
-  "productReference": "1202",
-  "categoryId": "12",
-  "productTitle": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "metaTagDescription": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "30138",
+  "productName": "Gaseosa cola Coca Cola sabor original 2,25 lts",
+  "brand": "Coca Cola",
+  "brandId": 2000477,
+  "linkText": "gaseosa-cola-coca-cola-sabor-original-225-lts-30138",
+  "productReference": "30138",
+  "categoryId": "278",
   "categories": [
-   "/Lácteos/Leches/Leche entera/",
-   "/Lácteos/Leches/",
-   "/Lácteos/"
+   "/Bebidas/Gaseosas/Gaseosas cola/",
+   "/Bebidas/Gaseosas/",
+   "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/2/"
+   "/255/277/278/",
+   "/255/277/",
+   "/255/"
   ],
-  "link": "https://www.carrefour.com.ar/leche-entera-la-serenisima-clasica-1-l/p",
-  "description": "",
+  "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-sabor-original-225-lts-30138/p",
   "items": [
    {
-    "itemId": "1202",
-    "name": "Leche Entera La Serenísima Clásica 3% 1 L",
-    "nameComplete": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "itemId": "3807",
+    "name": "Gaseosa cola Coca Cola sabor original 2,25 lts",
+    "nameComplete": "Gaseosa cola Coca Cola sabor original 2,25 lts",
     "complementName": "",
-    "ean": "7790742656001",
+    "ean": "7790895000997",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1202"
+      "Value": "7790895000997"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1202",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1202/leche-entera-la-serenisima-clasica-1-l.jpg",
-      "imageText": "leche-entera-la-serenisima-clasica-1-l"
+      "imageId": "332148",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/332148/7790895000997_E01.jpg?v=639148981511530000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1202&qty=1&seller=1&sc=1&price=145000&cv=_&sc=1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=3807&qty=1&seller=1&sc=1&price=600000&cv=_&sc=1",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 1450,
-       "ListPrice": 1450,
-       "PriceWithoutDiscount": 1450,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 6000,
+       "ListPrice": 6000,
+       "PriceWithoutDiscount": 6000,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        },
+        {
+         "<Name>k__BackingField": "PROMO-2do al 50% Max 48 unidades Combinable COCA COLA-Reg-2-50-Aniv2 9 al 15.10",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 2,
+          "<Parameters>k__BackingField": []
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": []
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        },
+        {
+         "Name": "PROMO-2do al 50% Max 48 unidades Combinable COCA COLA-Reg-2-50-Aniv2 9 al 15.10",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 2,
+          "Parameters": []
+         },
+         "Effects": {
+          "Parameters": []
+         }
+        }
+       ],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -257,79 +234,525 @@
   ]
  },
  {
-  "productId": "6203",
-  "productName": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "productId": "517286",
+  "productName": "Yerba mate Playadito sin palo 500 g.",
+  "brand": "Playadito",
+  "brandId": 2001769,
+  "linkText": "yerba-mate-playadito-sin-palo-500-g",
+  "productReference": "517286",
+  "categoryId": "232",
+  "categories": [
+   "/Desayuno y merienda/Yerba/",
+   "/Desayuno y merienda/"
+  ],
+  "categoriesIds": [
+   "/222/232/",
+   "/222/"
+  ],
+  "link": "https://www.carrefour.com.ar/yerba-mate-playadito-sin-palo-500-g/p",
+  "items": [
+   {
+    "itemId": "8788",
+    "name": "Yerba mate Playadito sin palo 500 g.",
+    "nameComplete": "Yerba mate Playadito sin palo 500 g.",
+    "complementName": "",
+    "ean": "7793704000881",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7793704000881"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "943326",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/943326/7793704000881_02.jpg?v=639265659005830000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=8788&qty=1&seller=1&sc=1&price=360000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 3600,
+       "ListPrice": 3600,
+       "PriceWithoutDiscount": 3600,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "669425",
+  "productName": "Yerba mate Playadito con palo 500 g.",
+  "brand": "Playadito",
+  "brandId": 2001769,
+  "linkText": "yerba-mate-playadito-con-palo-500-g",
+  "productReference": "669425",
+  "categoryId": "232",
+  "categories": [
+   "/Desayuno y merienda/Yerba/",
+   "/Desayuno y merienda/"
+  ],
+  "categoriesIds": [
+   "/222/232/",
+   "/222/"
+  ],
+  "link": "https://www.carrefour.com.ar/yerba-mate-playadito-con-palo-500-g/p",
+  "items": [
+   {
+    "itemId": "25324",
+    "name": "Yerba mate Playadito con palo 500 g.",
+    "nameComplete": "Yerba mate Playadito con palo 500 g.",
+    "complementName": "",
+    "ean": "7793704000911",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7793704000911"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "943363",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/943363/7793704000911_02.jpg?v=639265669568470000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=25324&qty=1&seller=1&sc=1&price=275900&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 2759,
+       "ListPrice": 2759,
+       "PriceWithoutDiscount": 2759,
+       "PriceValidUntil": "2027-10-11T00:35:54Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "653792",
+  "productName": "Leche La Serenísima UAT entera clásica 3% pet 1 lt",
+  "brand": "La Serenísima",
+  "brandId": 2001244,
+  "linkText": "leche-la-serenisima-uat-entera-clasica-3-pet-1-lt-653792",
+  "productReference": "653792",
+  "categoryId": "294",
+  "categories": [
+   "/Lácteos y productos frescos/Leches/Leches enteras/",
+   "/Lácteos y productos frescos/Leches/",
+   "/Lácteos y productos frescos/"
+  ],
+  "categoriesIds": [
+   "/292/293/294/",
+   "/292/293/",
+   "/292/"
+  ],
+  "link": "https://www.carrefour.com.ar/leche-la-serenisima-uat-entera-clasica-3-pet-1-lt-653792/p",
+  "items": [
+   {
+    "itemId": "11560",
+    "name": "Leche La Serenísima UAT entera clásica 3% pet 1 lt",
+    "nameComplete": "Leche La Serenísima UAT entera clásica 3% pet 1 lt",
+    "complementName": "",
+    "ean": "7790742335500",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7790742335500"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "636111",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/636111/7790742335500_01.jpg.jpg?v=638780809274900000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=11560&qty=1&seller=1&sc=1&price=306000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 3060,
+       "ListPrice": 3060,
+       "PriceWithoutDiscount": 3060,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "679521",
+  "productName": "Leche La Serenísima ultra entera multivit 3% sachet 1 lt",
+  "brand": "La Serenísima",
+  "brandId": 2001244,
+  "linkText": "leche-la-serenisima-ultra-entera-multivit-3-sachet-1-lt-679521",
+  "productReference": "679521",
+  "categoryId": "294",
+  "categories": [
+   "/Lácteos y productos frescos/Leches/Leches enteras/",
+   "/Lácteos y productos frescos/Leches/",
+   "/Lácteos y productos frescos/"
+  ],
+  "categoriesIds": [
+   "/292/293/294/",
+   "/292/293/",
+   "/292/"
+  ],
+  "link": "https://www.carrefour.com.ar/leche-la-serenisima-ultra-entera-multivit-3-sachet-1-lt-679521/p",
+  "items": [
+   {
+    "itemId": "51818",
+    "name": "Leche La Serenísima ultra entera multivit 3% sachet 1 lt",
+    "nameComplete": "Leche La Serenísima ultra entera multivit 3% sachet 1 lt",
+    "complementName": "",
+    "ean": "7790742348302",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7790742348302"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "636129",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/636129/7790742348302_01.jpg.jpg?v=638780811503630000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=51818&qty=1&seller=1&sc=1&price=204900&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 2049,
+       "ListPrice": 2049,
+       "PriceWithoutDiscount": 2049,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "733184",
+  "productName": "Arroz parboil Gallo oro en caja 1 kg",
   "brand": "Gallo",
-  "brandId": 2000003,
-  "linkText": "arroz-largo-fino-gallo-oro-1-kg",
-  "productReference": "1203",
-  "categoryId": "13",
-  "productTitle": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "metaTagDescription": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "brandId": 2000894,
+  "linkText": "arroz-parboil-gallo-oro-en-caja-1-kg-733184",
+  "productReference": "733184",
+  "categoryId": "173",
   "categories": [
    "/Almacén/Arroz y legumbres/Arroz/",
    "/Almacén/Arroz y legumbres/",
    "/Almacén/"
   ],
   "categoriesIds": [
-   "/1/3/"
+   "/161/172/173/",
+   "/161/172/",
+   "/161/"
   ],
-  "link": "https://www.carrefour.com.ar/arroz-largo-fino-gallo-oro-1-kg/p",
-  "description": "",
+  "link": "https://www.carrefour.com.ar/arroz-parboil-gallo-oro-en-caja-1-kg-733184/p",
   "items": [
    {
-    "itemId": "1203",
-    "name": "Arroz Largo Fino Gallo Oro 1 Kg",
-    "nameComplete": "Arroz Largo Fino Gallo Oro 1 Kg",
+    "itemId": "171299",
+    "name": "Arroz parboil Gallo oro en caja 1 kg",
+    "nameComplete": "Arroz parboil Gallo oro en caja 1 kg",
     "complementName": "",
-    "ean": "7790070411846",
+    "ean": "7790070433091",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1203"
+      "Value": "7790070433091"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1203",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1203/arroz-largo-fino-gallo-oro-1-kg.jpg",
-      "imageText": "arroz-largo-fino-gallo-oro-1-kg"
+      "imageId": "914011",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/914011/7790070433091_01.jpg?v=639222228724700000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1203&qty=1&seller=1&sc=1&price=178500&cv=_&sc=1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=171299&qty=1&seller=1&sc=1&price=372900&cv=_&sc=1",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 1785,
-       "ListPrice": 2100,
-       "PriceWithoutDiscount": 2100,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 3729,
+       "ListPrice": 3729,
+       "PriceWithoutDiscount": 3729,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -337,79 +760,211 @@
   ]
  },
  {
-  "productId": "6204",
-  "productName": "Aceite de Girasol Natura 1,5 L",
-  "brand": "Natura",
-  "brandId": 2000004,
-  "linkText": "aceite-de-girasol-natura-1-5-l",
-  "productReference": "1204",
-  "categoryId": "14",
-  "productTitle": "Aceite de Girasol Natura 1,5 L",
-  "metaTagDescription": "Aceite de Girasol Natura 1,5 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "718787",
+  "productName": "Arroz parboil Gallo oro en bolsa 1 kg",
+  "brand": "Gallo",
+  "brandId": 2000894,
+  "linkText": "arroz-parboil-gallo-oro-en-bolsa-1-kg-718787",
+  "productReference": "718787",
+  "categoryId": "173",
   "categories": [
-   "/Almacén/Aceites y vinagres/Aceite de girasol/",
+   "/Almacén/Arroz y legumbres/Arroz/",
+   "/Almacén/Arroz y legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/161/172/173/",
+   "/161/172/",
+   "/161/"
+  ],
+  "link": "https://www.carrefour.com.ar/arroz-parboil-gallo-oro-en-bolsa-1-kg-718787/p",
+  "items": [
+   {
+    "itemId": "140555",
+    "name": "Arroz parboil Gallo oro en bolsa 1 kg.",
+    "nameComplete": "Arroz parboil Gallo oro en bolsa 1 kg.",
+    "complementName": "",
+    "ean": "7790070431417",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7790070431417"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "914063",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/914063/7790070431417_01.jpg?v=639222245608070000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=140555&qty=1&seller=1&sc=1&price=297900&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 2979,
+       "ListPrice": 2979,
+       "PriceWithoutDiscount": 2979,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "576822",
+  "productName": "Aceite mezcla Natura blend 15 l",
+  "brand": "Natura",
+  "brandId": 2001545,
+  "linkText": "aceite-mezcla-natura-blend-15-l",
+  "productReference": "576822",
+  "categoryId": "163",
+  "categories": [
+   "/Almacén/Aceites y vinagres/Aceites comunes/",
    "/Almacén/Aceites y vinagres/",
    "/Almacén/"
   ],
   "categoriesIds": [
-   "/1/4/"
+   "/161/162/163/",
+   "/161/162/",
+   "/161/"
   ],
-  "link": "https://www.carrefour.com.ar/aceite-de-girasol-natura-1-5-l/p",
-  "description": "",
+  "link": "https://www.carrefour.com.ar/aceite-mezcla-natura-blend-15-l/p",
   "items": [
    {
-    "itemId": "1204",
-    "name": "Aceite de Girasol Natura 1,5 L",
-    "nameComplete": "Aceite de Girasol Natura 1,5 L",
+    "itemId": "23687",
+    "name": "Aceite mezcla Natura blend 1.5 l.",
+    "nameComplete": "Aceite mezcla Natura blend 15 l Aceite mezcla Natura blend 1.5 l.",
     "complementName": "",
-    "ean": "7790060233731",
+    "ean": "7790272000053",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1204"
+      "Value": "7790272000053"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1204",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1204/aceite-de-girasol-natura-1-5-l.jpg",
-      "imageText": "aceite-de-girasol-natura-1-5-l"
+      "imageId": "884084",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/884084/7790272000053_02.jpg?v=639159345065300000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1204&qty=1&seller=1&sc=1&price=360000&cv=_&sc=1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=23687&qty=1&seller=1&sc=1&price=1024900&cv=_&sc=1",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 3600,
-       "ListPrice": 3600,
-       "PriceWithoutDiscount": 3600,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
+       "Price": 10249,
+       "ListPrice": 10249,
+       "PriceWithoutDiscount": 10249,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -417,79 +972,321 @@
   ]
  },
  {
-  "productId": "6205",
-  "productName": "Fernet Branca 750 ml",
-  "brand": "Branca",
-  "brandId": 2000005,
-  "linkText": "fernet-branca-750-ml",
-  "productReference": "1205",
-  "categoryId": "15",
-  "productTitle": "Fernet Branca 750 ml",
-  "metaTagDescription": "Fernet Branca 750 ml",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "732141",
+  "productName": "Aceite de oliva virgen Natura extra fuerte 500 cc",
+  "brand": "Natura",
+  "brandId": 2001545,
+  "linkText": "aceite-de-oliva-virgen-natura-extra-fuerte-500-cc-732141",
+  "productReference": "732141",
+  "categoryId": "164",
   "categories": [
-   "/Bebidas/Bebidas alcohólicas/Aperitivos/",
-   "/Bebidas/Bebidas alcohólicas/",
-   "/Bebidas/"
+   "/Almacén/Aceites y vinagres/Aceites de oliva/",
+   "/Almacén/Aceites y vinagres/",
+   "/Almacén/"
   ],
   "categoriesIds": [
-   "/1/5/"
+   "/161/162/164/",
+   "/161/162/",
+   "/161/"
   ],
-  "link": "https://www.carrefour.com.ar/fernet-branca-750-ml/p",
-  "description": "",
+  "link": "https://www.carrefour.com.ar/aceite-de-oliva-virgen-natura-extra-fuerte-500-cc-732141/p",
   "items": [
    {
-    "itemId": "1205",
-    "name": "Fernet Branca 750 ml",
-    "nameComplete": "Fernet Branca 750 ml",
+    "itemId": "171052",
+    "name": "Aceite de oliva virgen Natura extra fuerte 500 cc.",
+    "nameComplete": "Aceite de oliva virgen Natura extra fuerte 500 cc.",
     "complementName": "",
-    "ean": "7790290001230",
+    "ean": "7790272008417",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1205"
+      "Value": "7790272008417"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1205",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1205/fernet-branca-750-ml.jpg",
-      "imageText": "fernet-branca-750-ml"
+      "imageId": "884581",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/884581/7790272008417_02.jpg?v=639160100515530000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Carrefour",
-      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1205&qty=1&seller=1&sc=1&price=1150000&cv=_&sc=1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=171052&qty=1&seller=1&sc=1&price=1448000&cv=_&sc=1",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 11500,
-       "ListPrice": 11500,
-       "PriceWithoutDiscount": 11500,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 14480,
+       "ListPrice": 14480,
+       "PriceWithoutDiscount": 14480,
+       "PriceValidUntil": "2027-10-11T00:45:24Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "673600",
+  "productName": "Fernet Branca botella 750 cc.",
+  "brand": "Branca",
+  "brandId": 2000301,
+  "linkText": "fernet-branca-botella-750-cc",
+  "productReference": "673600",
+  "categoryId": "263",
+  "categories": [
+   "/Bebidas/Fernet y aperitivos/Fernet/",
+   "/Bebidas/Fernet y aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/255/262/263/",
+   "/255/262/",
+   "/255/"
+  ],
+  "link": "https://www.carrefour.com.ar/fernet-branca-botella-750-cc/p",
+  "items": [
+   {
+    "itemId": "37545",
+    "name": "Fernet Branca botella 750 cc.",
+    "nameComplete": "Fernet Branca botella 750 cc.",
+    "complementName": "",
+    "ean": "7790290101602",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7790290101602"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "226772",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/226772/7790290101602_01.jpg?v=639238889061870000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=37545&qty=1&seller=1&sc=1&price=1970000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 19700,
+       "ListPrice": 19700,
+       "PriceWithoutDiscount": 19700,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "655371",
+  "productName": "Fernet Branca menta 750 cc.",
+  "brand": "Branca",
+  "brandId": 2000301,
+  "linkText": "fernet-branca-menta-750-cc",
+  "productReference": "655371",
+  "categoryId": "263",
+  "categories": [
+   "/Bebidas/Fernet y aperitivos/Fernet/",
+   "/Bebidas/Fernet y aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/255/262/263/",
+   "/255/262/",
+   "/255/"
+  ],
+  "link": "https://www.carrefour.com.ar/fernet-branca-menta-750-cc/p",
+  "items": [
+   {
+    "itemId": "13486",
+    "name": "Fernet Branca menta 750 cc.",
+    "nameComplete": "Fernet Branca menta 750 cc.",
+    "complementName": "",
+    "ean": "7790290101473",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "7790290101473"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "226763",
+      "imageUrl": "https://carrefourar.vteximg.com.br/arquivos/ids/226763/7790290101473_01.jpg?v=637715449428500000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "CARREFOUR",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=13486&qty=1&seller=1&sc=1&price=1477500&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 14775,
+       "ListPrice": 19700,
+       "PriceWithoutDiscount": 19700,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [
+        {
+         "<Name>k__BackingField": "Tarjeta Carrefour 15%",
+         "<GeneralValues>k__BackingField": {},
+         "<Conditions>k__BackingField": {
+          "<MinimumQuantity>k__BackingField": 0,
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "RestrictionsBins",
+            "<Value>k__BackingField": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "<Effects>k__BackingField": {
+          "<Parameters>k__BackingField": [
+           {
+            "<Name>k__BackingField": "PercentualDiscount",
+            "<Value>k__BackingField": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [
+        {
+         "Name": "Tarjeta Carrefour 15%",
+         "GeneralValues": {},
+         "Conditions": {
+          "MinimumQuantity": 0,
+          "Parameters": [
+           {
+            "Name": "RestrictionsBins",
+            "Value": "507858,858110,858111,585274,538156,520225,539958,527061,898989"
+           }
+          ]
+         },
+         "Effects": {
+          "Parameters": [
+           {
+            "Name": "PercentualDiscount",
+            "Value": "15"
+           }
+          ]
+         }
+        }
+       ],
+       "DiscountHighLight": [
+        {
+         "<Name>k__BackingField": "PROMO-25% Off Max 8 unidades -Reg-1-25-Aniv2 9 al 15.10"
+        }
+       ]
       }
      }
     ]

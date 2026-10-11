@@ -1,78 +1,60 @@
 [
  {
-  "productId": "6100",
-  "productName": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "brand": "Coca-Cola",
-  "brandId": 2000000,
+  "productId": "5614",
+  "productName": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
+  "brand": "COCA COLA",
+  "brandId": 230,
   "linkText": "gaseosa-coca-cola-sabor-original-2-25-l",
-  "productReference": "1100",
-  "categoryId": "10",
-  "productTitle": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "metaTagDescription": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productReference": "12110101009",
+  "categoryId": "205",
   "categories": [
-   "/Bebidas/Gaseosas/Gaseosas cola/",
+   "/Bebidas/Gaseosas/Cola/",
    "/Bebidas/Gaseosas/",
    "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/0/"
+   "/2/33/205/",
+   "/2/33/",
+   "/2/"
   ],
   "link": "https://www.vea.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
-  "description": "",
   "items": [
    {
-    "itemId": "1100",
-    "name": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-    "nameComplete": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "itemId": "246613",
+    "name": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
+    "nameComplete": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
     "complementName": "",
     "ean": "7790895000997",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1100"
+      "Value": "12110101009"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1100",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1100/gaseosa-coca-cola-sabor-original-2-25-l.jpg",
-      "imageText": "gaseosa-coca-cola-sabor-original-2-25-l"
+      "imageId": "783070",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/783070/Gaseosa-Coca-cola-Sabor-Original-2-25-L-1-247191.jpg?v=638206690815300000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1100&qty=1&seller=1&sc=1&price=382200&cv=_&sc=1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=246613&qty=1&seller=1&sc=34&price=599000&cv=_&sc=34",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 3822,
-       "ListPrice": 3822,
-       "PriceWithoutDiscount": 3822,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 5990,
+       "ListPrice": 495041,
+       "PriceWithoutDiscount": 5990,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -80,79 +62,61 @@
   ]
  },
  {
-  "productId": "6101",
-  "productName": "Yerba Mate Playadito Suave 1 Kg",
-  "brand": "Playadito",
-  "brandId": 2000001,
-  "linkText": "yerba-mate-playadito-suave-1-kg",
-  "productReference": "1101",
-  "categoryId": "11",
-  "productTitle": "Yerba Mate Playadito Suave 1 Kg",
-  "metaTagDescription": "Yerba Mate Playadito Suave 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "21814",
+  "productName": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
+  "brand": "COCA COLA",
+  "brandId": 230,
+  "linkText": "coca-cola-zero-2-25-lt",
+  "productReference": "12110101145",
+  "categoryId": "205",
   "categories": [
-   "/Almacén/Infusiones/Yerba/",
-   "/Almacén/Infusiones/",
-   "/Almacén/"
+   "/Bebidas/Gaseosas/Cola/",
+   "/Bebidas/Gaseosas/",
+   "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/1/"
+   "/2/33/205/",
+   "/2/33/",
+   "/2/"
   ],
-  "link": "https://www.vea.com.ar/yerba-mate-playadito-suave-1-kg/p",
-  "description": "",
+  "link": "https://www.vea.com.ar/coca-cola-zero-2-25-lt/p",
   "items": [
    {
-    "itemId": "1101",
-    "name": "Yerba Mate Playadito Suave 1 Kg",
-    "nameComplete": "Yerba Mate Playadito Suave 1 Kg",
+    "itemId": "18976",
+    "name": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
+    "nameComplete": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
     "complementName": "",
-    "ean": "7793704000010",
+    "ean": "7790895067570",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1101"
+      "Value": "12110101145"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1101",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1101/yerba-mate-playadito-suave-1-kg.jpg",
-      "imageText": "yerba-mate-playadito-suave-1-kg"
+      "imageId": "799920",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/799920/Gaseosa-Coca-Cola-Sin-Azucar-2-25lt-1-19721.jpg?v=638349573899270000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1101&qty=1&seller=1&sc=1&price=509600&cv=_&sc=1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=18976&qty=1&seller=1&sc=34&price=599000&cv=_&sc=34",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 5096,
-       "ListPrice": 5096,
-       "PriceWithoutDiscount": 5096,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 5990,
+       "ListPrice": 495041,
+       "PriceWithoutDiscount": 5990,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -160,79 +124,183 @@
   ]
  },
  {
-  "productId": "6102",
-  "productName": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "brand": "La Serenísima",
-  "brandId": 2000002,
-  "linkText": "leche-entera-la-serenisima-clasica-1-l",
-  "productReference": "1102",
-  "categoryId": "12",
-  "productTitle": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "metaTagDescription": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "9572",
+  "productName": "Yerba Mate Playadito Sin Palo 500 Gr",
+  "brand": "PLAYADITO",
+  "brandId": 3052,
+  "linkText": "yerba-mate-playadito-sin-palo-500-gr",
+  "productReference": "11230508001",
+  "categoryId": "164",
   "categories": [
-   "/Lácteos/Leches/Leche entera/",
-   "/Lácteos/Leches/",
+   "/Almacén/Desayuno y Merienda/Yerbas/",
+   "/Almacén/Desayuno y Merienda/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/21/164/",
+   "/1/21/",
+   "/1/"
+  ],
+  "link": "https://www.vea.com.ar/yerba-mate-playadito-sin-palo-500-gr/p",
+  "items": [
+   {
+    "itemId": "6850",
+    "name": "Yerba Mate Playadito Sin Palo 500 Gr",
+    "nameComplete": "Yerba Mate Playadito Sin Palo 500 Gr",
+    "complementName": "",
+    "ean": "7793704000881",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11230508001"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "178811",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/178811/Yerba-Mate-Playadito-Sin-Palo-X-500-Gr-Yerba-Mate-Playadito-Sin-Palo-500-Gr-1-7518.jpg?v=636383371111970000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=6850&qty=1&seller=1&sc=34&price=379000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 3790,
+       "ListPrice": 313223,
+       "PriceWithoutDiscount": 3790,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 10,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "316566",
+  "productName": "Yerba Mate Suave 1 Kg Playadito",
+  "brand": "PLAYADITO",
+  "brandId": 3052,
+  "linkText": "yerba-mate-playadito-suave-1-kg",
+  "productReference": "11230376006",
+  "categoryId": "164",
+  "categories": [
+   "/Almacén/Desayuno y Merienda/Yerbas/",
+   "/Almacén/Desayuno y Merienda/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/21/164/",
+   "/1/21/",
+   "/1/"
+  ],
+  "link": "https://www.vea.com.ar/yerba-mate-playadito-suave-1-kg/p",
+  "items": [
+   {
+    "itemId": "315800",
+    "name": "Yerba Mate Playadito Suave 1 Kg",
+    "nameComplete": "Yerba Mate Suave 1 Kg Playadito Yerba Mate Playadito Suave 1 Kg",
+    "complementName": "",
+    "ean": "7793704000928",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11230376006"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "711224",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=315800&qty=1&seller=1&sc=34&price=519000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 5190,
+       "ListPrice": 428926,
+       "PriceWithoutDiscount": 5190,
+       "PriceValidUntil": "2027-10-11T00:38:05Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "293966",
+  "productName": "Crema La Serenisima Batir 330ml",
+  "brand": "LA SERENISIMA",
+  "brandId": 583,
+  "linkText": "crema-la-serenisima-batir-330ml",
+  "productReference": "21210102018",
+  "categoryId": "70",
+  "categories": [
+   "/Lácteos/Cremas/",
    "/Lácteos/"
   ],
   "categoriesIds": [
-   "/1/2/"
+   "/7/70/",
+   "/7/"
   ],
-  "link": "https://www.vea.com.ar/leche-entera-la-serenisima-clasica-1-l/p",
-  "description": "",
+  "link": "https://www.vea.com.ar/crema-la-serenisima-batir-330ml/p",
   "items": [
    {
-    "itemId": "1102",
-    "name": "Leche Entera La Serenísima Clásica 3% 1 L",
-    "nameComplete": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "itemId": "293197",
+    "name": "Crema La Serenisima Batir 330ml",
+    "nameComplete": "Crema La Serenisima Batir 330ml",
     "complementName": "",
-    "ean": "7790742656001",
+    "ean": "7790742141101",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1102"
+      "Value": "21210102018"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1102",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1102/leche-entera-la-serenisima-clasica-1-l.jpg",
-      "imageText": "leche-entera-la-serenisima-clasica-1-l"
+      "imageId": "790670",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/790670/Crema-La-Serenisima-Tetra-Top-330-M3-Crema-Para-Batir-La-Serenisima-330cm3-1-668265.jpg?v=638278833680670000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1102&qty=1&seller=1&sc=1&price=142100&cv=_&sc=1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=293197&qty=1&seller=1&sc=34&price=529000&cv=_&sc=34",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
+       "Price": 5290,
+       "ListPrice": 437190,
+       "PriceWithoutDiscount": 5290,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
        "Teasers": [],
        "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 0,
-       "ListPrice": 1421,
-       "PriceWithoutDiscount": 1421,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 0,
-       "IsAvailable": false,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "DiscountHighLight": []
       }
      }
     ]
@@ -240,79 +308,59 @@
   ]
  },
  {
-  "productId": "6103",
-  "productName": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "brand": "Gallo",
-  "brandId": 2000003,
-  "linkText": "arroz-largo-fino-gallo-oro-1-kg",
-  "productReference": "1103",
-  "categoryId": "13",
-  "productTitle": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "metaTagDescription": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "300247",
+  "productName": "Crema La Serenisima Culinaria 330ml",
+  "brand": "LA SERENISIMA",
+  "brandId": 583,
+  "linkText": "crema-la-serenisima-culinaria-330ml",
+  "productReference": "21210307006",
+  "categoryId": "70",
   "categories": [
-   "/Almacén/Arroz y legumbres/Arroz/",
-   "/Almacén/Arroz y legumbres/",
-   "/Almacén/"
+   "/Lácteos/Cremas/",
+   "/Lácteos/"
   ],
   "categoriesIds": [
-   "/1/3/"
+   "/7/70/",
+   "/7/"
   ],
-  "link": "https://www.vea.com.ar/arroz-largo-fino-gallo-oro-1-kg/p",
-  "description": "",
+  "link": "https://www.vea.com.ar/crema-la-serenisima-culinaria-330ml/p",
   "items": [
    {
-    "itemId": "1103",
-    "name": "Arroz Largo Fino Gallo Oro 1 Kg",
-    "nameComplete": "Arroz Largo Fino Gallo Oro 1 Kg",
-    "complementName": "",
-    "ean": "7790070411846",
+    "itemId": "299465",
+    "name": "Crema Uat Ls Culinaria Tetratop",
+    "nameComplete": "Crema La Serenisima Culinaria 330ml Crema Uat Ls Culinaria Tetratop",
+    "complementName": "<article> <p> <br>Utilizar como ingrediente en todas las recetas que no requieran batido ni punto chantilly </p> </article>",
+    "ean": "7790742141705",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1103"
+      "Value": "21210307006"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1103",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1103/arroz-largo-fino-gallo-oro-1-kg.jpg",
-      "imageText": "arroz-largo-fino-gallo-oro-1-kg"
+      "imageId": "790671",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/790671/Crema-La-Serenisima-X-330-Grs-Culinaria-20-Tenor-Graso-Crema-Para-Cocinar-La-Serenisima-330cm3-1-808723.jpg?v=638278833683500000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1103&qty=1&seller=1&sc=1&price=205800&cv=_&sc=1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=299465&qty=1&seller=1&sc=34&price=499000&cv=_&sc=34",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 2058,
-       "ListPrice": 2058,
-       "PriceWithoutDiscount": 2058,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 4990,
+       "ListPrice": 412397,
+       "PriceWithoutDiscount": 4990,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
       }
      }
     ]
@@ -320,79 +368,367 @@
   ]
  },
  {
-  "productId": "6104",
-  "productName": "Aceite de Girasol Natura 1,5 L",
-  "brand": "Natura",
-  "brandId": 2000004,
-  "linkText": "aceite-de-girasol-natura-1-5-l",
-  "productReference": "1104",
-  "categoryId": "14",
-  "productTitle": "Aceite de Girasol Natura 1,5 L",
-  "metaTagDescription": "Aceite de Girasol Natura 1,5 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "413973",
+  "productName": "Arroz Gallo Oro Selec Paraboil X1kg",
+  "brand": "GALLO",
+  "brandId": 406,
+  "linkText": "arroz-gallo-oro-selec-paraboil-x1kg",
+  "productReference": "11450502019",
+  "categoryId": "145",
   "categories": [
-   "/Almacén/Aceites y vinagres/Aceite de girasol/",
-   "/Almacén/Aceites y vinagres/",
+   "/Almacén/Arroz y Legumbres/Arroz/",
+   "/Almacén/Arroz y Legumbres/",
    "/Almacén/"
   ],
   "categoriesIds": [
-   "/1/4/"
+   "/1/19/145/",
+   "/1/19/",
+   "/1/"
   ],
-  "link": "https://www.vea.com.ar/aceite-de-girasol-natura-1-5-l/p",
-  "description": "",
+  "link": "https://www.vea.com.ar/arroz-gallo-oro-selec-paraboil-x1kg/p",
   "items": [
    {
-    "itemId": "1104",
-    "name": "Aceite de Girasol Natura 1,5 L",
-    "nameComplete": "Aceite de Girasol Natura 1,5 L",
+    "itemId": "409699",
+    "name": "Arroz Gallo Oro Selec Paraboil X1kg",
+    "nameComplete": "Arroz Gallo Oro Selec Paraboil X1kg",
     "complementName": "",
-    "ean": "7790060233731",
+    "ean": "7790070433091",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1104"
+      "Value": "11450502019"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1104",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1104/aceite-de-girasol-natura-1-5-l.jpg",
-      "imageText": "aceite-de-girasol-natura-1-5-l"
+      "imageId": "853986",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/853986/Arroz-Gallo-Oro-Selec-Paraboil-X1kg-1-1001173.jpg?v=638733300156200000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1104&qty=1&seller=1&sc=1&price=352800&cv=_&sc=1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=409699&qty=1&seller=1&sc=34&price=369000&cv=_&sc=34",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 3528,
-       "ListPrice": 3528,
-       "PriceWithoutDiscount": 3528,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 3690,
+       "ListPrice": 304959,
+       "PriceWithoutDiscount": 3690,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "392823",
+  "productName": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+  "brand": "GALLO",
+  "brandId": 406,
+  "linkText": "arroz-parboil-en-bolsa-1-kg-gallo-oro",
+  "productReference": "11450502017",
+  "categoryId": "145",
+  "categories": [
+   "/Almacén/Arroz y Legumbres/Arroz/",
+   "/Almacén/Arroz y Legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/19/145/",
+   "/1/19/",
+   "/1/"
+  ],
+  "link": "https://www.vea.com.ar/arroz-parboil-en-bolsa-1-kg-gallo-oro/p",
+  "items": [
+   {
+    "itemId": "390873",
+    "name": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+    "nameComplete": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+    "complementName": "",
+    "ean": "7790070431417",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11450502017"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "853934",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/853934/Arroz-Parboil-Gallo-Oro-En-Bolsa-1-Kg-1-951065.jpg?v=638733299977300000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=390873&qty=1&seller=1&sc=34&price=279000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 2790,
+       "ListPrice": 230579,
+       "PriceWithoutDiscount": 2790,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4257",
+  "productName": "Aceite de Girasol 3 Lts Natura",
+  "brand": "NATURA",
+  "brandId": 719,
+  "linkText": "aceite-de-girasol-natura-3-l",
+  "productReference": "12610902003",
+  "categoryId": "134",
+  "categories": [
+   "/Almacén/Aceites y Vinagres/Aceites Comunes/",
+   "/Almacén/Aceites y Vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/17/134/",
+   "/1/17/",
+   "/1/"
+  ],
+  "link": "https://www.vea.com.ar/aceite-de-girasol-natura-3-l/p",
+  "items": [
+   {
+    "itemId": "247329",
+    "name": "Aceite De Girasol Natura 3 L.",
+    "nameComplete": "Aceite de Girasol 3 Lts Natura Aceite De Girasol Natura 3 L.",
+    "complementName": "",
+    "ean": "7790272001036",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12610902003"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "427745",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/427745/Aceite-De-Girasol-Natura-3-L-1-247920.jpg?v=636495154736170000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=247329&qty=1&seller=1&sc=34&price=1569000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 15690,
+       "ListPrice": 1296694,
+       "PriceWithoutDiscount": 15690,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 10,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4252",
+  "productName": "Aceite de Girasol 1,5 Lts Natura",
+  "brand": "NATURA",
+  "brandId": 719,
+  "linkText": "aceite-de-girasol1-5-l-natura",
+  "productReference": "12610902002",
+  "categoryId": "134",
+  "categories": [
+   "/Almacén/Aceites y Vinagres/Aceites Comunes/",
+   "/Almacén/Aceites y Vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/17/134/",
+   "/1/17/",
+   "/1/"
+  ],
+  "link": "https://www.vea.com.ar/aceite-de-girasol1-5-l-natura/p",
+  "items": [
+   {
+    "itemId": "247337",
+    "name": "Aceite de Girasol 1,5 Lts Natura",
+    "nameComplete": "Aceite de Girasol 1,5 Lts Natura",
+    "complementName": "",
+    "ean": "7790272001029",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12610902002"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "427751",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/427751/Aceite-De-Girasol-Natura-15-L-1-247928.jpg?v=636495154762100000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=247337&qty=1&seller=1&sc=34&price=739000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 7390,
+       "ListPrice": 610744,
+       "PriceWithoutDiscount": 7390,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "318882",
+  "productName": "Fernet 750cc Branca",
+  "brand": "BRANCA",
+  "brandId": 4548,
+  "linkText": "fernet-branca-750-ml-2",
+  "productReference": "12320501017",
+  "categoryId": "36",
+  "categories": [
+   "/Bebidas/Aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/2/36/",
+   "/2/"
+  ],
+  "link": "https://www.vea.com.ar/fernet-branca-750-ml-2/p",
+  "items": [
+   {
+    "itemId": "318125",
+    "name": "Fernet 750cc Branca",
+    "nameComplete": "Fernet 750cc Branca",
+    "complementName": "",
+    "ean": "7790290101602",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12320501017"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "617349",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/617349/Fernet-Branca-Bot-750-Cc-1-856717.jpg?v=637437282860830000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=318125&qty=1&seller=1&sc=34&price=1970000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 19700,
+       "ListPrice": 1628099,
+       "PriceWithoutDiscount": 19700,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "8320",
+  "productName": "Fernet Menta 450cc Branca",
+  "brand": "BRANCA",
+  "brandId": 4548,
+  "linkText": "fernet-branca-menta-450-ml",
+  "productReference": "12320501004",
+  "categoryId": "36",
+  "categories": [
+   "/Bebidas/Aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/2/36/",
+   "/2/"
+  ],
+  "link": "https://www.vea.com.ar/fernet-branca-menta-450-ml/p",
+  "items": [
+   {
+    "itemId": "5646",
+    "name": "Fernet Menta 450cc Branca",
+    "nameComplete": "Fernet Menta 450cc Branca",
+    "complementName": "",
+    "ean": "7790290101480",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12320501004"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "818699",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/818699/Fernet-Branca-Menta-450-Ml-1-6308.jpg?v=638488029684530000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Vea Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=5646&qty=1&seller=1&sc=34&price=1310000&cv=_&sc=34",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 13100,
+       "ListPrice": 1082645,
+       "PriceWithoutDiscount": 13100,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
       }
      }
     ]

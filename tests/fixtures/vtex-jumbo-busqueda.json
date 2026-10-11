@@ -1,175 +1,60 @@
 [
  {
-  "productId": "6000",
-  "productName": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "brand": "Coca-Cola",
-  "brandId": 2000000,
+  "productId": "5614",
+  "productName": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
+  "brand": "COCA COLA",
+  "brandId": 230,
   "linkText": "gaseosa-coca-cola-sabor-original-2-25-l",
-  "productReference": "1000",
-  "categoryId": "10",
-  "productTitle": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "metaTagDescription": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productReference": "12110101009",
+  "categoryId": "205",
   "categories": [
-   "/Bebidas/Gaseosas/Gaseosas cola/",
+   "/Bebidas/Gaseosas/Cola/",
    "/Bebidas/Gaseosas/",
    "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/0/"
+   "/2/33/205/",
+   "/2/33/",
+   "/2/"
   ],
   "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
-  "description": "",
   "items": [
    {
-    "itemId": "1000",
-    "name": "Gaseosa Coca-Cola Sabor Original 2,25 L",
-    "nameComplete": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "itemId": "246613",
+    "name": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
+    "nameComplete": "Gaseosa Cola Sabor Original 2.25 Lts Coca Cola",
     "complementName": "",
     "ean": "7790895000997",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1000"
+      "Value": "12110101009"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1000",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1000/gaseosa-coca-cola-sabor-original-2-25-l.jpg",
-      "imageText": "gaseosa-coca-cola-sabor-original-2-25-l"
+      "imageId": "783070",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/783070/Gaseosa-Coca-cola-Sabor-Original-2-25-L-1-247191.jpg?v=638206690815300000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1000&qty=1&seller=1&sc=1&price=413400&cv=_&sc=1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=246613&qty=1&seller=1&sc=32&price=593000&cv=_&sc=32",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [
-        {
-         "<Name>k__BackingField": "2x1 en Coca-Cola 2,25 L",
-         "<GeneralValues>k__BackingField": {},
-         "<Conditions>k__BackingField": {
-          "<MinimumQuantity>k__BackingField": 2,
-          "<Parameters>k__BackingField": []
-         },
-         "<Effects>k__BackingField": {
-          "<Parameters>k__BackingField": [
-           {
-            "<Name>k__BackingField": "PercentualDiscount",
-            "<Value>k__BackingField": "50"
-           }
-          ]
-         }
-        }
-       ],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 4134,
-       "ListPrice": 4134,
-       "PriceWithoutDiscount": 4134,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 5930,
+       "ListPrice": 490083,
+       "PriceWithoutDiscount": 5930,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
-      }
-     }
-    ]
-   }
-  ]
- },
- {
-  "productId": "6001",
-  "productName": "Yerba Mate Playadito Suave 1 Kg",
-  "brand": "Playadito",
-  "brandId": 2000001,
-  "linkText": "yerba-mate-playadito-suave-1-kg",
-  "productReference": "1001",
-  "categoryId": "11",
-  "productTitle": "Yerba Mate Playadito Suave 1 Kg",
-  "metaTagDescription": "Yerba Mate Playadito Suave 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
-  "categories": [
-   "/Almacén/Infusiones/Yerba/",
-   "/Almacén/Infusiones/",
-   "/Almacén/"
-  ],
-  "categoriesIds": [
-   "/1/1/"
-  ],
-  "link": "https://www.jumbo.com.ar/yerba-mate-playadito-suave-1-kg/p",
-  "description": "",
-  "items": [
-   {
-    "itemId": "1001",
-    "name": "Yerba Mate Playadito Suave 1 Kg",
-    "nameComplete": "Yerba Mate Playadito Suave 1 Kg",
-    "complementName": "",
-    "ean": "7793704000010",
-    "referenceId": [
-     {
-      "Key": "RefId",
-      "Value": "1001"
-     }
-    ],
-    "measurementUnit": "un",
-    "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
-    "images": [
-     {
-      "imageId": "1001",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1001/yerba-mate-playadito-suave-1-kg.jpg",
-      "imageText": "yerba-mate-playadito-suave-1-kg"
-     }
-    ],
-    "sellers": [
-     {
-      "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1001&qty=1&seller=1&sc=1&price=551200&cv=_&sc=1",
-      "sellerDefault": true,
-      "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
        "Teasers": [],
        "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 5512,
-       "ListPrice": 5512,
-       "PriceWithoutDiscount": 5512,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
-       "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "DiscountHighLight": []
       }
      }
     ]
@@ -177,319 +62,673 @@
   ]
  },
  {
-  "productId": "6002",
-  "productName": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "brand": "La Serenísima",
-  "brandId": 2000002,
-  "linkText": "leche-entera-la-serenisima-clasica-1-l",
-  "productReference": "1002",
-  "categoryId": "12",
-  "productTitle": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "metaTagDescription": "Leche Entera La Serenísima Clásica 3% 1 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
+  "productId": "21814",
+  "productName": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
+  "brand": "COCA COLA",
+  "brandId": 230,
+  "linkText": "coca-cola-zero-2-25-lt",
+  "productReference": "12110101145",
+  "categoryId": "205",
   "categories": [
-   "/Lácteos/Leches/Leche entera/",
-   "/Lácteos/Leches/",
-   "/Lácteos/"
-  ],
-  "categoriesIds": [
-   "/1/2/"
-  ],
-  "link": "https://www.jumbo.com.ar/leche-entera-la-serenisima-clasica-1-l/p",
-  "description": "",
-  "items": [
-   {
-    "itemId": "1002",
-    "name": "Leche Entera La Serenísima Clásica 3% 1 L",
-    "nameComplete": "Leche Entera La Serenísima Clásica 3% 1 L",
-    "complementName": "",
-    "ean": "7790742656001",
-    "referenceId": [
-     {
-      "Key": "RefId",
-      "Value": "1002"
-     }
-    ],
-    "measurementUnit": "un",
-    "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
-    "images": [
-     {
-      "imageId": "1002",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1002/leche-entera-la-serenisima-clasica-1-l.jpg",
-      "imageText": "leche-entera-la-serenisima-clasica-1-l"
-     }
-    ],
-    "sellers": [
-     {
-      "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1002&qty=1&seller=1&sc=1&price=153700&cv=_&sc=1",
-      "sellerDefault": true,
-      "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 1537,
-       "ListPrice": 1537,
-       "PriceWithoutDiscount": 1537,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
-       "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
-      }
-     }
-    ]
-   }
-  ]
- },
- {
-  "productId": "6003",
-  "productName": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "brand": "Gallo",
-  "brandId": 2000003,
-  "linkText": "arroz-largo-fino-gallo-oro-1-kg",
-  "productReference": "1003",
-  "categoryId": "13",
-  "productTitle": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "metaTagDescription": "Arroz Largo Fino Gallo Oro 1 Kg",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
-  "categories": [
-   "/Almacén/Arroz y legumbres/Arroz/",
-   "/Almacén/Arroz y legumbres/",
-   "/Almacén/"
-  ],
-  "categoriesIds": [
-   "/1/3/"
-  ],
-  "link": "https://www.jumbo.com.ar/arroz-largo-fino-gallo-oro-1-kg/p",
-  "description": "",
-  "items": [
-   {
-    "itemId": "1003",
-    "name": "Arroz Largo Fino Gallo Oro 1 Kg",
-    "nameComplete": "Arroz Largo Fino Gallo Oro 1 Kg",
-    "complementName": "",
-    "ean": "7790070411846",
-    "referenceId": [
-     {
-      "Key": "RefId",
-      "Value": "1003"
-     }
-    ],
-    "measurementUnit": "un",
-    "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
-    "images": [
-     {
-      "imageId": "1003",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1003/arroz-largo-fino-gallo-oro-1-kg.jpg",
-      "imageText": "arroz-largo-fino-gallo-oro-1-kg"
-     }
-    ],
-    "sellers": [
-     {
-      "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1003&qty=1&seller=1&sc=1&price=222600&cv=_&sc=1",
-      "sellerDefault": true,
-      "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 2226,
-       "ListPrice": 2226,
-       "PriceWithoutDiscount": 2226,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
-       "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
-      }
-     }
-    ]
-   }
-  ]
- },
- {
-  "productId": "6004",
-  "productName": "Aceite de Girasol Natura 1,5 L",
-  "brand": "Natura",
-  "brandId": 2000004,
-  "linkText": "aceite-de-girasol-natura-1-5-l",
-  "productReference": "1004",
-  "categoryId": "14",
-  "productTitle": "Aceite de Girasol Natura 1,5 L",
-  "metaTagDescription": "Aceite de Girasol Natura 1,5 L",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
-  "categories": [
-   "/Almacén/Aceites y vinagres/Aceite de girasol/",
-   "/Almacén/Aceites y vinagres/",
-   "/Almacén/"
-  ],
-  "categoriesIds": [
-   "/1/4/"
-  ],
-  "link": "https://www.jumbo.com.ar/aceite-de-girasol-natura-1-5-l/p",
-  "description": "",
-  "items": [
-   {
-    "itemId": "1004",
-    "name": "Aceite de Girasol Natura 1,5 L",
-    "nameComplete": "Aceite de Girasol Natura 1,5 L",
-    "complementName": "",
-    "ean": "7790060233731",
-    "referenceId": [
-     {
-      "Key": "RefId",
-      "Value": "1004"
-     }
-    ],
-    "measurementUnit": "un",
-    "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
-    "images": [
-     {
-      "imageId": "1004",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1004/aceite-de-girasol-natura-1-5-l.jpg",
-      "imageText": "aceite-de-girasol-natura-1-5-l"
-     }
-    ],
-    "sellers": [
-     {
-      "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1004&qty=1&seller=1&sc=1&price=305300&cv=_&sc=1",
-      "sellerDefault": true,
-      "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 3053,
-       "ListPrice": 3816,
-       "PriceWithoutDiscount": 3816,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
-       "AvailableQuantity": 99999,
-       "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
-      }
-     }
-    ]
-   }
-  ]
- },
- {
-  "productId": "6005",
-  "productName": "Fernet Branca 750 ml",
-  "brand": "Branca",
-  "brandId": 2000005,
-  "linkText": "fernet-branca-750-ml",
-  "productReference": "1005",
-  "categoryId": "15",
-  "productTitle": "Fernet Branca 750 ml",
-  "metaTagDescription": "Fernet Branca 750 ml",
-  "releaseDate": "2024-03-01T00:00:00",
-  "clusterHighlights": {},
-  "productClusters": {},
-  "searchableClusters": {},
-  "categories": [
-   "/Bebidas/Bebidas alcohólicas/Aperitivos/",
-   "/Bebidas/Bebidas alcohólicas/",
+   "/Bebidas/Gaseosas/Cola/",
+   "/Bebidas/Gaseosas/",
    "/Bebidas/"
   ],
   "categoriesIds": [
-   "/1/5/"
+   "/2/33/205/",
+   "/2/33/",
+   "/2/"
   ],
-  "link": "https://www.jumbo.com.ar/fernet-branca-750-ml/p",
-  "description": "",
+  "link": "https://www.jumbo.com.ar/coca-cola-zero-2-25-lt/p",
   "items": [
    {
-    "itemId": "1005",
-    "name": "Fernet Branca 750 ml",
-    "nameComplete": "Fernet Branca 750 ml",
+    "itemId": "18976",
+    "name": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
+    "nameComplete": "Gaseosa Cola Zero 2,25 Lts Coca Cola",
     "complementName": "",
-    "ean": "7790290001230",
+    "ean": "7790895067570",
     "referenceId": [
      {
       "Key": "RefId",
-      "Value": "1005"
+      "Value": "12110101145"
      }
     ],
     "measurementUnit": "un",
     "unitMultiplier": 1,
-    "modalType": null,
-    "isKit": false,
     "images": [
      {
-      "imageId": "1005",
-      "imageLabel": "",
-      "imageTag": "",
-      "imageUrl": "https://jumboarg.vtexassets.com/arquivos/ids/1005/fernet-branca-750-ml.jpg",
-      "imageText": "fernet-branca-750-ml"
+      "imageId": "799920",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/799920/Gaseosa-Coca-Cola-Sin-Azucar-2-25lt-1-19721.jpg?v=638349573899270000"
      }
     ],
     "sellers": [
      {
       "sellerId": "1",
-      "sellerName": "Cencosud Argentina",
-      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=1005&qty=1&seller=1&sc=1&price=1219000&cv=_&sc=1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=18976&qty=1&seller=1&sc=32&price=593000&cv=_&sc=32",
       "sellerDefault": true,
       "commertialOffer": {
-       "DeliverySlaSamplesPerRegion": {},
-       "Installments": [],
-       "DiscountHighLight": [],
-       "GiftSkuIds": [],
-       "Teasers": [],
-       "PromotionTeasers": [],
-       "BuyTogether": [],
-       "ItemMetadataAttachment": [],
-       "Price": 12190,
-       "ListPrice": 12190,
-       "PriceWithoutDiscount": 12190,
-       "RewardValue": 0,
-       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "Price": 5930,
+       "ListPrice": 490083,
+       "PriceWithoutDiscount": 5930,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
        "AvailableQuantity": 99999,
        "IsAvailable": true,
-       "Tax": 0,
-       "CacheVersionUsedToCallCheckout": ""
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "9572",
+  "productName": "Yerba Mate Playadito Sin Palo 500 Gr",
+  "brand": "PLAYADITO",
+  "brandId": 3052,
+  "linkText": "yerba-mate-playadito-sin-palo-500-gr",
+  "productReference": "11230508001",
+  "categoryId": "164",
+  "categories": [
+   "/Almacén/Desayuno y Merienda/Yerbas/",
+   "/Almacén/Desayuno y Merienda/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/21/164/",
+   "/1/21/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/yerba-mate-playadito-sin-palo-500-gr/p",
+  "items": [
+   {
+    "itemId": "6850",
+    "name": "Yerba Mate Playadito Sin Palo 500 Gr",
+    "nameComplete": "Yerba Mate Playadito Sin Palo 500 Gr",
+    "complementName": "",
+    "ean": "7793704000881",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11230508001"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "178811",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/178811/Yerba-Mate-Playadito-Sin-Palo-X-500-Gr-Yerba-Mate-Playadito-Sin-Palo-500-Gr-1-7518.jpg?v=636383371111970000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=6850&qty=1&seller=1&sc=32&price=410000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 4100,
+       "ListPrice": 338843,
+       "PriceWithoutDiscount": 4100,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "316566",
+  "productName": "Yerba Mate Suave 1 Kg Playadito",
+  "brand": "PLAYADITO",
+  "brandId": 3052,
+  "linkText": "yerba-mate-playadito-suave-1-kg",
+  "productReference": "11230376006",
+  "categoryId": "164",
+  "categories": [
+   "/Almacén/Desayuno y Merienda/Yerbas/",
+   "/Almacén/Desayuno y Merienda/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/21/164/",
+   "/1/21/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/yerba-mate-playadito-suave-1-kg/p",
+  "items": [
+   {
+    "itemId": "315800",
+    "name": "Yerba Mate Playadito Suave 1 Kg",
+    "nameComplete": "Yerba Mate Suave 1 Kg Playadito Yerba Mate Playadito Suave 1 Kg",
+    "complementName": "",
+    "ean": "7793704000928",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11230376006"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "711224",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=315800&qty=1&seller=1&sc=32&price=520800&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 5208,
+       "ListPrice": 430413,
+       "PriceWithoutDiscount": 5208,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "293966",
+  "productName": "Crema La Serenisima Batir 330ml",
+  "brand": "LA SERENISIMA",
+  "brandId": 583,
+  "linkText": "crema-la-serenisima-batir-330ml",
+  "productReference": "21210102018",
+  "categoryId": "70",
+  "categories": [
+   "/Lácteos/Cremas/",
+   "/Lácteos/"
+  ],
+  "categoriesIds": [
+   "/7/70/",
+   "/7/"
+  ],
+  "link": "https://www.jumbo.com.ar/crema-la-serenisima-batir-330ml/p",
+  "items": [
+   {
+    "itemId": "293197",
+    "name": "Crema La Serenisima Batir 330ml",
+    "nameComplete": "Crema La Serenisima Batir 330ml",
+    "complementName": "",
+    "ean": "7790742141101",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "21210102018"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "790670",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/790670/Crema-La-Serenisima-Tetra-Top-330-M3-Crema-Para-Batir-La-Serenisima-330cm3-1-668265.jpg?v=638278833680670000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=293197&qty=1&seller=1&sc=32&price=560000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 5600,
+       "ListPrice": 462810,
+       "PriceWithoutDiscount": 5600,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "300247",
+  "productName": "Crema La Serenisima Culinaria 330ml",
+  "brand": "LA SERENISIMA",
+  "brandId": 583,
+  "linkText": "crema-la-serenisima-culinaria-330ml",
+  "productReference": "21210307006",
+  "categoryId": "70",
+  "categories": [
+   "/Lácteos/Cremas/",
+   "/Lácteos/"
+  ],
+  "categoriesIds": [
+   "/7/70/",
+   "/7/"
+  ],
+  "link": "https://www.jumbo.com.ar/crema-la-serenisima-culinaria-330ml/p",
+  "items": [
+   {
+    "itemId": "299465",
+    "name": "Crema Uat Ls Culinaria Tetratop",
+    "nameComplete": "Crema La Serenisima Culinaria 330ml Crema Uat Ls Culinaria Tetratop",
+    "complementName": "<article> <p> <br>Utilizar como ingrediente en todas las recetas que no requieran batido ni punto chantilly </p> </article>",
+    "ean": "7790742141705",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "21210307006"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "790671",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/790671/Crema-La-Serenisima-X-330-Grs-Culinaria-20-Tenor-Graso-Crema-Para-Cocinar-La-Serenisima-330cm3-1-808723.jpg?v=638278833683500000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=299465&qty=1&seller=1&sc=32&price=513300&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 5133,
+       "ListPrice": 424215,
+       "PriceWithoutDiscount": 5133,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "413973",
+  "productName": "Arroz Gallo Oro Selec Paraboil X1kg",
+  "brand": "GALLO",
+  "brandId": 406,
+  "linkText": "arroz-gallo-oro-selec-paraboil-x1kg",
+  "productReference": "11450502019",
+  "categoryId": "145",
+  "categories": [
+   "/Almacén/Arroz y Legumbres/Arroz/",
+   "/Almacén/Arroz y Legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/19/145/",
+   "/1/19/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/arroz-gallo-oro-selec-paraboil-x1kg/p",
+  "items": [
+   {
+    "itemId": "409699",
+    "name": "Arroz Gallo Oro Selec Paraboil X1kg",
+    "nameComplete": "Arroz Gallo Oro Selec Paraboil X1kg",
+    "complementName": "",
+    "ean": "7790070433091",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11450502019"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "853986",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/853986/Arroz-Gallo-Oro-Selec-Paraboil-X1kg-1-1001173.jpg?v=638733300156200000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=409699&qty=1&seller=1&sc=32&price=390000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 3900,
+       "ListPrice": 322314,
+       "PriceWithoutDiscount": 3900,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "392823",
+  "productName": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+  "brand": "GALLO",
+  "brandId": 406,
+  "linkText": "arroz-parboil-en-bolsa-1-kg-gallo-oro",
+  "productReference": "11450502017",
+  "categoryId": "145",
+  "categories": [
+   "/Almacén/Arroz y Legumbres/Arroz/",
+   "/Almacén/Arroz y Legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/19/145/",
+   "/1/19/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/arroz-parboil-en-bolsa-1-kg-gallo-oro/p",
+  "items": [
+   {
+    "itemId": "390873",
+    "name": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+    "nameComplete": "Arroz Grano Largo Parboil 1 Kg Gallo Oro",
+    "complementName": "",
+    "ean": "7790070431417",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "11450502017"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "853934",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/853934/Arroz-Parboil-Gallo-Oro-En-Bolsa-1-Kg-1-951065.jpg?v=638733299977300000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=390873&qty=1&seller=1&sc=32&price=300000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 3000,
+       "ListPrice": 247934,
+       "PriceWithoutDiscount": 3000,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "28610",
+  "productName": "Aceite de Girasol 900 Ml Natura",
+  "brand": "NATURA",
+  "brandId": 719,
+  "linkText": "aceite-de-girasol-natura-900-ml",
+  "productReference": "12610902015",
+  "categoryId": "134",
+  "categories": [
+   "/Almacén/Aceites y Vinagres/Aceites Comunes/",
+   "/Almacén/Aceites y Vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/17/134/",
+   "/1/17/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/aceite-de-girasol-natura-900-ml/p",
+  "items": [
+   {
+    "itemId": "25769",
+    "name": "Aceite de Girasol 900 Ml Natura",
+    "nameComplete": "Aceite de Girasol 900 Ml Natura",
+    "complementName": "",
+    "ean": "7790272001005",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12610902015"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "687695",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/687695/Aceite-De-Girasol-Natura-900-Ml-1-26543.jpg?v=637799421695770000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=25769&qty=1&seller=1&sc=32&price=485000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 4850,
+       "ListPrice": 400826,
+       "PriceWithoutDiscount": 4850,
+       "PriceValidUntil": "2027-10-11T00:38:35Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "4257",
+  "productName": "Aceite de Girasol 3 Lts Natura",
+  "brand": "NATURA",
+  "brandId": 719,
+  "linkText": "aceite-de-girasol-natura-3-l",
+  "productReference": "12610902003",
+  "categoryId": "134",
+  "categories": [
+   "/Almacén/Aceites y Vinagres/Aceites Comunes/",
+   "/Almacén/Aceites y Vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/17/134/",
+   "/1/17/",
+   "/1/"
+  ],
+  "link": "https://www.jumbo.com.ar/aceite-de-girasol-natura-3-l/p",
+  "items": [
+   {
+    "itemId": "247329",
+    "name": "Aceite De Girasol Natura 3 L.",
+    "nameComplete": "Aceite de Girasol 3 Lts Natura Aceite De Girasol Natura 3 L.",
+    "complementName": "",
+    "ean": "7790272001036",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12610902003"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "427745",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/427745/Aceite-De-Girasol-Natura-3-L-1-247920.jpg?v=636495154736170000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=247329&qty=1&seller=1&sc=32&price=1495000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 14950,
+       "ListPrice": 1235537,
+       "PriceWithoutDiscount": 14950,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 100,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "318882",
+  "productName": "Fernet 750cc Branca",
+  "brand": "BRANCA",
+  "brandId": 4548,
+  "linkText": "fernet-branca-750-ml-2",
+  "productReference": "12320501017",
+  "categoryId": "36",
+  "categories": [
+   "/Bebidas/Aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/2/36/",
+   "/2/"
+  ],
+  "link": "https://www.jumbo.com.ar/fernet-branca-750-ml-2/p",
+  "items": [
+   {
+    "itemId": "318125",
+    "name": "Fernet 750cc Branca",
+    "nameComplete": "Fernet 750cc Branca",
+    "complementName": "",
+    "ean": "7790290101602",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12320501017"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "617349",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/617349/Fernet-Branca-Bot-750-Cc-1-856717.jpg?v=637437282860830000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=318125&qty=1&seller=1&sc=32&price=1970000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 19700,
+       "ListPrice": 1628099,
+       "PriceWithoutDiscount": 19700,
+       "PriceValidUntil": "2027-10-10T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "8320",
+  "productName": "Fernet Menta 450cc Branca",
+  "brand": "BRANCA",
+  "brandId": 4548,
+  "linkText": "fernet-branca-menta-450-ml",
+  "productReference": "12320501004",
+  "categoryId": "36",
+  "categories": [
+   "/Bebidas/Aperitivos/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/2/36/",
+   "/2/"
+  ],
+  "link": "https://www.jumbo.com.ar/fernet-branca-menta-450-ml/p",
+  "items": [
+   {
+    "itemId": "5646",
+    "name": "Fernet Menta 450cc Branca",
+    "nameComplete": "Fernet Menta 450cc Branca",
+    "complementName": "",
+    "ean": "7790290101480",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "12320501004"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "images": [
+     {
+      "imageId": "818699",
+      "imageUrl": "https://jumboargentina.vteximg.com.br/arquivos/ids/818699/Fernet-Branca-Menta-450-Ml-1-6308.jpg?v=638488029684530000"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Jumbo Argentina IO",
+      "addToCartLink": "https://www.jumbo.com.ar/checkout/cart/add?sku=5646&qty=1&seller=1&sc=32&price=1310000&cv=_&sc=32",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "Price": 13100,
+       "ListPrice": 1082645,
+       "PriceWithoutDiscount": 13100,
+       "PriceValidUntil": "2027-10-11T00:42:18Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "DiscountHighLight": []
       }
      }
     ]

@@ -71,7 +71,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
           'div',
           { class: 'tarjeta' },
           h('b', null, `Carrito de ${SUPERS[op.super]}`),
-          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí con ', h('b', null, MEDIOS[op.medio]), '. La app nunca paga ni guarda datos de tarjeta.'),
+          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, MEDIOS[op.medio])] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
           h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `Abrir carrito en ${SUPERS[op.super]} ↗`),
           h('p', { class: 'chico', style: { wordBreak: 'break-all' } }, h('code', null, c.url)),
         ),
@@ -139,7 +139,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
         h('tbody', null,
           h('tr', null, h('td', null, 'Subtotal (con promos de góndola)'), h('td', { class: 'num' }, pesos(op.subtotal))),
           op.ahorroGondola > 0 ? h('tr', null, h('td', { class: 'suave' }, '  incluye ahorro de góndola'), h('td', { class: 'num ok' }, `−${pesos(op.ahorroGondola)}`)) : null,
-          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${MEDIOS[op.medio]}` : `Sin promo bancaria con ${MEDIOS[op.medio]}`, op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
+          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${MEDIOS[op.medio]}` : 'Sin promo bancaria ese día', op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
           h('tr', null, h('td', null, 'Envío'), h('td', { class: 'num' }, op.envio ? pesos(op.envio) : 'gratis')),
           h('tr', null, h('th', null, 'Total'), h('th', { class: 'num' }, pesos(op.total))),
         ),
@@ -192,7 +192,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     !promos.length ? h('div', { class: 'banner chico' }, 'No tenés promos bancarias cargadas. ', h('a', { href: '#/promos' }, 'Cargalas'), ' para que la recomendación las tenga en cuenta.') : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta chico' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Configurá los reales')) : null,
     tarjetaOpcion(r.mejor, { destacada: true }),
-    masBarataIncompleta ? h('div', { class: 'banner chico' }, `💡 Si no te importa que falte ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, el ${masBarataIncompleta.fecha === hoy ? 'hoy' : nombreDia(masBarataIncompleta.fecha)} en ${textoOpcion(masBarataIncompleta)} sale ${pesos(masBarataIncompleta.total)} (${pesos(r.mejor.total - masBarataIncompleta.total)} menos, pero comprás menos cosas).`) : null,
+    masBarataIncompleta ? h('div', { class: 'banner chico' }, `💡 Si no te importa que falte ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, ${masBarataIncompleta.fecha === hoy ? 'hoy' : `el ${nombreDia(masBarataIncompleta.fecha)}`} en ${textoOpcion(masBarataIncompleta)} sale ${pesos(masBarataIncompleta.total)} (${pesos(r.mejor.total - masBarataIncompleta.total)} menos, pero comprás menos cosas).`) : null,
     contCarrito,
     div
       ? h(

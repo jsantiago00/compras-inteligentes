@@ -1,51 +1,45 @@
 #!/usr/bin/env node
-// Diagnóstico: ¿se pueden leer las promos de supermercados desde las páginas
-// oficiales de los bancos / MODO? Imprime texto relevante y pistas de APIs.
+// Diagnóstico de fuentes de promos bancarias (APIs públicas de Macro, MODO y
+// Semana Nación del BNA). Imprime estructura y ejemplos.
 
 import { USER_AGENT } from '../lib/scrapers/http.js';
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
-const plano = (html) =>
-  html
-    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n))
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s+/g, ' ');
-
-async function ver(url, { patron = /coto|jumbo|\bvea\b|carrefour|disco/gi, max = 12, ancho = 500, pistas = false } = {}) {
-  await espera(1500);
+async function ver(url, { max = 3000, headers = {} } = {}) {
+  await espera(1200);
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'text/html,application/json' } });
-    const html = await res.text();
-    console.log(`\n### ${res.status} ${url} (${html.length} bytes)`);
-    const t = plano(html);
-    const vistos = new Set();
-    let n = 0;
-    for (const m of t.matchAll(new RegExp(`.{0,120}(?:${patron.source}).{0,${ancho}}`, 'gi'))) {
-      const k = m[0].slice(100, 220);
-      if (vistos.has(k)) continue;
-      vistos.add(k);
-      console.log('  …', m[0]);
-      if (++n >= max) break;
-    }
-    if (pistas) {
-      const apis = [...new Set([...html.matchAll(/https?:\/\/[a-z0-9.-]*(?:api|graphql|cms|contentful|strapi|promo)[a-z0-9.-]*\.[a-z]{2,}[^"'\s<>)]*/gi)].map((x) => x[0]))].slice(0, 30);
-      console.log('  apis:', apis.join('\n        '));
-      const next = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-      if (next) console.log('  __NEXT_DATA__:', next[1].slice(0, 1500));
-      const sup = [...html.matchAll(/.{0,200}supermercad.{0,300}/gi)].slice(0, 5).map((x) => x[0].replace(/\s+/g, ' '));
-      for (const s of sup) console.log('  [raw]', s);
-    }
-    return html;
+    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'application/json, text/html', ...headers } });
+    const t = await res.text();
+    console.log(`\n### ${res.status} ${res.headers.get('content-type')} ${url} (${t.length} bytes)`);
+    console.log(t.replace(/\s+/g, ' ').slice(0, max));
+    return t;
   } catch (e) {
-    console.log(`\n### ERROR ${url}: ${e.message}`);
+    console.log(`\n### ERROR ${url}: ${e.message} ${e.cause?.code ?? ''}`);
     return '';
   }
 }
 
-await ver('https://www.bna.com.ar/Personas/DescuentosYPromociones/4551/supermercados/', { max: 30, ancho: 700 });
-await ver('https://www.bna.com.ar/Personas/DescuentosYPromociones/Categoria/1/supermercados', { max: 30, ancho: 300, pistas: true });
-await ver('https://www.macro.com.ar/beneficios', { patron: /supermerc/gi, max: 10, pistas: true });
-await ver('https://www.modo.com.ar/promos', { pistas: true });
-await ver('https://www.carrefour.com.ar/descuentos-bancarios', { patron: /macro|naci[oó]n|bna|modo/gi, max: 15, pistas: true });
+// Macro
+await ver('https://apipublic.macro.com.ar/v1/card-benefits/categories', { max: 2500 });
+for (const k of ['coto', 'carrefour', 'jumbo', 'vea']) await ver(`https://apipublic.macro.com.ar/v1/card-benefits/predictive?keyword=${k}`, { max: 2500 });
+await ver('https://apipublic.macro.com.ar/v1/card-benefits/?keyword=coto', { max: 4000 });
+await ver('https://apipublic.macro.com.ar/v1/card-benefits/?page=1', { max: 2500 });
+
+// MODO: buscar en el HTML cómo llama a promoshub
+const html = await ver('https://www.modo.com.ar/promos', { max: 0 });
+for (const m of html.matchAll(/.{0,200}promoshub.{0,300}/g)) console.log('  [modo]', m[0].replace(/\s+/g, ' '));
+const chunks = [...new Set([...html.matchAll(/\/_next\/static\/chunks\/[^"']+\.js/g)].map((m) => m[0]))];
+console.log('  chunks:', chunks.length);
+for (const c of chunks.slice(0, 40)) {
+  await espera(300);
+  try {
+    const js = await (await fetch('https://www.modo.com.ar' + c, { headers: { 'User-Agent': USER_AGENT } })).text();
+    for (const m of js.matchAll(/.{0,160}promoshub.{0,260}/g)) console.log('  [chunk]', c.split('/').pop(), m[0]);
+  } catch {}
+}
+await ver('https://promoshub.modo.com.ar/', { max: 800 });
+await ver('https://promoshub.modo.com.ar/api/promos?category=supermercados', { max: 1500 });
+
+// BNA Semana Nación
+await ver('https://semananacion.com.ar/semananacion/coto', { max: 2500 });
+await ver('https://semananacion.com.ar/', { max: 2500 });

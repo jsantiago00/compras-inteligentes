@@ -14,7 +14,8 @@
     "test": "node --test \"tests/**/*.test.js\"",
     "smoke": "node scripts/smoke.js",
     "fixtures:capturar": "node scripts/capturar-fixtures.js",
-    "iconos": "node scripts/generar-iconos.js"
+    "iconos": "node scripts/generar-iconos.js",
+    "promos:relevar": "node scripts/relevar-promos.js"
   },
   "dependencies": {
     "firebase": "^13.0.0",

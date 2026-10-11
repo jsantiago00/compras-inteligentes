@@ -35,6 +35,11 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro }));
   const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: estado.config.envios, hoy });
   const nombreItem = (clave) => lista.items.find((i) => i.clave === clave)?.nombre ?? clave;
+  // La mejor opción prioriza tener toda la lista; mostramos también la más barata
+  // a la que le falta 1 producto, si existe.
+  const masBarataIncompleta = r.mejor
+    ? r.ranking.find((o) => o.faltantes.length === r.mejor.faltantes.length + 1 && o.total < r.mejor.total) ?? null
+    : null;
 
   if (!r.mejor) {
     return montar(app, h('a', { href: `#/lista/${id}` }, '← Lista'), h('p', { class: 'vacio' }, r.texto), datos.errores?.length ? h('div', { class: 'banner alerta chico' }, `Errores: ${datos.errores.map((e) => `${SUPERS[e.super]}: ${e.error}`).join('; ')}`) : null);
@@ -140,6 +145,15 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
         ),
       ),
       op.faltantes.length ? h('p', { class: 'alerta chico' }, `Faltan o sin stock en ${SUPERS[op.super]}: ${op.faltantes.map(nombreItem).join(', ')}`) : null,
+      h(
+        'details',
+        { class: 'chico' },
+        h('summary', null, `Qué comprar en ${SUPERS[op.super]} (${op.lineas.length} producto/s)`),
+        h('table', null, h('tbody', null, op.lineas.map((l) => {
+          const prod = datos.precios[l.clave]?.[op.super];
+          return h('tr', null, h('td', null, prod?.nombre ?? nombreItem(l.clave), h('div', { class: 'suave' }, `${l.cantidad} × ${pesos(prod?.precioOferta ?? prod?.precioLista)}${l.ahorro > 0 ? ` · promo góndola −${pesos(l.ahorro)}` : ''}`)), h('td', { class: 'num' }, pesos(l.costo)));
+        }))),
+      ),
       alertas.length ? h('div', { class: 'banner alerta chico' }, h('b', null, '⚠ Posibles promos infladas'), h('ul', null, alertas.map((a) => h('li', null, a)))) : null,
       h('div', { class: 'fila', style: { marginTop: '8px' } }, h('button', { class: 'primario', onclick: () => armar(op) }, `🛒 Armar carrito en ${SUPERS[op.super]}`), h('button', { onclick: () => yaCompre([op]) }, '✅ Ya compré')),
     );
@@ -178,6 +192,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     !promos.length ? h('div', { class: 'banner chico' }, 'No tenés promos bancarias cargadas. ', h('a', { href: '#/promos' }, 'Cargalas'), ' para que la recomendación las tenga en cuenta.') : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta chico' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Configurá los reales')) : null,
     tarjetaOpcion(r.mejor, { destacada: true }),
+    masBarataIncompleta ? h('div', { class: 'banner chico' }, `💡 Si no te importa que falte ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, el ${masBarataIncompleta.fecha === hoy ? 'hoy' : nombreDia(masBarataIncompleta.fecha)} en ${textoOpcion(masBarataIncompleta)} sale ${pesos(masBarataIncompleta.total)} (${pesos(r.mejor.total - masBarataIncompleta.total)} menos, pero comprás menos cosas).`) : null,
     contCarrito,
     div
       ? h(

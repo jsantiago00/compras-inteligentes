@@ -60,7 +60,8 @@ export async function vistaLista(app, id) {
   const guardar = async () => {
     lista.actualizada = Date.now();
     await estado.store.guardar('listas', lista);
-    estado.precios.delete(lista.id);
+    // La caché de la recomendación se guarda por lista y modo (demo/real).
+    for (const k of [...estado.precios.keys()]) if (k.startsWith(`${lista.id}|`)) estado.precios.delete(k);
   };
 
   const contItems = h('div');
@@ -78,7 +79,14 @@ export async function vistaLista(app, id) {
                 'li',
                 null,
                 it.imagen ? h('img', { class: 'miniatura', src: it.imagen, alt: '', loading: 'lazy' }) : null,
-                h('div', { class: 'crece', style: { flex: 1, minWidth: 0 } }, h('div', null, it.nombre), h('div', { class: 'suave chico' }, [it.marca, Object.keys(it.refs ?? {}).map((s) => SUPERS[s]).join(' · ')].filter(Boolean).join(' — '))),
+                h(
+                  'div',
+                  { class: 'crece', style: { flex: 1, minWidth: 0 } },
+                  h('div', null, it.nombre),
+                  it.generico
+                    ? detalleGenerico(it)
+                    : h('div', { class: 'suave chico' }, [it.marca, Object.keys(it.refs ?? {}).map((s) => SUPERS[s]).join(' · ')].filter(Boolean).join(' — ')),
+                ),
                 h(
                   'span',
                   { class: 'cantidad' },
@@ -91,6 +99,71 @@ export async function vistaLista(app, id) {
           )
         : h('p', { class: 'vacio' }, 'La lista está vacía. Buscá productos abajo.'),
     );
+  }
+
+  // Ítem de lista libre: qué producto se eligió en cada súper, con opción de cambiarlo.
+  function detalleGenerico(it) {
+    return h(
+      'details',
+      { class: 'chico' },
+      h('summary', { class: 'suave' }, Object.entries(it.refs ?? {}).length ? `En ${Object.keys(it.refs).map((s) => SUPERS[s]).join(', ')} — ver qué producto` : 'No lo encontré en ningún súper'),
+      Object.keys(SUPERS).map((sup) => {
+        const opciones = it.alternativas?.[sup] ?? [];
+        if (!opciones.length) return h('div', { class: 'suave' }, `${SUPERS[sup]}: no encontrado`);
+        const actual = it.refs?.[sup]?.sku ?? '';
+        const select = h(
+          'select',
+          { 'aria-label': `Producto en ${SUPERS[sup]}`, onchange: () => elegirAlternativa(it, sup, select.value) },
+          opciones.map((o) => h('option', { value: o.sku, selected: o.sku === actual }, `${o.nombre} — ${pesos(o.precio)}`)),
+          h('option', { value: '', selected: !actual }, `No comprarlo en ${SUPERS[sup]}`),
+        );
+        return h('label', { style: { margin: '6px 0 0' } }, SUPERS[sup], select);
+      }),
+    );
+  }
+
+  async function elegirAlternativa(it, sup, sku) {
+    it.refs = { ...(it.refs ?? {}) };
+    if (!sku) delete it.refs[sup];
+    else it.refs[sup] = it.alternativas[sup].find((o) => o.sku === sku);
+    // Ya no es necesariamente el mismo EAN en todos los súper.
+    const eans = new Set(Object.values(it.refs).map((r) => r.ean));
+    it.ean = eans.size === 1 && Object.keys(it.refs).length > 1 ? [...eans][0] : null;
+    await guardar();
+    dibujarItems();
+  }
+
+  const textoLista = h('textarea', { rows: 6, placeholder: '2 yerba playadito\nleche entera\narroz 1kg\nfideos tirabuzón\ncoca cola 2.25', 'aria-label': 'Lista escrita, un producto por renglón' });
+  const contLibre = h('div');
+  async function armarDesdeTexto(e) {
+    e.preventDefault();
+    if (!textoLista.value.trim()) return;
+    montar(contLibre, cargando('Buscando cada renglón en los 4 súper… (puede tardar unos segundos)'));
+    try {
+      const { renglones } = await api.resolver(textoLista.value, { demo: estado.config.demo });
+      const noEncontrados = [];
+      for (const r of renglones) {
+        if (!Object.keys(r.elegidos).length) {
+          noEncontrados.push(r.linea);
+          continue;
+        }
+        const existente = lista.items.find((i) => i.clave === r.clave);
+        const datos = { clave: r.clave, generico: true, nombre: r.texto, ean: r.ean, refs: r.elegidos, alternativas: r.alternativas, imagen: r.imagen, rubro: r.rubro };
+        if (existente) Object.assign(existente, datos, { cantidad: existente.cantidad + r.cantidad });
+        else lista.items.push({ ...datos, cantidad: r.cantidad });
+      }
+      await guardar();
+      dibujarItems();
+      textoLista.value = noEncontrados.join('\n');
+      montar(
+        contLibre,
+        noEncontrados.length
+          ? h('div', { class: 'banner alerta chico' }, `No encontré: ${noEncontrados.join(', ')}. Te los dejé en el cuadro: probá escribirlos distinto (por ejemplo con la marca).`)
+          : h('div', { class: 'banner chico' }, `Listo: ${renglones.length} producto(s) agregados. Tocá "¿Dónde compro?" para ver qué súper te conviene.`),
+      );
+    } catch (err) {
+      montar(contLibre, h('div', { class: 'banner alerta' }, `Error: ${err.message}`));
+    }
   }
 
   async function cambiar(it, delta) {
@@ -185,8 +258,17 @@ export async function vistaLista(app, id) {
     h('div', { class: 'fila' }, h('a', { href: '#/' }, '← Listas')),
     h('div', { class: 'fila', style: { margin: '8px 0 12px' } }, h('div', { class: 'crece' }, nombre), h('a', { class: 'boton primario', href: `#/reco/${lista.id}` }, '¿Dónde compro?')),
     contItems,
-    h('h2', null, 'Agregar productos'),
     estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios guardados (captura real del 11/10/2026, no se actualizan). Desactivalo en Ajustes.') : null,
+    h('h2', null, 'Escribí tu lista'),
+    h(
+      'form',
+      { class: 'tarjeta', onsubmit: armarDesdeTexto },
+      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Un producto por renglón, con la cantidad adelante si querés. Busco cada uno en los 4 súper y elijo el producto más conveniente de cada uno (lo podés cambiar después).'),
+      textoLista,
+      h('button', { class: 'primario', type: 'submit', style: { marginTop: '8px' } }, 'Armar lista'),
+    ),
+    contLibre,
+    h('h2', null, 'O buscá un producto puntual'),
     h('form', { class: 'fila', onsubmit: buscar, role: 'search' }, h('div', { class: 'crece' }, campo), h('button', { type: 'submit' }, '🔎 Buscar')),
     contResultados,
   );

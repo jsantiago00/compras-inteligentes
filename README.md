@@ -112,6 +112,26 @@ Precio y stock pueden variar según la zona:
 
 Supuesto: el cálculo usa los precios de hoy para toda la semana (no predice precios); lo que cambia por día son las promos bancarias.
 
+### Lista escrita (lista libre)
+
+En una lista, "Escribí tu lista" acepta un producto por renglón ("2 yerba playadito", "leche entera", "arroz 1kg", "coca cola x2").
+`POST /api/resolver` busca cada renglón en los 4 súper y `lib/motor/listaLibre.js` elige un producto por súper:
+
+1. solo productos disponibles cuyo nombre/marca tenga todas las palabras (tolera plurales);
+2. si el renglón pide presentación ("1kg", "2.25"), solo esa;
+3. si un mismo EAN está en varios súper, ese (compara lo mismo);
+4. si no, la presentación más común y, dentro de ella, la más barata.
+
+Cada ítem queda con el producto elegido en cada súper (se puede cambiar o excluir un súper). La recomendación prioriza
+el súper que tiene **toda** la lista y, si hay uno más barato al que le falta un producto, lo avisa aparte.
+
+### Promos sugeridas
+
+`lib/promosSugeridas.json` tiene promos relevadas de fuentes oficiales (bna.com.ar y semananacion.com.ar del BNA), con el
+texto y el link de la fuente. Aparecen en *Promos* como "Promos encontradas": **no cuentan hasta que el usuario las confirma**
+(los datos que no salen de la fuente oficial están aclarados en las notas). Macro no publica sus promos en una fuente abierta
+(su API pide API key), así que esas se cargan a mano.
+
 ### Carrito
 
 - **VTEX:** `/checkout/cart/add?sku=..&qty=..&seller=1[&sku=..&qty=..&seller=..]&sc=..` — se abre en el navegador del usuario, que ya está logueado en el súper.

@@ -1,12 +1,14 @@
 {
   "relevado": "2026-10-11",
-  "nota": "Promos relevadas de fuentes oficiales de los bancos. No se aplican hasta que el usuario las confirma en la app.",
+  "nota": "Promos relevadas de fuentes oficiales del BNA (bna.com.ar y semananacion.com.ar). No se aplican hasta que el usuario las confirma en la app. Macro no publica sus promos en una fuente abierta: cargarlas a mano.",
   "promos": [
     {
       "id": "bna-coto-martes-20",
       "super": "coto",
       "medio": "modo_bna",
-      "dias": [2],
+      "dias": [
+        2
+      ],
       "porcentaje": 20,
       "tope": null,
       "tipoTope": "por_compra",
@@ -17,8 +19,49 @@
       "rubrosExcluidos": [],
       "notas": "Pagando exclusivamente con MODO BNA+ con débito Mastercard o crédito Visa/Mastercard del BNA. Sin tope de reintegro.",
       "fuente": "https://www.bna.com.ar/Personas/DescuentosYPromociones/4491/coto/",
-      "textoFuente": "COTO 20% de descuento los días martes. Del 18-8-2026 al 31-10-2026 20% de ahorro los días martes sin tope de reintegro. Abonando tus compras exclusivamente con MODO BNA+ con tarjetas de débito Mastercard o tarjetas de crédito Visa y Mastercard emitidas por el BNA.",
+      "textoFuente": "bna.com.ar: COTO 20% de descuento los días martes. Del 18-8-2026 al 31-10-2026 20% de ahorro los días martes sin tope de reintegro. Abonando tus compras exclusivamente con MODO BNA+ con tarjetas de débito Mastercard o tarjetas de crédito Visa y Mastercard emitidas por el BNA. — Semana Nación (T&C): PROMOCIÓN VÁLIDA EN LA REPÚBLICA ARGENTINA TODOS LOS MARTES DEL 01/10/26 AL 31/10/26.",
       "confianza": "oficial"
+    },
+    {
+      "id": "bna-jumbo-martesyjueves-20",
+      "super": "jumbo",
+      "medio": "modo_bna",
+      "dias": [
+        2,
+        4
+      ],
+      "porcentaje": 20,
+      "tope": 25000,
+      "tipoTope": "mensual",
+      "tipo": "reintegro",
+      "minimoCompra": 100000,
+      "vigenciaDesde": "2026-10-01",
+      "vigenciaHasta": "2026-10-31",
+      "rubrosExcluidos": [],
+      "notas": "Pagando con BNA+ MODO (QR) con crédito Visa/Mastercard o débito Mastercard del BNA. Días y % según Semana Nación (11/10/2026). Tope y mínimo según prensa de agosto 2026 y vigencia supuesta hasta fin de mes: verificalos antes de confirmar.",
+      "fuente": "https://semananacion.com.ar/semananacion/jumbo",
+      "textoFuente": "Semana Nación: ¡Ahorrá con BNA-SEMANANACION ... -20% ... los días Martes y Jueves en Supermercados con tus tarjetas de débito o crédito, mastercard o visa. T&C: PROMOCIÓN VÁLIDA ... PARA COMPRAS ABONADAS CON TARJETAS DE CRÉDITO VISA Y MASTERCARD DEL BNA O TARJETA DE DEBITO MASTERCARD DEL BNA PAGANDO EXCLUSIVAMENTE CON BNA+ MODO, ESCANEANDO QR DE MODO ... EL DESCUENTO SE VERÁ REFLEJADO EN LA CUENTA MONETARIA ... DENTRO DE LOS 30 DÍAS HÁBILES.",
+      "confianza": "oficial (parcial)"
+    },
+    {
+      "id": "bna-vea-viernes-20",
+      "super": "vea",
+      "medio": "modo_bna",
+      "dias": [
+        5
+      ],
+      "porcentaje": 20,
+      "tope": 25000,
+      "tipoTope": "mensual",
+      "tipo": "reintegro",
+      "minimoCompra": 100000,
+      "vigenciaDesde": "2026-10-01",
+      "vigenciaHasta": "2026-10-31",
+      "rubrosExcluidos": [],
+      "notas": "Pagando con BNA+ MODO (QR) con crédito Visa/Mastercard o débito Mastercard del BNA. Días, % y tope según Semana Nación (11/10/2026). Mínimo de compra según prensa de octubre 2026 y vigencia supuesta hasta fin de mes: verificalos antes de confirmar.",
+      "fuente": "https://semananacion.com.ar/semananacion/vea",
+      "textoFuente": "Semana Nación: ¡Ahorrá con BNA-SEMANANACION en Supermercados con 20% de descuento los Viernes en Vea ... Vea | -20% · Viernes · Tope: $25.000 por mes por cliente. T&C: PROMOCIÓN VÁLIDA ... PARA COMPRAS ABONADAS CON TARJETAS DE CRÉDITO VISA Y MASTERCARD DEL BNA O TARJETA DE DEBITO MASTERCARD DEL BNA PAGANDO EXCLUSIVAMENTE CON BNA+ MODO, ESCANEANDO QR DE MODO ... EL DESCUENTO SE VERÁ REFLEJADO EN LA CUENTA MONETARIA ... DENTRO DE LOS 30 DÍAS HÁBILES.",
+      "confianza": "oficial (parcial)"
     }
   ]
 }

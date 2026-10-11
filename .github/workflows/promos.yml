@@ -1,0 +1,47 @@
+name: Promos
+
+# Una vez por semana (lunes 8:00 de Argentina) relee las páginas oficiales de
+# promos del BNA y, si algo cambió, abre un issue con el detalle.
+on:
+  schedule:
+    - cron: '0 11 * * 1'
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/relevar-promos.js
+      - lib/promosRelevamiento.js
+      - .github/workflows/promos.yml
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  relevar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Relevar promos
+        id: relevar
+        run: node scripts/relevar-promos.js
+      - name: Abrir un issue si cambió algo
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HUELLA: ${{ steps.relevar.outputs.huella }}
+        run: |
+          existentes=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "$HUELLA in:title" --json number --jq 'length')
+          if [ "$existentes" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "Promos del BNA: hay novedades (huella $HUELLA)" --body-file relevamiento-promos.md
+          else
+            echo "Sin cambios desde el último relevamiento (huella $HUELLA)."
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relevamiento-promos
+          path: relevamiento-promos.*

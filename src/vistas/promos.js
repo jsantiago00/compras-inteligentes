@@ -4,6 +4,8 @@
 import { DIAS, MEDIOS, SUPERS } from '../../lib/constantes.js';
 import { pesos } from '../../lib/formato.js';
 import { promosEjemplo } from '../../lib/ejemplos.js';
+import sugeridas from '../../lib/promosSugeridas.json';
+import { confirmarSugerencia, sugerenciasPendientes } from '../../lib/motor/promosSugeridas.js';
 import { aIso, isoLocal } from '../../lib/motor/fechas.js';
 import { estado } from '../estado.js';
 import { aviso, h, montar } from '../ui.js';
@@ -87,6 +89,34 @@ export async function vistaPromos(app) {
     await estado.store.borrar('promos', p.id);
     vistaPromos(app);
   };
+  const descartadas = (await estado.store.listar('promosDescartadas')).map((d) => d.id);
+  const pendientes = sugerenciasPendientes(sugeridas.promos, promos, descartadas, hoy);
+  const confirmar = async (sug) => {
+    await estado.store.guardar('promos', confirmarSugerencia(sug));
+    aviso('Promo confirmada: ya cuenta en la recomendación');
+    vistaPromos(app);
+  };
+  const descartar = async (sug) => {
+    await estado.store.guardar('promosDescartadas', { id: sug.id });
+    vistaPromos(app);
+  };
+  const tarjetaSugerida = (p) =>
+    h(
+      'div',
+      { class: 'tarjeta banner' },
+      h('b', null, `${SUPERS[p.super]} · ${MEDIOS[p.medio]} · ${p.porcentaje}% ${p.tipo === 'reintegro' ? 'reintegro' : 'en caja'}`),
+      h('div', { class: 'suave chico' }, [
+        p.dias?.length === 7 ? 'todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', '),
+        p.tope != null ? `tope ${pesos(p.tope)} ${p.tipoTope.replace('_', ' ')}` : 'sin tope',
+        p.minimoCompra ? `mínimo ${pesos(p.minimoCompra)}` : null,
+        `vigencia ${aIso(p.vigenciaDesde) ?? '…'} a ${aIso(p.vigenciaHasta) ?? '…'}`,
+      ].filter(Boolean).join(' · ')),
+      p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo para compras en el local: no aplica a compras online, así que no cuenta en la recomendación.') : null,
+      p.textoFuente ? h('blockquote', { class: 'chico', style: { margin: '6px 0', paddingLeft: '8px', borderLeft: '3px solid var(--borde)' } }, p.textoFuente) : null,
+      h('div', { class: 'chico' }, h('a', { href: p.fuente, target: '_blank', rel: 'noopener' }, 'Ver fuente oficial ↗')),
+      h('div', { class: 'fila', style: { marginTop: '6px' } }, h('button', { class: 'primario', onclick: () => confirmar(p) }, 'Confirmar'), h('button', { onclick: () => descartar(p) }, 'Descartar')),
+    );
+
   const cargarEjemplo = async () => {
     for (const p of promosEjemplo(hoy)) await estado.store.guardar('promos', p);
     aviso('Se cargaron promos de ejemplo FICTICIAS');
@@ -98,6 +128,16 @@ export async function vistaPromos(app) {
     h('h1', null, 'Promos bancarias'),
     h('p', { class: 'suave chico' }, 'Cargá las promos vigentes de tus medios de pago (MODO, Visa y Mastercard de BNA y Macro). La app no inventa promos: los ejemplos son ficticios.'),
     h('div', { class: 'fila' }, h('button', { class: 'primario', onclick: () => editar(null) }, '+ Nueva promo'), !promos.length ? h('button', { onclick: cargarEjemplo }, 'Cargar ejemplos (ficticios)') : null),
+    pendientes.length
+      ? h(
+          'section',
+          null,
+          h('h2', null, `🔎 Promos encontradas (${pendientes.length}) — confirmalas`),
+          h('p', { class: 'suave chico' }, `Relevadas de las páginas oficiales de los bancos el ${sugeridas.relevado}. No cuentan en la recomendación hasta que las confirmes.`),
+          pendientes.map(tarjetaSugerida),
+          h('h2', null, 'Tus promos'),
+        )
+      : null,
     editor,
     promos.length
       ? promos.map((p) => {
@@ -106,6 +146,7 @@ export async function vistaPromos(app) {
             'div',
             { class: 'tarjeta' },
             p.ficticia ? h('div', { class: 'alerta chico' }, '⚠ EJEMPLO FICTICIO') : null,
+            p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo en el local: no cuenta para compras online') : null,
             h('b', null, `${SUPERS[p.super]} · ${MEDIOS[p.medio]} · ${p.porcentaje}% ${p.tipo === 'reintegro' ? 'reintegro' : 'en caja'}`),
             h('div', { class: 'suave chico' }, [
               (p.dias?.length === 7 ? 'todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ')),

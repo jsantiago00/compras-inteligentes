@@ -19,3 +19,7 @@ export function precios(items, { demo } = {}) {
 export function carrito(sup, items) {
   return pedir('/api/carrito', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ super: sup, items }) });
 }
+
+export function resolver(texto, { demo } = {}) {
+  return pedir('/api/resolver', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ texto, demo }) });
+}

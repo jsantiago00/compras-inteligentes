@@ -112,6 +112,36 @@ Precio y stock pueden variar según la zona:
 
 Supuesto: el cálculo usa los precios de hoy para toda la semana (no predice precios); lo que cambia por día son las promos bancarias.
 
+### Lista escrita (lista libre)
+
+En una lista, "Escribí tu lista" acepta un producto por renglón ("2 yerba playadito", "leche entera", "arroz 1kg", "coca cola x2").
+`POST /api/resolver` busca cada renglón en los 4 súper y `lib/motor/listaLibre.js` elige un producto por súper:
+
+1. solo productos disponibles cuyo nombre/marca tenga todas las palabras (tolera plurales);
+2. si el renglón pide presentación ("1kg", "2.25"), solo esa;
+3. si un mismo EAN está en varios súper, ese (compara lo mismo);
+4. si no, la presentación más común y, dentro de ella, la más barata.
+
+Cada ítem queda con el producto elegido en cada súper (se puede cambiar o excluir un súper). La recomendación prioriza
+el súper que tiene **toda** la lista y, si hay uno más barato al que le falta un producto, lo avisa aparte.
+
+### Promos sugeridas
+
+`lib/promosSugeridas.json` tiene promos relevadas de fuentes oficiales (bna.com.ar y semananacion.com.ar del BNA), con el
+texto y el link de la fuente. Aparecen en *Promos* como "Promos encontradas": **no cuentan hasta que el usuario las confirma**
+(los datos que no salen de la fuente oficial están aclarados en las notas). Macro no publica sus promos en una fuente abierta
+(su API pide API key), así que esas se cargan a mano.
+
+Las promos marcadas como **solo presenciales** (por ejemplo, Coto + MODO BNA+: "no aplica para comprar online") se muestran
+pero el motor no las aplica, porque la app calcula compras con envío a domicilio.
+
+**Aviso semanal:** `.github/workflows/promos.yml` corre los lunes a las 8:00 (ART) y `npm run promos:relevar` lee
+bna.com.ar y semananacion.com.ar para los 4 súper, interpreta % / días / tope / mínimo / vigencia / "solo presencial"
+(días y vigencia de los términos y condiciones) y lo compara con `lib/promosSugeridas.json`. Si el texto de alguna fuente
+cambió desde el último relevamiento, abre un **issue** en el repo con el detalle y las diferencias; si no, no hace nada.
+El cron de GitHub solo corre desde la rama por defecto: empieza a funcionar cuando esto esté en `main`
+(también se puede correr a mano desde *Actions → Promos → Run workflow*).
+
 ### Carrito
 
 - **VTEX:** `/checkout/cart/add?sku=..&qty=..&seller=1[&sku=..&qty=..&seller=..]&sc=..` — se abre en el navegador del usuario, que ya está logueado en el súper.

@@ -4,3 +4,5 @@ dist/
 .env.local
 .vercel/
 /smoke-reporte.json
+relevamiento-promos.json
+relevamiento-promos.md

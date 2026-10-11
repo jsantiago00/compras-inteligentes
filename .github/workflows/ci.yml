@@ -22,6 +22,8 @@ jobs:
   # pero deja el reporte y las respuestas reales capturadas como artefactos.
   smoke:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -47,6 +49,16 @@ jobs:
         if: always()
         run: |
           for f in tests/fixtures/*.json; do echo "== $f"; head -c 3000 "$f"; echo; done
+      # Con "[capturar]" en el mensaje del commit, guarda los fixtures reales en la rama.
+      - name: Commitear fixtures capturados
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[capturar]')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp smoke-reporte.json tests/fixtures/smoke-reporte.json || true
+          git add tests/fixtures
+          git commit -m "Fixtures reales capturados por CI (${GITHUB_SHA::7})" || echo "sin cambios"
+          git push
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -35,6 +35,6 @@ test('POST /api/precios devuelve precios por ítem y súper', async () => {
 
 test('POST /api/carrito arma el link VTEX', async () => {
   const r = await llamar(carrito, { method: 'POST', body: { super: 'vea', items: [{ sku: '1101', cantidad: 3 }] } });
-  assert.equal(r.json.url, 'https://www.vea.com.ar/checkout/cart/add?sku=1101&qty=3&seller=1&sc=1');
+  assert.equal(r.json.url, 'https://www.vea.com.ar/checkout/cart/add?sku=1101&qty=3&seller=1&sc=34');
   assert.equal((await llamar(carrito, { method: 'POST', body: { super: 'dia', items: [{}] } })).status, 400);
 });

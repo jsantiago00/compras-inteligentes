@@ -1,22 +1,23 @@
-// GET /api/buscar?q=<texto>[&supers=jumbo,coto]
+// GET /api/buscar?q=<texto>[&supers=jumbo,coto][&demo=1]
 // Busca en los 4 súper y unifica los resultados por EAN.
 
 import { IDS_SUPERS } from '../lib/constantes.js';
 import { crearAdaptadores, enTodos } from '../lib/scrapers/index.js';
 import { unificar } from '../lib/scrapers/matching.js';
-import { obtenerAlmacen } from '../lib/servidor/almacen.js';
+import { almacenMemoria, obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { errorCliente, handler, query, responder } from '../lib/servidor/api.js';
 
 const HORAS_BUSQUEDA = 2;
 
 export default handler(async (req, res) => {
-  const { q, supers } = query(req);
+  const { q, supers, demo } = query(req);
   const texto = (q ?? '').trim();
   if (texto.length < 2) throw errorCliente('Falta el texto a buscar (?q=...)');
   const lista = supers ? supers.split(',').filter((s) => IDS_SUPERS.includes(s)) : IDS_SUPERS;
 
-  const almacen = await obtenerAlmacen();
-  const adaptadores = await crearAdaptadores();
+  // En modo demo (precios ficticios de los fixtures) no se toca la caché real.
+  const almacen = demo === '1' ? almacenMemoria() : await obtenerAlmacen();
+  const adaptadores = await crearAdaptadores({ demo: demo === '1' });
   const porSuper = {};
   const errores = {};
   const faltan = [];

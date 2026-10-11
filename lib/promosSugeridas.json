@@ -1,0 +1,24 @@
+{
+  "relevado": "2026-10-11",
+  "nota": "Promos relevadas de fuentes oficiales de los bancos. No se aplican hasta que el usuario las confirma en la app.",
+  "promos": [
+    {
+      "id": "bna-coto-martes-20",
+      "super": "coto",
+      "medio": "modo_bna",
+      "dias": [2],
+      "porcentaje": 20,
+      "tope": null,
+      "tipoTope": "por_compra",
+      "tipo": "reintegro",
+      "minimoCompra": null,
+      "vigenciaDesde": "2026-08-18",
+      "vigenciaHasta": "2026-10-31",
+      "rubrosExcluidos": [],
+      "notas": "Pagando exclusivamente con MODO BNA+ con débito Mastercard o crédito Visa/Mastercard del BNA. Sin tope de reintegro.",
+      "fuente": "https://www.bna.com.ar/Personas/DescuentosYPromociones/4491/coto/",
+      "textoFuente": "COTO 20% de descuento los días martes. Del 18-8-2026 al 31-10-2026 20% de ahorro los días martes sin tope de reintegro. Abonando tus compras exclusivamente con MODO BNA+ con tarjetas de débito Mastercard o tarjetas de crédito Visa y Mastercard emitidas por el BNA.",
+      "confianza": "oficial"
+    }
+  ]
+}

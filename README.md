@@ -132,6 +132,16 @@ texto y el link de la fuente. Aparecen en *Promos* como "Promos encontradas": **
 (los datos que no salen de la fuente oficial están aclarados en las notas). Macro no publica sus promos en una fuente abierta
 (su API pide API key), así que esas se cargan a mano.
 
+Las promos marcadas como **solo presenciales** (por ejemplo, Coto + MODO BNA+: "no aplica para comprar online") se muestran
+pero el motor no las aplica, porque la app calcula compras con envío a domicilio.
+
+**Aviso semanal:** `.github/workflows/promos.yml` corre los lunes a las 8:00 (ART) y `npm run promos:relevar` lee
+bna.com.ar y semananacion.com.ar para los 4 súper, interpreta % / días / tope / mínimo / vigencia / "solo presencial"
+(días y vigencia de los términos y condiciones) y lo compara con `lib/promosSugeridas.json`. Si el texto de alguna fuente
+cambió desde el último relevamiento, abre un **issue** en el repo con el detalle y las diferencias; si no, no hace nada.
+El cron de GitHub solo corre desde la rama por defecto: empieza a funcionar cuando esto esté en `main`
+(también se puede correr a mano desde *Actions → Promos → Run workflow*).
+
 ### Carrito
 
 - **VTEX:** `/checkout/cart/add?sku=..&qty=..&seller=1[&sku=..&qty=..&seller=..]&sc=..` — se abre en el navegador del usuario, que ya está logueado en el súper.

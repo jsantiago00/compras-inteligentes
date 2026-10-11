@@ -33,10 +33,17 @@ test('sugerenciasPendientes: oculta confirmadas, descartadas y vencidas', () => 
 });
 
 test('confirmarSugerencia: queda como promo del usuario y aplica en el motor', () => {
-  const coto = datos.promos.find((p) => p.id === 'bna-coto-martes-20');
-  const promo = confirmarSugerencia(coto);
-  assert.equal(promo.origen, 'bna-coto-martes-20');
+  const vea = datos.promos.find((p) => p.id === 'bna-vea-viernes-20');
+  const promo = confirmarSugerencia(vea);
+  assert.equal(promo.origen, 'bna-vea-viernes-20');
   assert.equal(promo.textoFuente, undefined);
-  assert.equal(promoAplica(promo, { super: 'coto', medio: 'modo_bna', fecha: '2026-10-13' }), true); // martes
-  assert.equal(promoAplica(promo, { super: 'coto', medio: 'modo_bna', fecha: '2026-10-14' }), false);
+  assert.equal(promoAplica(promo, { super: 'vea', medio: 'modo_bna', fecha: '2026-10-16' }), true); // viernes
+  assert.equal(promoAplica(promo, { super: 'vea', medio: 'modo_bna', fecha: '2026-10-15' }), false);
+});
+
+test('la promo de Coto con BNA es solo presencial: no aplica a compras online', () => {
+  const coto = confirmarSugerencia(datos.promos.find((p) => p.id === 'bna-coto-martes-20'));
+  assert.equal(coto.soloPresencial, true);
+  assert.equal(coto.tipo, 'descuento_caja');
+  assert.equal(promoAplica(coto, { super: 'coto', medio: 'modo_bna', fecha: '2026-10-13' }), false);
 });

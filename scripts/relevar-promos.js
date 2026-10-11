@@ -8,7 +8,7 @@
 
 import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { DIAS, MEDIOS, SUPERS } from '../lib/constantes.js';
-import { extraerBna, extraerSemanaNacion, huella, interpretarPromo } from '../lib/promosRelevamiento.js';
+import { extraerBna, extraerSemanaNacion, huella, interpretarPromo, interpretarSemanaNacion } from '../lib/promosRelevamiento.js';
 import { crearCliente } from '../lib/scrapers/http.js';
 
 const cliente = crearCliente({ intervaloMs: 1500 });
@@ -47,7 +47,7 @@ for (const [sup, nombre] of Object.entries(NOMBRES)) {
       continue;
     }
     const t = [d.descripcion, ...d.textos, d.condiciones].filter(Boolean).join(' · ');
-    fuentes.push({ id: `semananacion-${sup}`, super: sup, url, promociones: d.promociones, texto: t, interpretacion: interpretarPromo([d.descripcion, ...d.textos].join(' · ')) });
+    fuentes.push({ id: `semananacion-${sup}`, super: sup, url, promociones: d.promociones, texto: t, interpretacion: interpretarSemanaNacion(d) });
   } catch (e) {
     fuentes.push({ id: `semananacion-${sup}`, super: sup, url, error: e.message });
   }
@@ -66,6 +66,7 @@ function diferencias(f) {
   if (i.tope != null && i.tope !== s.tope) out.push(`tope: fuente $${i.tope} vs sugerida ${s.tope == null ? 'sin tope' : `$${s.tope}`}`);
   if (i.sinTope && s.tope != null) out.push(`tope: la fuente dice "sin tope" y la sugerida tiene $${s.tope}`);
   if (i.vigenciaHasta && i.vigenciaHasta !== s.vigenciaHasta) out.push(`vigencia hasta: fuente ${i.vigenciaHasta} vs sugerida ${s.vigenciaHasta}`);
+  if (i.soloPresencial && !s.soloPresencial) out.push('la fuente dice que es solo presencial (no aplica online) y la sugerida no lo indica');
   return out;
 }
 
@@ -77,7 +78,7 @@ writeFileSync('relevamiento-promos.json', JSON.stringify({ fecha: hoy, huella: h
 
 const fmtI = (i) =>
   i
-    ? [i.porcentaje != null && `${i.porcentaje}%`, i.dias && i.dias.map((d) => DIAS[d]).join(', '), i.sinTope ? 'sin tope' : i.tope != null && `tope $${i.tope} ${i.tipoTope ?? ''}`, i.minimoCompra && `mínimo $${i.minimoCompra}`, i.vigenciaHasta && `hasta ${i.vigenciaHasta}`, i.modo && 'MODO']
+    ? [i.porcentaje != null && `${i.porcentaje}%`, i.dias && i.dias.map((d) => DIAS[d]).join(', '), i.sinTope ? 'sin tope' : i.tope != null && `tope $${i.tope} ${i.tipoTope ?? ''}`, i.minimoCompra && `mínimo $${i.minimoCompra}`, i.vigenciaHasta && `hasta ${i.vigenciaHasta}`, i.modo && 'MODO', i.soloPresencial && '⚠️ solo presencial (no online)']
         .filter(Boolean)
         .join(' · ')
     : '—';

@@ -1,7 +1,7 @@
 // Textos reales de las páginas del BNA (relevados el 11/10/2026).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { extraerBna, extraerSemanaNacion, huella, interpretarPromo } from '../lib/promosRelevamiento.js';
+import { extraerBna, extraerSemanaNacion, huella, interpretarPromo, interpretarSemanaNacion } from '../lib/promosRelevamiento.js';
 
 const HTML_BNA = `<div>Home Personas Beneficios Naci&#243;n Descuentos y Promociones</div><h1>COTO</h1>
 <p>20% de descuento los d&#237;as martes.</p><p>Del 18-8-2026 al 31-10-2026</p>
@@ -13,7 +13,7 @@ test('extraerBna + interpretarPromo: Coto martes 20% sin tope con vigencia', () 
   assert.ok(!texto.includes('CFT'));
   assert.deepEqual(interpretarPromo(texto), {
     porcentaje: 20, dias: [2], tope: null, sinTope: true, tipoTope: null, minimoCompra: null,
-    vigenciaDesde: '2026-08-18', vigenciaHasta: '2026-10-31', modo: true,
+    vigenciaDesde: '2026-08-18', vigenciaHasta: '2026-10-31', modo: true, soloPresencial: false,
   });
 });
 
@@ -52,4 +52,20 @@ test('extraerSemanaNacion: lee __NEXT_DATA__', () => {
 test('huella: igual para el mismo contenido, distinta si cambia', () => {
   assert.equal(huella({ a: 1 }), huella({ a: 1 }));
   assert.notEqual(huella({ a: 1 }), huella({ a: 2 }));
+});
+
+test('interpretarSemanaNacion: días y condiciones de los T&C, no de la descripción vieja (Coto, texto real)', () => {
+  const r = interpretarSemanaNacion({
+    descripcion: '¡Ahorrá con BNA-SEMANANACION en Coto y disfrutá de -30% en Coto los días Lunes, Martes, Miércoles, Jueves, Viernes, Sábados y Domingos en Supermercados',
+    textos: [],
+    condiciones: 'PROMOCIÓN VÁLIDA EN LA REPÚBLICA ARGENTINA TODOS LOS MARTES DEL 01/10/26 AL 31/10/26 EN COMERCIOS DE LA REPUBLICA ARGENTINA ADHERIDOS. PARA COMPRAS PRESENCIALES ABONADAS CON TARJETAS ... APLICA PAGANDO A TRAVÉS DE MODO BNA+ ... SIN TOPE DE DESCUENTO POR CLIENTE. ... LA PROMOCIÓN NO APLICA PARA COMPRAR ONLINE.',
+  });
+  assert.deepEqual(r.dias, [2]);
+  assert.equal(r.vigenciaHasta, '2026-10-31');
+  assert.equal(r.sinTope, true);
+  assert.equal(r.soloPresencial, true);
+  // El % sale de la descripción (desactualizada): el relevamiento lo marca como diferencia contra bna.com.ar.
+  assert.equal(r.porcentaje, 30);
+  const vea = interpretarSemanaNacion({ descripcion: '20% de descuento los Viernes en Vea', textos: ['-20%', 'Tope: $25.000 por mes por cliente', 'Viernes'], condiciones: 'PAGANDO EXCLUSIVAMENTE CON BNA+ MODO' });
+  assert.deepEqual([vea.porcentaje, vea.dias, vea.tope, vea.tipoTope, vea.soloPresencial], [20, [5], 25000, 'mensual', false]);
 });

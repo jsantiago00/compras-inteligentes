@@ -111,6 +111,7 @@ export async function vistaPromos(app) {
         p.minimoCompra ? `mínimo ${pesos(p.minimoCompra)}` : null,
         `vigencia ${aIso(p.vigenciaDesde) ?? '…'} a ${aIso(p.vigenciaHasta) ?? '…'}`,
       ].filter(Boolean).join(' · ')),
+      p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo para compras en el local: no aplica a compras online, así que no cuenta en la recomendación.') : null,
       p.textoFuente ? h('blockquote', { class: 'chico', style: { margin: '6px 0', paddingLeft: '8px', borderLeft: '3px solid var(--borde)' } }, p.textoFuente) : null,
       h('div', { class: 'chico' }, h('a', { href: p.fuente, target: '_blank', rel: 'noopener' }, 'Ver fuente oficial ↗')),
       h('div', { class: 'fila', style: { marginTop: '6px' } }, h('button', { class: 'primario', onclick: () => confirmar(p) }, 'Confirmar'), h('button', { onclick: () => descartar(p) }, 'Descartar')),
@@ -145,6 +146,7 @@ export async function vistaPromos(app) {
             'div',
             { class: 'tarjeta' },
             p.ficticia ? h('div', { class: 'alerta chico' }, '⚠ EJEMPLO FICTICIO') : null,
+            p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo en el local: no cuenta para compras online') : null,
             h('b', null, `${SUPERS[p.super]} · ${MEDIOS[p.medio]} · ${p.porcentaje}% ${p.tipo === 'reintegro' ? 'reintegro' : 'en caja'}`),
             h('div', { class: 'suave chico' }, [
               (p.dias?.length === 7 ? 'todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ')),

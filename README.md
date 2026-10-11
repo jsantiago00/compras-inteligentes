@@ -93,20 +93,37 @@ Interfaz común por súper: `buscar(texto)`, `porEan(ean)`, `porSku(sku)`, `carr
 
 ### Zona de entrega
 
-Precio y stock pueden variar según la zona:
+La zona está fija en `lib/zona.js`: **Arizu 127, Godoy Cruz, Mendoza (CP 5501)**. Precio y stock dependen de la sucursal
+que entrega en la dirección, así que cada súper VTEX consulta solo esa sucursal: el adaptador manda la cookie
+`vtex_segment` con `regionId = base64("SW#<seller>;<seller>…")`, lo mismo que hace el sitio al elegir la dirección.
 
-- **VTEX:** `sc` (sales channel) por súper, configurable con `VTEX_SC_*`. Defaults verificados el 11/10/2026 con
-  `/api/catalog_system/pub/saleschannel/default`: **Jumbo 32, Vea 34, Carrefour 1** (en Jumbo y Vea `sc=1` responde
-  `400 "sc is inactive"`). Si se define `CODIGO_POSTAL`, el adaptador resuelve la región con
-  `/api/checkout/pub/regions?country=ARG&postalCode=<cp>&sc=<sc>` y la manda en la cookie `vtex_segment`.
-- **Coto:** el sitio usa la sucursal por defecto (los registros terminan en `-200`, lista de precios `priceList200`).
-- Para usar el `sc` de otra sucursal: elegir la dirección de entrega en el sitio y mirar el `sc=` del link "agregar al carrito" en DevTools.
+| Súper | Sucursal que hace envío a domicilio (verificado el 11/10/2026) |
+|---|---|
+| Jumbo | `jumboargentinaj5222mendoza`: Jumbo Godoy Cruz, Balcarce 897 |
+| Vea | `jumboargentinav171sarmientoyalen`: Vea Godoy Cruz, Sarmiento 998 |
+| Carrefour | `carrefourar0029` (Hiper Mendoza Azul) y `carrefourar0899` (Hogar & Electro) |
+| Coto | **No entrega en Mendoza.** Queda fuera de las comparaciones; el adaptador sigue disponible con `?supers=coto` |
+
+- Cómo se verificó: simulando el checkout con las coordenadas de Godoy Cruz
+  (`POST /api/checkout/pub/orderForms/simulation` con `geoCoordinates` y `seller`). Solo esas sucursales ofrecen
+  "Envío a Domicilio"; las demás de Mendoza son solo retiro. Las diferencias de precio con Buenos Aires son reales
+  (p. ej., yerba Playadito suave 1 kg en Jumbo: $5.208 en Palermo y $4.925 en Godoy Cruz).
+- **El código postal no alcanza:** en Vea `/api/checkout/pub/regions?postalCode=..` devuelve las mismas regiones
+  (todas sus sucursales) para cualquier CP. Por eso se fijan las sucursales en vez de resolverlas.
+- `sc` (sales channel) por súper, configurable con `VTEX_SC_*`: **Jumbo 32, Vea 34, Carrefour 1** (en Jumbo y Vea
+  `sc=1` responde `400 "sc is inactive"`).
+- La API y la app usan `ZONA.supers` (Jumbo, Vea, Carrefour): búsquedas, precios, lista libre, recomendación,
+  costos de envío y promos sugeridas.
+- **Para cambiar de dirección:** en el sitio del súper, elegir la dirección de entrega y mirar en DevTools el
+  `selectedSeller` que se manda a `/api/sessions`; actualizar `lib/zona.js`.
+- El link de carrito abre el sitio del súper: ahí hay que tener elegida la misma dirección para que el carrito
+  quede en la sucursal correcta.
 
 ### Motor de promociones y recomendación (`lib/motor`, puro y testeado)
 
 - **Góndola:** NxM (2x1, 3x2), 2da unidad al X%, X% off (opcionalmente "llevando N").
 - **Bancarias:** colección `promos` editable en la pestaña *Promos*. Aplica por súper + medio + día + vigencia; respeta `minimoCompra`, `rubrosExcluidos` y el **tope ya consumido** en el período (`por_compra`, `semanal` lunes–domingo, `mensual` calendario) según el historial de pedidos. No se acumulan entre sí: se toma la mejor.
-- **Recomendación:** para cada uno de los próximos 7 días × 4 súper × 6 medios calcula subtotal con góndola, descuento bancario con tope, envío (configurable por súper con mínimo para envío gratis) y faltantes. Ordena por menos faltantes, menor total y fecha más próxima. Muestra la mejor opción ("Comprá el *jueves* en *Carrefour* con *MODO Macro*: $X (ahorrás $Y frente a la opción más cara y $Z frente a comprar hoy)"), un ranking, el calendario semanal y la **compra dividida** entre 2 súper cuando el ahorro supera el envío extra.
+- **Recomendación:** para cada uno de los próximos 7 días × súper de la zona × 6 medios calcula subtotal con góndola, descuento bancario con tope, envío (configurable por súper con mínimo para envío gratis) y faltantes. Ordena por menos faltantes, menor total y fecha más próxima. Muestra la mejor opción ("Comprá el *jueves* en *Carrefour* con *MODO Macro*: $X (ahorrás $Y frente a la opción más cara y $Z frente a comprar hoy)"), un ranking, el calendario semanal y la **compra dividida** entre 2 súper cuando el ahorro supera el envío extra.
 - **Sugerencias:** frecuencia de compra por producto ("la comprás cada ~21 días, hace 23 que no").
 - **Historial de precios:** alerta si el precio de lista subió antes de una oferta.
 
@@ -115,7 +132,7 @@ Supuesto: el cálculo usa los precios de hoy para toda la semana (no predice pre
 ### Lista escrita (lista libre)
 
 En una lista, "Escribí tu lista" acepta un producto por renglón ("2 yerba playadito", "leche entera", "arroz 1kg", "coca cola x2").
-`POST /api/resolver` busca cada renglón en los 4 súper y `lib/motor/listaLibre.js` elige un producto por súper:
+`POST /api/resolver` busca cada renglón en los súper de la zona y `lib/motor/listaLibre.js` elige un producto por súper:
 
 1. solo productos disponibles cuyo nombre/marca tenga todas las palabras (tolera plurales);
 2. si el renglón pide presentación ("1kg", "2.25"), solo esa;
@@ -167,7 +184,7 @@ Resultado contra los sitios reales el 11/10/2026:
 4/4 súper encontraron al menos un producto por EAN.
 ```
 
-(Los 3 productos de prueba —Coca-Cola 2,25 L, yerba Playadito 1 kg y leche La Serenísima— se encontraron por EAN en los 4 súper;
+(Los 3 productos de prueba —Coca-Cola 2,25 L, yerba Playadito 1 kg y leche La Serenísima— se encontraron por EAN en los súper de la zona;
 el reporte completo queda como artefacto del job.)
 
 Lo que se ajustó gracias al smoke real:

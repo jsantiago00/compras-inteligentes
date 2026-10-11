@@ -1,6 +1,6 @@
 // Estado global de la app: store activo y configuración del usuario.
 
-import { ENVIOS_EJEMPLO } from '../lib/ejemplos.js';
+import { ZONA } from '../lib/zona.js';
 
 export const estado = {
   store: null,
@@ -10,10 +10,13 @@ export const estado = {
   precios: new Map(),
 };
 
-const CONFIG_INICIAL = { id: 'general', envios: ENVIOS_EJEMPLO, enviosFicticios: true, demo: false };
+const CONFIG_INICIAL = { id: 'general', envios: ZONA.envios, enviosFicticios: false, demo: false };
 
 export async function cargarConfig() {
-  estado.config = { ...CONFIG_INICIAL, ...((await estado.store.obtener('config', 'general')) ?? {}) };
+  const guardada = (await estado.store.obtener('config', 'general')) ?? {};
+  // Configs viejas con los costos de envío de ejemplo: pasan a los reales de la zona.
+  if (guardada.enviosFicticios) Object.assign(guardada, { envios: ZONA.envios, enviosFicticios: false });
+  estado.config = { ...CONFIG_INICIAL, ...guardada };
   return estado.config;
 }
 

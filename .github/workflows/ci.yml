@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # Smoke semanal contra los sitios reales (lunes 9:30, hora argentina).
+  schedule:
+    - cron: '30 12 * * 1'
 
 jobs:
   test:
@@ -20,7 +23,12 @@ jobs:
 
   # Pega a los sitios reales (bajo volumen). No bloquea el CI si un súper falla,
   # pero deja el reporte y las respuestas reales capturadas como artefactos.
+  # Corre una vez por semana, a mano (Run workflow) o con "[smoke]" o "[capturar]"
+  # en el mensaje del commit; no en cada push.
   smoke:
+    if: >-
+      github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && (contains(github.event.head_commit.message, '[smoke]') || contains(github.event.head_commit.message, '[capturar]')))
     runs-on: ubuntu-latest
     permissions:
       contents: write

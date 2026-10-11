@@ -1,13 +1,14 @@
 // Ajustes: costos de envío por súper, modo demo y cuenta.
 
 import { SUPERS } from '../../lib/constantes.js';
+import { ZONA } from '../../lib/zona.js';
 import { estado, guardarConfig } from '../estado.js';
 import { firebaseConfigurado, salir } from '../firebase.js';
 import { aviso, h, montar } from '../ui.js';
 
 export async function vistaAjustes(app) {
   const cfg = estado.config;
-  const filas = Object.keys(SUPERS).map((s) => {
+  const filas = ZONA.supers.map((s) => {
     const e = cfg.envios?.[s] ?? { costo: 0, minimoGratis: null };
     const costo = h('input', { type: 'number', min: 0, step: 'any', value: e.costo ?? 0, 'aria-label': `Costo de envío ${SUPERS[s]}` });
     const minimo = h('input', { type: 'number', min: 0, step: 'any', value: e.minimoGratis ?? '', placeholder: 'nunca gratis', 'aria-label': `Mínimo para envío gratis ${SUPERS[s]}` });

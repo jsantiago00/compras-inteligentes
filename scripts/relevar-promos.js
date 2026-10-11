@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // npm run promos:relevar — lee las páginas oficiales de promos del BNA
-// (bna.com.ar y semananacion.com.ar) para los 4 súper, interpreta lo que
+// (bna.com.ar y semananacion.com.ar) para los súper de la zona, interpreta lo que
 // dicen y lo compara con lib/promosSugeridas.json.
 // Escribe relevamiento-promos.json y relevamiento-promos.md (cuerpo del issue)
 // y deja la huella en $GITHUB_OUTPUT para que el workflow sepa si cambió algo.
@@ -10,11 +10,13 @@ import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { DIAS, MEDIOS, SUPERS } from '../lib/constantes.js';
 import { extraerBna, extraerSemanaNacion, huella, interpretarPromo, interpretarSemanaNacion } from '../lib/promosRelevamiento.js';
 import { crearCliente } from '../lib/scrapers/http.js';
+import { ZONA } from '../lib/zona.js';
 
 const cliente = crearCliente({ intervaloMs: 1500 });
 const texto = async (url) => (await cliente.pedir(url, { headers: { Accept: 'text/html' } })).text();
 const BNA = 'https://www.bna.com.ar';
-const NOMBRES = { coto: 'coto', jumbo: 'jumbo', vea: 'vea', carrefour: 'carrefour' };
+// Solo los súper que entregan en la zona (lib/zona.js).
+const NOMBRES = Object.fromEntries(ZONA.supers.map((s) => [s, s]));
 
 const fuentes = [];
 
@@ -57,7 +59,9 @@ for (const [sup, nombre] of Object.entries(NOMBRES)) {
 const sugeridas = JSON.parse(readFileSync(new URL('../lib/promosSugeridas.json', import.meta.url), 'utf8')).promos;
 function diferencias(f) {
   if (!f.interpretacion) return [];
-  const s = sugeridas.find((p) => p.super === f.super && p.medio === 'modo_bna');
+  // Con MODO se compara con la sugerida de MODO BNA; sin MODO, con la de tarjeta BNA.
+  const medios = f.interpretacion.modo ? ['modo_bna'] : ['visa_bna', 'master_bna'];
+  const s = sugeridas.find((p) => p.super === f.super && medios.includes(p.medio));
   if (!s) return [`no hay promo sugerida de BNA para ${SUPERS[f.super]}`];
   const i = f.interpretacion;
   const out = [];

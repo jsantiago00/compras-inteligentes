@@ -7,6 +7,7 @@ import { promosEjemplo } from '../../lib/ejemplos.js';
 import sugeridas from '../../lib/promosSugeridas.json';
 import { confirmarSugerencia, sugerenciasPendientes } from '../../lib/motor/promosSugeridas.js';
 import { aIso, isoLocal } from '../../lib/motor/fechas.js';
+import { ZONA } from '../../lib/zona.js';
 import { estado } from '../estado.js';
 import { aviso, h, montar } from '../ui.js';
 
@@ -18,7 +19,7 @@ function formulario(promo, alGuardar, alCancelar) {
     minimoCompra: null, vigenciaDesde: isoLocal(), vigenciaHasta: null, rubrosExcluidos: [], notas: '', ...promo,
   };
   const campos = {
-    super: h('select', { name: 'super' }, opciones(SUPERS, p.super)),
+    super: h('select', { name: 'super' }, opciones(Object.fromEntries(ZONA.supers.map((s) => [s, SUPERS[s]])), p.super)),
     medio: h('select', { name: 'medio' }, opciones(MEDIOS, p.medio)),
     porcentaje: h('input', { name: 'porcentaje', type: 'number', min: 1, max: 100, step: 'any', required: true, value: p.porcentaje }),
     tipo: h('select', { name: 'tipo' }, opciones({ reintegro: 'Reintegro', descuento_caja: 'Descuento en caja' }, p.tipo)),
@@ -90,7 +91,8 @@ export async function vistaPromos(app) {
     vistaPromos(app);
   };
   const descartadas = (await estado.store.listar('promosDescartadas')).map((d) => d.id);
-  const pendientes = sugerenciasPendientes(sugeridas.promos, promos, descartadas, hoy);
+  // Solo las de súper que entregan en la zona (ver lib/zona.js).
+  const pendientes = sugerenciasPendientes(sugeridas.promos.filter((p) => ZONA.supers.includes(p.super)), promos, descartadas, hoy);
   const confirmar = async (sug) => {
     await estado.store.guardar('promos', confirmarSugerencia(sug));
     aviso('Promo confirmada: ya cuenta en la recomendación');

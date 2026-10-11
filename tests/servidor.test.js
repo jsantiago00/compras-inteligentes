@@ -16,7 +16,7 @@ test('obtenerPrecio: cachea por X horas y guarda historial', async () => {
   const r2 = await obtenerPrecio({ adaptador, almacen, super: 'jumbo', ref: { ean: '1' }, ahora: ahora + 3600_000 });
   assert.equal(llamadas, 1);
   assert.equal(r2.desdeCache, true);
-  const r3 = await obtenerPrecio({ adaptador, almacen, super: 'jumbo', ref: { ean: '1' }, ahora: ahora + 13 * 3600_000 });
+  const r3 = await obtenerPrecio({ adaptador, almacen, super: 'jumbo', ref: { ean: '1' }, ahora: ahora + 25 * 3600_000 });
   assert.equal(llamadas, 2);
   assert.equal(r3.producto.precioLista, 102);
   const hist = await almacen.get('historialPrecios', 'jumbo_ean_1');

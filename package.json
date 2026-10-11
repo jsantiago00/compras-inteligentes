@@ -1,0 +1,26 @@
+{
+  "name": "compras-inteligentes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Asistente personal de compras de supermercado: listas, comparación de precios y recomendación de cuándo, dónde y con qué medio de pago comprar.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "smoke": "node scripts/smoke.js",
+    "fixtures:capturar": "node scripts/capturar-fixtures.js",
+    "iconos": "node scripts/generar-iconos.js"
+  },
+  "dependencies": {
+    "firebase": "^13.0.0",
+    "firebase-admin": "^14.5.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}

@@ -1,0 +1,402 @@
+[
+ {
+  "productId": "6100",
+  "productName": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "brand": "Coca-Cola",
+  "brandId": 2000000,
+  "linkText": "gaseosa-coca-cola-sabor-original-2-25-l",
+  "productReference": "1100",
+  "categoryId": "10",
+  "productTitle": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "metaTagDescription": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Bebidas/Gaseosas/Gaseosas cola/",
+   "/Bebidas/Gaseosas/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/1/0/"
+  ],
+  "link": "https://www.vea.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1100",
+    "name": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "nameComplete": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "complementName": "",
+    "ean": "7790895000997",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1100"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1100",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1100/gaseosa-coca-cola-sabor-original-2-25-l.jpg",
+      "imageText": "gaseosa-coca-cola-sabor-original-2-25-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Cencosud Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1100&qty=1&seller=1&sc=1&price=382200&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 3822,
+       "ListPrice": 3822,
+       "PriceWithoutDiscount": 3822,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6101",
+  "productName": "Yerba Mate Playadito Suave 1 Kg",
+  "brand": "Playadito",
+  "brandId": 2000001,
+  "linkText": "yerba-mate-playadito-suave-1-kg",
+  "productReference": "1101",
+  "categoryId": "11",
+  "productTitle": "Yerba Mate Playadito Suave 1 Kg",
+  "metaTagDescription": "Yerba Mate Playadito Suave 1 Kg",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Infusiones/Yerba/",
+   "/Almacén/Infusiones/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/1/"
+  ],
+  "link": "https://www.vea.com.ar/yerba-mate-playadito-suave-1-kg/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1101",
+    "name": "Yerba Mate Playadito Suave 1 Kg",
+    "nameComplete": "Yerba Mate Playadito Suave 1 Kg",
+    "complementName": "",
+    "ean": "7793704000010",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1101"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1101",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1101/yerba-mate-playadito-suave-1-kg.jpg",
+      "imageText": "yerba-mate-playadito-suave-1-kg"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Cencosud Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1101&qty=1&seller=1&sc=1&price=509600&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 5096,
+       "ListPrice": 5096,
+       "PriceWithoutDiscount": 5096,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6102",
+  "productName": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "brand": "La Serenísima",
+  "brandId": 2000002,
+  "linkText": "leche-entera-la-serenisima-clasica-1-l",
+  "productReference": "1102",
+  "categoryId": "12",
+  "productTitle": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "metaTagDescription": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Lácteos/Leches/Leche entera/",
+   "/Lácteos/Leches/",
+   "/Lácteos/"
+  ],
+  "categoriesIds": [
+   "/1/2/"
+  ],
+  "link": "https://www.vea.com.ar/leche-entera-la-serenisima-clasica-1-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1102",
+    "name": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "nameComplete": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "complementName": "",
+    "ean": "7790742656001",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1102"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1102",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1102/leche-entera-la-serenisima-clasica-1-l.jpg",
+      "imageText": "leche-entera-la-serenisima-clasica-1-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Cencosud Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1102&qty=1&seller=1&sc=1&price=142100&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 0,
+       "ListPrice": 1421,
+       "PriceWithoutDiscount": 1421,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 0,
+       "IsAvailable": false,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6103",
+  "productName": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "brand": "Gallo",
+  "brandId": 2000003,
+  "linkText": "arroz-largo-fino-gallo-oro-1-kg",
+  "productReference": "1103",
+  "categoryId": "13",
+  "productTitle": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "metaTagDescription": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Arroz y legumbres/Arroz/",
+   "/Almacén/Arroz y legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/3/"
+  ],
+  "link": "https://www.vea.com.ar/arroz-largo-fino-gallo-oro-1-kg/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1103",
+    "name": "Arroz Largo Fino Gallo Oro 1 Kg",
+    "nameComplete": "Arroz Largo Fino Gallo Oro 1 Kg",
+    "complementName": "",
+    "ean": "7790070411846",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1103"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1103",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1103/arroz-largo-fino-gallo-oro-1-kg.jpg",
+      "imageText": "arroz-largo-fino-gallo-oro-1-kg"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Cencosud Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1103&qty=1&seller=1&sc=1&price=205800&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 2058,
+       "ListPrice": 2058,
+       "PriceWithoutDiscount": 2058,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6104",
+  "productName": "Aceite de Girasol Natura 1,5 L",
+  "brand": "Natura",
+  "brandId": 2000004,
+  "linkText": "aceite-de-girasol-natura-1-5-l",
+  "productReference": "1104",
+  "categoryId": "14",
+  "productTitle": "Aceite de Girasol Natura 1,5 L",
+  "metaTagDescription": "Aceite de Girasol Natura 1,5 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Aceites y vinagres/Aceite de girasol/",
+   "/Almacén/Aceites y vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/4/"
+  ],
+  "link": "https://www.vea.com.ar/aceite-de-girasol-natura-1-5-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1104",
+    "name": "Aceite de Girasol Natura 1,5 L",
+    "nameComplete": "Aceite de Girasol Natura 1,5 L",
+    "complementName": "",
+    "ean": "7790060233731",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1104"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1104",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://veaarg.vtexassets.com/arquivos/ids/1104/aceite-de-girasol-natura-1-5-l.jpg",
+      "imageText": "aceite-de-girasol-natura-1-5-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Cencosud Argentina",
+      "addToCartLink": "https://www.vea.com.ar/checkout/cart/add?sku=1104&qty=1&seller=1&sc=1&price=352800&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 3528,
+       "ListPrice": 3528,
+       "PriceWithoutDiscount": 3528,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,499 @@
+[
+ {
+  "productId": "6200",
+  "productName": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "brand": "Coca-Cola",
+  "brandId": 2000000,
+  "linkText": "gaseosa-coca-cola-sabor-original-2-25-l",
+  "productReference": "1200",
+  "categoryId": "10",
+  "productTitle": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "metaTagDescription": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Bebidas/Gaseosas/Gaseosas cola/",
+   "/Bebidas/Gaseosas/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/1/0/"
+  ],
+  "link": "https://www.carrefour.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1200",
+    "name": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "nameComplete": "Gaseosa Coca-Cola Sabor Original 2,25 L",
+    "complementName": "",
+    "ean": "7790895000997",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1200"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1200",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1200/gaseosa-coca-cola-sabor-original-2-25-l.jpg",
+      "imageText": "gaseosa-coca-cola-sabor-original-2-25-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1200&qty=1&seller=1&sc=1&price=390000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 3900,
+       "ListPrice": 3900,
+       "PriceWithoutDiscount": 3900,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6201",
+  "productName": "Yerba Mate Playadito Suave 1 Kg",
+  "brand": "Playadito",
+  "brandId": 2000001,
+  "linkText": "yerba-mate-playadito-suave-1-kg",
+  "productReference": "1201",
+  "categoryId": "11",
+  "productTitle": "Yerba Mate Playadito Suave 1 Kg",
+  "metaTagDescription": "Yerba Mate Playadito Suave 1 Kg",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Infusiones/Yerba/",
+   "/Almacén/Infusiones/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/1/"
+  ],
+  "link": "https://www.carrefour.com.ar/yerba-mate-playadito-suave-1-kg/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1201",
+    "name": "Yerba Mate Playadito Suave 1 Kg",
+    "nameComplete": "Yerba Mate Playadito Suave 1 Kg",
+    "complementName": "",
+    "ean": "7793704000010",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1201"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1201",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1201/yerba-mate-playadito-suave-1-kg.jpg",
+      "imageText": "yerba-mate-playadito-suave-1-kg"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1201&qty=1&seller=1&sc=1&price=520000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [
+        {
+         "name": "2do al 70% Yerbas",
+         "generalValues": {},
+         "conditions": {
+          "minimumQuantity": 2,
+          "parameters": []
+         },
+         "effects": {
+          "parameters": [
+           {
+            "name": "PercentualDiscount",
+            "value": "35"
+           }
+          ]
+         }
+        }
+       ],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 5200,
+       "ListPrice": 5200,
+       "PriceWithoutDiscount": 5200,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6202",
+  "productName": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "brand": "La Serenísima",
+  "brandId": 2000002,
+  "linkText": "leche-entera-la-serenisima-clasica-1-l",
+  "productReference": "1202",
+  "categoryId": "12",
+  "productTitle": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "metaTagDescription": "Leche Entera La Serenísima Clásica 3% 1 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Lácteos/Leches/Leche entera/",
+   "/Lácteos/Leches/",
+   "/Lácteos/"
+  ],
+  "categoriesIds": [
+   "/1/2/"
+  ],
+  "link": "https://www.carrefour.com.ar/leche-entera-la-serenisima-clasica-1-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1202",
+    "name": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "nameComplete": "Leche Entera La Serenísima Clásica 3% 1 L",
+    "complementName": "",
+    "ean": "7790742656001",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1202"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1202",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1202/leche-entera-la-serenisima-clasica-1-l.jpg",
+      "imageText": "leche-entera-la-serenisima-clasica-1-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1202&qty=1&seller=1&sc=1&price=145000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 1450,
+       "ListPrice": 1450,
+       "PriceWithoutDiscount": 1450,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6203",
+  "productName": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "brand": "Gallo",
+  "brandId": 2000003,
+  "linkText": "arroz-largo-fino-gallo-oro-1-kg",
+  "productReference": "1203",
+  "categoryId": "13",
+  "productTitle": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "metaTagDescription": "Arroz Largo Fino Gallo Oro 1 Kg",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Arroz y legumbres/Arroz/",
+   "/Almacén/Arroz y legumbres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/3/"
+  ],
+  "link": "https://www.carrefour.com.ar/arroz-largo-fino-gallo-oro-1-kg/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1203",
+    "name": "Arroz Largo Fino Gallo Oro 1 Kg",
+    "nameComplete": "Arroz Largo Fino Gallo Oro 1 Kg",
+    "complementName": "",
+    "ean": "7790070411846",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1203"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1203",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1203/arroz-largo-fino-gallo-oro-1-kg.jpg",
+      "imageText": "arroz-largo-fino-gallo-oro-1-kg"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1203&qty=1&seller=1&sc=1&price=178500&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 1785,
+       "ListPrice": 2100,
+       "PriceWithoutDiscount": 2100,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6204",
+  "productName": "Aceite de Girasol Natura 1,5 L",
+  "brand": "Natura",
+  "brandId": 2000004,
+  "linkText": "aceite-de-girasol-natura-1-5-l",
+  "productReference": "1204",
+  "categoryId": "14",
+  "productTitle": "Aceite de Girasol Natura 1,5 L",
+  "metaTagDescription": "Aceite de Girasol Natura 1,5 L",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Almacén/Aceites y vinagres/Aceite de girasol/",
+   "/Almacén/Aceites y vinagres/",
+   "/Almacén/"
+  ],
+  "categoriesIds": [
+   "/1/4/"
+  ],
+  "link": "https://www.carrefour.com.ar/aceite-de-girasol-natura-1-5-l/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1204",
+    "name": "Aceite de Girasol Natura 1,5 L",
+    "nameComplete": "Aceite de Girasol Natura 1,5 L",
+    "complementName": "",
+    "ean": "7790060233731",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1204"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1204",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1204/aceite-de-girasol-natura-1-5-l.jpg",
+      "imageText": "aceite-de-girasol-natura-1-5-l"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1204&qty=1&seller=1&sc=1&price=360000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 3600,
+       "ListPrice": 3600,
+       "PriceWithoutDiscount": 3600,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "productId": "6205",
+  "productName": "Fernet Branca 750 ml",
+  "brand": "Branca",
+  "brandId": 2000005,
+  "linkText": "fernet-branca-750-ml",
+  "productReference": "1205",
+  "categoryId": "15",
+  "productTitle": "Fernet Branca 750 ml",
+  "metaTagDescription": "Fernet Branca 750 ml",
+  "releaseDate": "2024-03-01T00:00:00",
+  "clusterHighlights": {},
+  "productClusters": {},
+  "searchableClusters": {},
+  "categories": [
+   "/Bebidas/Bebidas alcohólicas/Aperitivos/",
+   "/Bebidas/Bebidas alcohólicas/",
+   "/Bebidas/"
+  ],
+  "categoriesIds": [
+   "/1/5/"
+  ],
+  "link": "https://www.carrefour.com.ar/fernet-branca-750-ml/p",
+  "description": "",
+  "items": [
+   {
+    "itemId": "1205",
+    "name": "Fernet Branca 750 ml",
+    "nameComplete": "Fernet Branca 750 ml",
+    "complementName": "",
+    "ean": "7790290001230",
+    "referenceId": [
+     {
+      "Key": "RefId",
+      "Value": "1205"
+     }
+    ],
+    "measurementUnit": "un",
+    "unitMultiplier": 1,
+    "modalType": null,
+    "isKit": false,
+    "images": [
+     {
+      "imageId": "1205",
+      "imageLabel": "",
+      "imageTag": "",
+      "imageUrl": "https://carrefourarg.vtexassets.com/arquivos/ids/1205/fernet-branca-750-ml.jpg",
+      "imageText": "fernet-branca-750-ml"
+     }
+    ],
+    "sellers": [
+     {
+      "sellerId": "1",
+      "sellerName": "Carrefour",
+      "addToCartLink": "https://www.carrefour.com.ar/checkout/cart/add?sku=1205&qty=1&seller=1&sc=1&price=1150000&cv=_&sc=1",
+      "sellerDefault": true,
+      "commertialOffer": {
+       "DeliverySlaSamplesPerRegion": {},
+       "Installments": [],
+       "DiscountHighLight": [],
+       "GiftSkuIds": [],
+       "Teasers": [],
+       "PromotionTeasers": [],
+       "BuyTogether": [],
+       "ItemMetadataAttachment": [],
+       "Price": 11500,
+       "ListPrice": 11500,
+       "PriceWithoutDiscount": 11500,
+       "RewardValue": 0,
+       "PriceValidUntil": "2027-10-11T00:00:00Z",
+       "AvailableQuantity": 99999,
+       "IsAvailable": true,
+       "Tax": 0,
+       "CacheVersionUsedToCallCheckout": ""
+      }
+     }
+    ]
+   }
+  ]
+ }
+]

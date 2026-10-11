@@ -1,0 +1,323 @@
+{
+ "@type": "ContentSlotContainer",
+ "name": "Coto Digital - Categoria",
+ "contents": [
+  {
+   "@type": "TwoColumnPage",
+   "name": "Page",
+   "Main": [
+    {
+     "@type": "ContentSlotMain",
+     "contents": [
+      {
+       "@type": "Breadcrumbs",
+       "refinementCrumbs": []
+      }
+     ]
+    },
+    {
+     "@type": "ContentSlotMain",
+     "contents": [
+      {
+       "@type": "ResultsList",
+       "name": "Results List",
+       "totalNumRecs": 5,
+       "recsPerPage": 24,
+       "firstRecNum": 1,
+       "lastRecNum": 5,
+       "records": [
+        {
+         "@type": "Record",
+         "attributes": {
+          "product.displayName": [
+           "Gaseosa Coca-Cola Sabor Original 2,25 L"
+          ],
+          "product.repositoryId": [
+           "prod0003200"
+          ],
+          "product.brand": [
+           "COCA-COLA"
+          ],
+          "product.LDEPAR": [
+           "Bebidas"
+          ],
+          "product.mediumImage.url": [
+           "/sitios/fotos/medium/000320000/000320000.jpg"
+          ],
+          "product.dtoDescuentos": [
+           "[{\"precioDescuento\":\"\",\"textoDescuento\":\"2do al 50%\",\"textoPrecioRegular\":\"Precio Contado:\",\"textoLlevando\":\"Llevando 2\"}]"
+          ],
+          "record.id": [
+           "0003200"
+          ],
+          "product.eanPrincipal": [
+           "7790895000997"
+          ]
+         },
+         "detailsAction": {
+          "@type": "RecordAction",
+          "recordState": "/gaseosa-coca-cola-sabor-original-2-25-l/_/R-0003200-0003200-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "records": [
+          {
+           "@type": "Record",
+           "attributes": {
+            "sku.repositoryId": [
+             "sku0003200"
+            ],
+            "sku.activePrice": [
+             "3783.0000"
+            ],
+            "sku.referencePrice": [
+             "3783.0000"
+            ],
+            "sku.displayName": [
+             "Gaseosa Coca-Cola Sabor Original 2,25 L"
+            ]
+           },
+           "detailsAction": {
+            "recordState": "/gaseosa-coca-cola-sabor-original-2-25-l/_/R-0003200-0003200-200?Dy=1&format=json"
+           },
+           "numRecords": 1,
+           "records": []
+          }
+         ]
+        },
+        {
+         "@type": "Record",
+         "attributes": {
+          "product.displayName": [
+           "Yerba Mate Playadito Suave 1 Kg"
+          ],
+          "product.repositoryId": [
+           "prod0003201"
+          ],
+          "product.brand": [
+           "PLAYADITO"
+          ],
+          "product.LDEPAR": [
+           "Almacén"
+          ],
+          "product.mediumImage.url": [
+           "/sitios/fotos/medium/000320100/000320100.jpg"
+          ],
+          "product.dtoDescuentos": [
+           "[{\"precioDescuento\":\"$4.000,00\",\"textoDescuento\":\"20% Dto Tarjeta Coto\",\"textoPrecioRegular\":\"Precio Contado:\",\"textoLlevando\":\"\"}]"
+          ],
+          "record.id": [
+           "0003201"
+          ],
+          "product.eanPrincipal": [
+           "7793704000010"
+          ]
+         },
+         "detailsAction": {
+          "@type": "RecordAction",
+          "recordState": "/yerba-mate-playadito-suave-1-kg/_/R-0003201-0003201-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "records": [
+          {
+           "@type": "Record",
+           "attributes": {
+            "sku.repositoryId": [
+             "sku0003201"
+            ],
+            "sku.activePrice": [
+             "5044.0000"
+            ],
+            "sku.referencePrice": [
+             "5044.0000"
+            ],
+            "sku.displayName": [
+             "Yerba Mate Playadito Suave 1 Kg"
+            ]
+           },
+           "detailsAction": {
+            "recordState": "/yerba-mate-playadito-suave-1-kg/_/R-0003201-0003201-200?Dy=1&format=json"
+           },
+           "numRecords": 1,
+           "records": []
+          }
+         ]
+        },
+        {
+         "@type": "Record",
+         "attributes": {
+          "product.displayName": [
+           "Leche Entera La Serenísima Clásica 3% 1 L"
+          ],
+          "product.repositoryId": [
+           "prod0003202"
+          ],
+          "product.brand": [
+           "LA SERENÍSIMA"
+          ],
+          "product.LDEPAR": [
+           "Lácteos"
+          ],
+          "product.mediumImage.url": [
+           "/sitios/fotos/medium/000320200/000320200.jpg"
+          ],
+          "product.dtoDescuentos": [
+           "[{\"precioDescuento\":\"$1.055,00\",\"textoDescuento\":\"25% Dto\",\"textoPrecioRegular\":\"Precio Contado:\",\"textoLlevando\":\"\"}]"
+          ],
+          "record.id": [
+           "0003202"
+          ],
+          "product.eanPrincipal": [
+           "7790742656001"
+          ]
+         },
+         "detailsAction": {
+          "@type": "RecordAction",
+          "recordState": "/leche-entera-la-serenisima-clasica-1-l/_/R-0003202-0003202-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "records": [
+          {
+           "@type": "Record",
+           "attributes": {
+            "sku.repositoryId": [
+             "sku0003202"
+            ],
+            "sku.activePrice": [
+             "1407.0000"
+            ],
+            "sku.referencePrice": [
+             "1407.0000"
+            ],
+            "sku.displayName": [
+             "Leche Entera La Serenísima Clásica 3% 1 L"
+            ]
+           },
+           "detailsAction": {
+            "recordState": "/leche-entera-la-serenisima-clasica-1-l/_/R-0003202-0003202-200?Dy=1&format=json"
+           },
+           "numRecords": 1,
+           "records": []
+          }
+         ]
+        },
+        {
+         "@type": "Record",
+         "attributes": {
+          "product.displayName": [
+           "Arroz Gallo Oro Largo Fino 1kg"
+          ],
+          "product.repositoryId": [
+           "prod0003203"
+          ],
+          "product.brand": [
+           "GALLO"
+          ],
+          "product.LDEPAR": [
+           "Almacén"
+          ],
+          "product.mediumImage.url": [
+           "/sitios/fotos/medium/000320300/000320300.jpg"
+          ],
+          "product.dtoDescuentos": [
+           "[]"
+          ],
+          "record.id": [
+           "0003203"
+          ]
+         },
+         "detailsAction": {
+          "@type": "RecordAction",
+          "recordState": "/arroz-largo-fino-gallo-oro-1-kg/_/R-0003203-0003203-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "records": [
+          {
+           "@type": "Record",
+           "attributes": {
+            "sku.repositoryId": [
+             "sku0003203"
+            ],
+            "sku.activePrice": [
+             "2037.0000"
+            ],
+            "sku.referencePrice": [
+             "2037.0000"
+            ],
+            "sku.displayName": [
+             "Arroz Largo Fino Gallo Oro 1 Kg"
+            ]
+           },
+           "detailsAction": {
+            "recordState": "/arroz-largo-fino-gallo-oro-1-kg/_/R-0003203-0003203-200?Dy=1&format=json"
+           },
+           "numRecords": 1,
+           "records": []
+          }
+         ]
+        },
+        {
+         "@type": "Record",
+         "attributes": {
+          "product.displayName": [
+           "Fernet Branca 750 ml"
+          ],
+          "product.repositoryId": [
+           "prod0003204"
+          ],
+          "product.brand": [
+           "BRANCA"
+          ],
+          "product.LDEPAR": [
+           "Bebidas"
+          ],
+          "product.mediumImage.url": [
+           "/sitios/fotos/medium/000320400/000320400.jpg"
+          ],
+          "product.dtoDescuentos": [
+           "[]"
+          ],
+          "record.id": [
+           "0003204"
+          ],
+          "product.eanPrincipal": [
+           "7790290001230"
+          ]
+         },
+         "detailsAction": {
+          "@type": "RecordAction",
+          "recordState": "/fernet-branca-750-ml/_/R-0003204-0003204-200?Dy=1&format=json"
+         },
+         "numRecords": 1,
+         "records": [
+          {
+           "@type": "Record",
+           "attributes": {
+            "sku.repositoryId": [
+             "sku0003204"
+            ],
+            "sku.activePrice": [
+             "11155.0000"
+            ],
+            "sku.referencePrice": [
+             "11155.0000"
+            ],
+            "sku.displayName": [
+             "Fernet Branca 750 ml"
+            ]
+           },
+           "detailsAction": {
+            "recordState": "/fernet-branca-750-ml/_/R-0003204-0003204-200?Dy=1&format=json"
+           },
+           "numRecords": 1,
+           "records": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

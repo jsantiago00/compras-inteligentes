@@ -48,7 +48,7 @@ export async function vistaAjustes(app) {
       'div',
       { class: 'tarjeta' },
       h('h2', { style: { marginTop: 0 } }, 'Precios'),
-      h('label', { class: 'fila', for: 'demo', style: { color: 'inherit' } }, demo, 'Modo demo: usar precios de ejemplo (ficticios) en vez de consultar los súper'),
+      h('label', { class: 'fila', for: 'demo', style: { color: 'inherit' } }, demo, 'Modo demo: usar precios guardados (captura del 11/10/2026) en vez de consultar los súper'),
       h('p', { class: 'suave chico' }, 'Sirve para probar la app sin conexión a los sitios. Los precios reales se refrescan una vez por día y se cachean.'),
     ),
     h(

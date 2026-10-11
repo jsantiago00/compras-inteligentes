@@ -15,7 +15,7 @@ export default handler(async (req, res) => {
   if (texto.length < 2) throw errorCliente('Falta el texto a buscar (?q=...)');
   const lista = supers ? supers.split(',').filter((s) => IDS_SUPERS.includes(s)) : IDS_SUPERS;
 
-  // En modo demo (precios ficticios de los fixtures) no se toca la caché real.
+  // En modo demo (precios de los fixtures guardados) no se toca la caché real.
   const almacen = demo === '1' ? almacenMemoria() : await obtenerAlmacen();
   const adaptadores = await crearAdaptadores({ demo: demo === '1' });
   const porSuper = {};

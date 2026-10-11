@@ -173,7 +173,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     app,
     h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'crece' }, `← ${lista.nombre}`), h('button', { onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Precios')),
     h('h1', null, '¿Dónde y cuándo compro?'),
-    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios de ejemplo (ficticios).') : null,
+    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios guardados (captura real del 11/10/2026, no se actualizan).') : null,
     fict ? h('div', { class: 'banner alerta chico' }, `Hay ${fict} promo(s) de ejemplo FICTICIAS cargadas. `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
     !promos.length ? h('div', { class: 'banner chico' }, 'No tenés promos bancarias cargadas. ', h('a', { href: '#/promos' }, 'Cargalas'), ' para que la recomendación las tenga en cuenta.') : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta chico' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Configurá los reales')) : null,

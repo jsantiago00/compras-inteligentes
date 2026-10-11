@@ -186,7 +186,7 @@ export async function vistaLista(app, id) {
     h('div', { class: 'fila', style: { margin: '8px 0 12px' } }, h('div', { class: 'crece' }, nombre), h('a', { class: 'boton primario', href: `#/reco/${lista.id}` }, '¿Dónde compro?')),
     contItems,
     h('h2', null, 'Agregar productos'),
-    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: los precios son de ejemplo (ficticios). Desactivalo en Ajustes.') : null,
+    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios guardados (captura real del 11/10/2026, no se actualizan). Desactivalo en Ajustes.') : null,
     h('form', { class: 'fila', onsubmit: buscar, role: 'search' }, h('div', { class: 'crece' }, campo), h('button', { type: 'submit' }, '🔎 Buscar')),
     contResultados,
   );

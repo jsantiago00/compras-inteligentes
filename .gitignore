@@ -3,4 +3,4 @@ dist/
 .env
 .env.local
 .vercel/
-smoke-reporte.json
+/smoke-reporte.json

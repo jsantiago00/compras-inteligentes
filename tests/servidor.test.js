@@ -27,17 +27,19 @@ test('preciosDeItems contra fixtures: por EAN y por SKU confirmado', async () =>
   const adaptadores = await crearAdaptadores({ fetch: fetchFixtures, intervaloMs: 0, env: {} });
   const r = await preciosDeItems({
     items: [
-      { clave: '7790742656001', ean: '7790742656001' },
-      { clave: '7790070411846', ean: '7790070411846', refs: { coto: { sku: 'sku0003203' } } },
+      { clave: 'coca', ean: '7790895000997' },
+      // EAN que el súper no tiene, pero con match confirmado por SKU en Coto.
+      { clave: 'sin-ean', ean: '0000000000000', refs: { coto: { sku: 'sku00014450' } } },
     ],
     adaptadores,
     almacen: almacenMemoria(),
     supers: ['jumbo', 'vea', 'carrefour', 'coto'],
   });
   assert.deepEqual(r.errores, []);
-  assert.equal(r.precios['7790742656001'].vea.disponible, false);
-  assert.ok(r.precios['7790070411846'].coto, 'Coto sin EAN se resuelve por SKU');
-  assert.ok(r.precios['7790070411846'].carrefour.precioOferta);
+  assert.deepEqual(Object.keys(r.precios.coca).sort(), ['carrefour', 'coto', 'jumbo', 'vea']);
+  assert.equal(r.precios.coca.carrefour.promoGondola.tipo, 'segunda_unidad');
+  assert.deepEqual(Object.keys(r.precios['sin-ean']), ['coto']);
+  assert.equal(r.precios['sin-ean'].coto.sku, 'sku00014450');
 });
 
 test('cliente HTTP: User-Agent propio y rate limiting por host', async () => {

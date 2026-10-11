@@ -19,8 +19,9 @@ lib/servidor/   almacen.js (Firestore o memoria), precios.js (caché + historial
 lib/            carrito.js, constantes.js, ejemplos.js (seeds FICTICIOS), formato.js
 src/            PWA (main.js, vistas/, datos.js, firebase.js)
 public/         manifest, service worker, íconos
-scripts/        smoke.js, capturar-fixtures.js, generar-iconos.js
-tests/          tests unitarios (node:test) + fixtures/
+scripts/        smoke.js, capturar-fixtures.js, diagnostico-sitios.js, generar-iconos.js
+tests/          tests unitarios (node:test) + fixtures/ (respuestas reales capturadas)
+.github/        CI: tests, build, smoke real y captura de fixtures
 ```
 
 ## Comandos
@@ -30,7 +31,7 @@ tests/          tests unitarios (node:test) + fixtures/
 | `npm install` | Instala dependencias (Node ≥ 20). |
 | `npm run dev` | Vite en `localhost:5173`, con `/api` montado en el mismo server (no hace falta `vercel dev`). |
 | `npm test` | Tests del motor (topes, días, envío, compra dividida, rubros), promos, normalización, matching, scrapers contra fixtures, caché y carrito. |
-| `npm run smoke` | Pega a los sitios reales con 3 productos conocidos y reporta qué funciona (`smoke-reporte.json`). `npm run smoke -- --fixtures` prueba el script sin red. |
+| `npm run smoke` | Pega a los sitios reales con 3 productos conocidos y reporta qué funciona (`smoke-reporte.json`). `npm run smoke -- --fixtures` prueba el script sin red. También corre en CI. |
 | `npm run build` | Build de producción en `dist/`. |
 | `npm run preview` | Sirve `dist/` + `/api` en `localhost:4173`. |
 | `npm run fixtures:capturar` | Captura respuestas reales una vez y reemplaza los fixtures. |
@@ -94,9 +95,12 @@ Interfaz común por súper: `buscar(texto)`, `porEan(ean)`, `porSku(sku)`, `carr
 
 Precio y stock pueden variar según la zona:
 
-- **VTEX:** `sc` (sales channel) configurable por súper con `VTEX_SC_*` (default `1`). Si se define `CODIGO_POSTAL`, el adaptador resuelve la región con `/api/checkout/pub/regions?country=ARG&postalCode=<cp>&sc=<sc>` y la manda en la cookie `vtex_segment`.
-- **Coto:** el sitio usa la sucursal por defecto; los links de producto terminan en `-200` (sucursal).
-- ⚠️ **A verificar con acceso real:** qué `sc` usa cada súper para tu zona (mirar el `sc=` del link "agregar al carrito" o de las requests del sitio en DevTools después de elegir la dirección de entrega).
+- **VTEX:** `sc` (sales channel) por súper, configurable con `VTEX_SC_*`. Defaults verificados el 11/10/2026 con
+  `/api/catalog_system/pub/saleschannel/default`: **Jumbo 32, Vea 34, Carrefour 1** (en Jumbo y Vea `sc=1` responde
+  `400 "sc is inactive"`). Si se define `CODIGO_POSTAL`, el adaptador resuelve la región con
+  `/api/checkout/pub/regions?country=ARG&postalCode=<cp>&sc=<sc>` y la manda en la cookie `vtex_segment`.
+- **Coto:** el sitio usa la sucursal por defecto (los registros terminan en `-200`, lista de precios `priceList200`).
+- Para usar el `sc` de otra sucursal: elegir la dirección de entrega en el sitio y mirar el `sc=` del link "agregar al carrito" en DevTools.
 
 ### Motor de promociones y recomendación (`lib/motor`, puro y testeado)
 
@@ -118,26 +122,34 @@ Supuesto: el cálculo usa los precios de hoy para toda la semana (no predice pre
 
 - *Promos → Cargar ejemplos (ficticios)* carga 4 promos **FICTICIAS**, marcadas como tales en la UI. No son promos reales: hay que cargar o confirmar las reales.
 - Los costos de envío iniciales también son de ejemplo (aviso en la UI hasta que se guardan en *Ajustes*).
-- *Ajustes → Modo demo* usa los precios de los fixtures (ficticios) sin consultar los súper.
+- *Ajustes → Modo demo* usa los precios de los fixtures (captura real del 11/10/2026, no se actualizan) sin consultar los súper.
 
 ## Estado del smoke (MVP)
 
-`npm run smoke` se escribió y se probó contra los fixtures (`npm run smoke -- --fixtures` → 4/4 súper encuentran productos por EAN), pero **no se pudo correr contra los sitios reales** desde el entorno donde se desarrolló el MVP:
-la política de red de ese sandbox bloquea `jumbo.com.ar`, `vea.com.ar`, `carrefour.com.ar` y `cotodigital.com.ar` (el proxy responde `403` al `CONNECT`, y sin proxy no resuelve DNS). Resultado registrado:
+`npm run smoke` corre en CI (job `smoke` de GitHub Actions, que sí tiene acceso a los sitios) en cada push.
+Resultado contra los sitios reales el 11/10/2026:
 
 ```
-❌ Jumbo / Vea / Carrefour / Coto — sin acceso de red al sitio (getaddrinfo ENOTFOUND / CONNECT 403)
-0/4 súper encontraron al menos un producto por EAN.
+✅ Jumbo      coca cola 2.25 → EAN 7790895000997 Gaseosa Cola Sabor Original 2.25 Lts Coca Cola — $5930
+✅ Vea        coca cola 2.25 → EAN 7790895000997 Gaseosa Cola Sabor Original 2.25 Lts Coca Cola — $5990
+✅ Carrefour  coca cola 2.25 → EAN 7790895000997 Gaseosa cola Coca Cola sabor original 2,25 lts — $6000
+✅ Coto       coca cola 2.25 → EAN 7790895000997 Gaseosa Coca-Cola Sabor Original 2,25 Lt — $5100
+4/4 súper encontraron al menos un producto por EAN.
 ```
 
-Por eso, además:
+(Los 3 productos de prueba —Coca-Cola 2,25 L, yerba Playadito 1 kg y leche La Serenísima— se encontraron por EAN en los 4 súper;
+el reporte completo queda como artefacto del job.)
 
-- los fixtures de `tests/fixtures/` están **reconstruidos** siguiendo el formato conocido de cada API, no capturados (ver `tests/fixtures/README.md`);
-- los endpoints de VTEX y de Coto, el `sc` por súper y el formato del link de carrito están implementados según la documentación/uso conocido de esas plataformas, pero **falta confirmarlos en vivo**.
+Lo que se ajustó gracias al smoke real:
 
-**Pendiente** (desde una máquina con acceso a los sitios):
+- Jumbo y Vea rechazan `sc=1`: su sales channel es 32 y 34.
+- Jumbo y Vea devuelven un `ListPrice` inflado (≈ precio sin IVA × 100); el precio "sin descuento" confiable es `PriceWithoutDiscount`.
+- Carrefour publica teasers atados a tarjetas ("Tarjeta Carrefour 15%", con `RestrictionsBins`): no se toman como promo de góndola.
+- Coto no encuentra EAN buscando el código como texto: `porEan` filtra `product.eanPrincipal` con `Nr=AND(...)` de Endeca.
 
-1. `npm run smoke` y revisar `smoke-reporte.json`.
-2. `npm run fixtures:capturar && npm test`; si algún parser falla, ajustar el adaptador.
-3. Confirmar el `sc` de cada súper para tu zona y probar un link de carrito con la sesión iniciada.
-4. Si algún sitio bloquea requests de servidor (Cloudflare/WAF), documentarlo acá; para Coto, si `format=json` dejara de funcionar, el plan B es parsear el HTML de la búsqueda.
+Notas:
+
+- Desde el sandbox donde se desarrolló el MVP no hay acceso de red a esos dominios (proxy `403`), por eso el smoke se corre en CI.
+- El formato del link de carrito se verificó contra el `addToCartLink` que devuelve la propia API de VTEX (`/checkout/cart/add?sku=..&qty=1&seller=1&sc=32`).
+  Falta probarlo con una sesión iniciada en cada súper.
+- Coto no tiene un link público para cargar varios productos al carrito: la app muestra la lista con links a cada producto.

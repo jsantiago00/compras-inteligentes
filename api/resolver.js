@@ -1,12 +1,12 @@
 // POST /api/resolver  { texto: "2 yerba playadito\nleche\narroz 1kg", demo? }
-// Lista libre: busca cada renglón en los 4 súper y elige un producto por súper.
+// Lista libre: busca cada renglón en los súper de la zona y elige un producto por súper.
 
-import { IDS_SUPERS } from '../lib/constantes.js';
 import { claveLibre, elegirProductos, parsearLinea, refProducto, separarLineas } from '../lib/motor/listaLibre.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
 import { almacenMemoria, obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { cuerpo, errorCliente, handler, responder } from '../lib/servidor/api.js';
 import { buscarEnSupers } from '../lib/servidor/busqueda.js';
+import { ZONA } from '../lib/zona.js';
 
 export const MAXIMO_RENGLONES = 30;
 
@@ -24,7 +24,7 @@ export default handler(async (req, res) => {
   const renglones = await Promise.all(
     lineas.map(async (linea) => {
       const { texto: t, cantidad } = parsearLinea(linea);
-      const { porSuper, errores } = await buscarEnSupers({ texto: t, supers: IDS_SUPERS, adaptadores, almacen, limite: 24 });
+      const { porSuper, errores } = await buscarEnSupers({ texto: t, supers: ZONA.supers, adaptadores, almacen, limite: 24 });
       const r = elegirProductos(t, porSuper);
       return {
         linea,

@@ -2,11 +2,11 @@
 // Refresca los precios de los productos que el usuario tiene en listas o en
 // el historial (respetando la caché y el rate limiting de los scrapers).
 
-import { IDS_SUPERS } from '../lib/constantes.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
 import { obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { handler, responder } from '../lib/servidor/api.js';
 import { preciosDeItems } from '../lib/servidor/precios.js';
+import { ZONA } from '../lib/zona.js';
 
 const MAXIMO_POR_CORRIDA = Number(process.env.REFRESCAR_MAXIMO ?? 150);
 
@@ -20,7 +20,7 @@ export default handler(async (req, res) => {
   const inicio = Date.now();
   const r = await preciosDeItems({
     items,
-    supers: IDS_SUPERS,
+    supers: ZONA.supers,
     adaptadores: await crearAdaptadores(),
     almacen,
     // Un poco menos de 24 h para que la corrida diaria siempre refresque.

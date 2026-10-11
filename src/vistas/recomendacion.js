@@ -7,6 +7,7 @@ import { nombreDia, pesos } from '../../lib/formato.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
 import { recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
+import { ZONA } from '../../lib/zona.js';
 import * as api from '../api.js';
 import { estado } from '../estado.js';
 import { aviso, cargando, h, montar } from '../ui.js';
@@ -33,7 +34,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
 
   const hoy = isoLocal();
   const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro }));
-  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: estado.config.envios, hoy });
+  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: estado.config.envios, hoy, supers: ZONA.supers });
   const nombreItem = (clave) => lista.items.find((i) => i.clave === clave)?.nombre ?? clave;
   // La mejor opción prioriza tener toda la lista; mostramos también la más barata
   // a la que le falta 1 producto, si existe.

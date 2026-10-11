@@ -1,7 +1,8 @@
 // Editar una lista: nombre, ítems, cantidades y buscador de productos en los
-// 4 súper (unificados por EAN, con confirmación de matches difusos).
+// súper de la zona (unificados por EAN, con confirmación de matches difusos).
 
 import { SUPERS } from '../../lib/constantes.js';
+import { ZONA } from '../../lib/zona.js';
 import { pesos } from '../../lib/formato.js';
 import * as api from '../api.js';
 import { estado } from '../estado.js';
@@ -107,7 +108,7 @@ export async function vistaLista(app, id) {
       'details',
       { class: 'chico' },
       h('summary', { class: 'suave' }, Object.entries(it.refs ?? {}).length ? `En ${Object.keys(it.refs).map((s) => SUPERS[s]).join(', ')} — ver qué producto` : 'No lo encontré en ningún súper'),
-      Object.keys(SUPERS).map((sup) => {
+      ZONA.supers.map((sup) => {
         const opciones = it.alternativas?.[sup] ?? [];
         if (!opciones.length) return h('div', { class: 'suave' }, `${SUPERS[sup]}: no encontrado`);
         const actual = it.refs?.[sup]?.sku ?? '';

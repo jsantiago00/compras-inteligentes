@@ -7,6 +7,7 @@ import { leerFixture, fetchFixtures } from '../lib/scrapers/fixtures.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
 import { parsearProductosVtex, promoDesdeTeasers, urlCarritoVtex } from '../lib/scrapers/vtex.js';
 import { unificar } from '../lib/scrapers/matching.js';
+import { ZONA } from '../lib/zona.js';
 
 const CAMPOS = ['ean', 'nombre', 'marca', 'precioLista', 'precioOferta', 'promoGondola', 'unidad', 'contenido', 'url', 'imagen', 'sku', 'disponible'];
 const vtex = (sup) => parsearProductosVtex(leerFixture(`vtex-${sup}-busqueda.json`), { super: sup, base: `https://www.${sup}.com.ar` });
@@ -127,4 +128,23 @@ test('adaptadores contra fixtures: buscar, porEan, porSku y unificación por EAN
   const { grupos } = unificar(porSuper);
   const parboil = grupos.find((g) => g.ean === '7790070431417');
   assert.deepEqual(Object.keys(parboil.porSuper).sort(), ['carrefour', 'coto', 'jumbo', 'vea']);
+});
+
+test('zona de entrega: los adaptadores VTEX piden los precios de la sucursal de la zona', async () => {
+  const cookies = {};
+  const fetchEspia = (url, opts) => {
+    cookies[new URL(url).hostname] = opts.headers.Cookie;
+    return fetchFixtures(url, opts);
+  };
+  const a = await crearAdaptadores({ fetch: fetchEspia, intervaloMs: 0, env: {} });
+  for (const sup of ZONA.supers) await a[sup].porEan(COCA);
+  const regionDe = (host) => {
+    const seg = JSON.parse(Buffer.from(cookies[host].replace('vtex_segment=', ''), 'base64').toString());
+    return { channel: seg.channel, sucursales: Buffer.from(seg.regionId, 'base64').toString() };
+  };
+  assert.deepEqual(regionDe('www.jumbo.com.ar'), { channel: '32', sucursales: 'SW#jumboargentinaj5222mendoza' });
+  assert.deepEqual(regionDe('www.vea.com.ar'), { channel: '34', sucursales: 'SW#jumboargentinav171sarmientoyalen' });
+  assert.deepEqual(regionDe('www.carrefour.com.ar'), { channel: '1', sucursales: 'SW#carrefourar0029;carrefourar0899' });
+  // Coto no entrega en la zona.
+  assert.ok(!ZONA.supers.includes('coto'));
 });

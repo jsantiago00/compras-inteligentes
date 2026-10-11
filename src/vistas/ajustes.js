@@ -14,7 +14,7 @@ export async function vistaAjustes(app) {
   const filas = activa.supers.map((s) => {
     const e = envios[s] ?? { costo: 0, minimoGratis: null };
     const costo = h('input', { type: 'number', min: 0, step: 'any', value: e.costo ?? 0, 'aria-label': `Costo de envío ${SUPERS[s]}` });
-    const minimo = h('input', { type: 'number', min: 0, step: 'any', value: e.minimoGratis ?? '', placeholder: 'nunca gratis', 'aria-label': `Mínimo para envío gratis ${SUPERS[s]}` });
+    const minimo = h('input', { type: 'number', min: 0, step: 'any', value: e.minimoGratis ?? '', placeholder: 'nunca', 'aria-label': `Mínimo para envío gratis ${SUPERS[s]}` });
     return { s, costo, minimo };
   });
 
@@ -92,8 +92,8 @@ export async function vistaAjustes(app) {
       { class: `tarjeta${enUso ? ' destacada' : ''}`, style: { margin: '0 0 8px' } },
       h('div', { class: 'fila' },
         h('div', { class: 'crece' }, h('b', null, d.nombre), h('div', { class: 'suave chico' }, [d.direccion, `CP ${d.codigoPostal}`, d.localidad].filter(Boolean).join(' · '))),
-        enUso ? h('span', { class: 'chip mejor' }, 'En uso') : h('button', { onclick: () => usar(d) }, 'Usar'),
-        d.id !== DIRECCION_PRINCIPAL.id ? h('button', { onclick: () => borrar(d), 'aria-label': `Borrar ${d.nombre}` }, '🗑') : null,
+        enUso ? h('span', { class: 'chip mejor' }, 'En uso') : h('button', { class: 'secundario', onclick: () => usar(d) }, 'Usar esta'),
+        d.id !== DIRECCION_PRINCIPAL.id ? h('button', { class: 'texto peligro', onclick: () => borrar(d), 'aria-label': `Borrar ${d.nombre}` }, 'Borrar') : null,
       ),
       h('ul', { class: 'chico', style: { margin: '6px 0 0', paddingLeft: '18px' } },
         d.supers.map((s) => h('li', null, `${SUPERS[s]}: ${d.nombresSucursales?.[s] ?? 'sucursal por defecto'}${d.envios?.[s]?.costo ? ` · envío ${pesos(d.envios[s].costo)}` : ''}`)),
@@ -115,39 +115,39 @@ export async function vistaAjustes(app) {
     h(
       'section',
       { class: 'tarjeta' },
-      h('h2', { style: { marginTop: 0 } }, 'Dirección de entrega'),
-      h('p', { class: 'suave chico' }, 'Los precios, el stock y el envío dependen de la sucursal que entrega en la dirección. Elegí para cuál comprás.'),
+      h('h2', { style: { marginTop: 0 } }, '¿A dónde te lo traen?'),
+      h('p', { class: 'suave' }, 'Los precios y el envío dependen de la dirección. Elegí para qué casa comprás.'),
       direcciones().map(tarjetaDireccion),
       h(
         'form',
         { onsubmit: agregar, style: { marginTop: '10px' } },
-        h('b', null, 'Agregar otra dirección'),
+        h('h3', { style: { marginTop: '18px' } }, 'Agregar otra casa'),
         h('div', { class: 'grilla2' },
           h('label', null, 'Nombre', nombre),
           h('label', null, 'Código postal', cp),
           h('label', null, 'Calle y número', direccion),
         ),
-        h('button', { class: 'primario', type: 'submit', style: { marginTop: '8px' } }, 'Agregar'),
+        h('button', { class: 'primario ancho', type: 'submit', style: { marginTop: '12px' } }, 'Agregar dirección'),
         estadoAlta,
       ),
     ),
     h(
       'form',
       { class: 'tarjeta', onsubmit: guardarEnvios },
-      h('h2', { style: { marginTop: 0 } }, `Envío a domicilio — ${activa.nombre}`),
+      h('h2', { style: { marginTop: 0 } }, `Costo de envío a ${activa.nombre}`),
       cfg.enviosFicticios && activa.id === DIRECCION_PRINCIPAL.id ? h('div', { class: 'banner alerta chico' }, 'Estos valores son de ejemplo (ficticios). Cargá los reales de tu zona.') : null,
       h('table', null,
         h('thead', null, h('tr', null, h('th', null, 'Súper'), h('th', null, 'Costo ($)'), h('th', null, 'Gratis desde ($)'))),
         h('tbody', null, filas.map((f) => h('tr', null, h('td', null, SUPERS[f.s]), h('td', null, f.costo), h('td', null, f.minimo)))),
       ),
-      h('button', { class: 'primario', type: 'submit', style: { marginTop: '10px' } }, 'Guardar envíos'),
+      h('button', { class: 'primario ancho', type: 'submit', style: { marginTop: '12px' } }, 'Guardar'),
     ),
     h(
       'div',
       { class: 'tarjeta' },
-      h('h2', { style: { marginTop: 0 } }, 'Precios'),
-      h('label', { class: 'fila', for: 'demo', style: { color: 'inherit' } }, demo, 'Modo demo: usar precios guardados (captura del 11/10/2026) en vez de consultar los súper'),
-      h('p', { class: 'suave chico' }, 'Sirve para probar la app sin conexión a los sitios. Los precios reales se refrescan una vez por día y se cachean.'),
+      h('h2', { style: { marginTop: 0 } }, 'Modo prueba'),
+      h('label', { class: 'interruptor', for: 'demo' }, demo, 'Usar precios de ejemplo en vez de los reales'),
+      h('p', { class: 'suave chico' }, 'Sirve para probar la app sin consultar a los súper. Dejalo apagado para comprar de verdad.'),
     ),
     h(
       'div',

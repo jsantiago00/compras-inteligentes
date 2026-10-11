@@ -1,33 +1,40 @@
-// Inicio: sugerencias según el historial + listas de compras.
+// Inicio: saludo, sugerencias según el historial y las listas de compras.
 
 import { isoLocal } from '../../lib/motor/fechas.js';
 import { sugerencias } from '../../lib/motor/sugerencias.js';
-import { estado } from '../estado.js';
-import { aviso, h, montar } from '../ui.js';
+import { direccionActiva, estado } from '../estado.js';
+import { aviso, h, montar, vacio } from '../ui.js';
+
+function saludo() {
+  const hora = new Date().getHours();
+  const momento = hora < 13 ? 'Buen día' : hora < 20 ? 'Buenas tardes' : 'Buenas noches';
+  const nombre = estado.usuario?.displayName?.split(' ')[0];
+  return nombre ? `${momento}, ${nombre}` : momento;
+}
 
 export async function vistaListas(app) {
   const [listas, pedidos] = await Promise.all([estado.store.listar('listas'), estado.store.listar('pedidos')]);
   listas.sort((a, b) => (b.actualizada ?? 0) - (a.actualizada ?? 0));
   const sug = sugerencias(pedidos, isoLocal());
 
-  const nombre = h('input', { placeholder: 'Ej.: Compra mensual', 'aria-label': 'Nombre de la lista nueva' });
-  async function crear(e) {
-    e.preventDefault();
-    const n = nombre.value.trim() || 'Lista nueva';
-    const l = await estado.store.guardar('listas', { nombre: n, items: [], actualizada: Date.now() });
+  async function crear() {
+    const n = prompt('¿Cómo se llama la lista?', 'Compra del mes');
+    if (n === null) return;
+    const l = await estado.store.guardar('listas', { nombre: n.trim() || 'Lista nueva', items: [], actualizada: Date.now() });
     location.hash = `#/lista/${l.id}`;
   }
 
   async function duplicar(l) {
     const { id, ...resto } = l;
     await estado.store.guardar('listas', { ...structuredClone(resto), nombre: `${l.nombre} (copia)`, actualizada: Date.now() });
-    aviso('Lista duplicada');
+    aviso('Lista copiada');
     vistaListas(app);
   }
 
   async function borrar(l) {
     if (!confirm(`¿Borrar la lista "${l.nombre}"?`)) return;
     await estado.store.borrar('listas', l.id);
+    aviso('Lista borrada');
     vistaListas(app);
   }
 
@@ -46,30 +53,41 @@ export async function vistaListas(app) {
     location.hash = `#/lista/${lista.id}`;
   }
 
+  const productos = (n) => (n === 1 ? '1 producto' : `${n} productos`);
+
   montar(
     app,
-    h('h1', null, 'Mis listas'),
+    h('div', { class: 'saludo' }, h('h1', null, saludo()), h('p', null, `¿Qué hay que comprar? Entrega en ${direccionActiva().nombre}.`)),
     sug.length
       ? h(
           'section',
-          { class: 'tarjeta' },
-          h('h2', { style: { marginTop: 0 } }, '💡 Te toca comprar'),
-          h('ul', null, sug.slice(0, 8).map((s) => h('li', null, s.texto))),
-          h('button', { onclick: agregarSugerencias }, `Agregar a ${listas[0] ? `"${listas[0].nombre}"` : 'una lista nueva'}`),
+          { class: 'tarjeta destacada' },
+          h('h3', null, '💡 Se te está por terminar'),
+          h('ul', { style: { margin: '6px 0 12px', paddingLeft: '22px' } }, sug.slice(0, 6).map((s) => h('li', null, s.texto))),
+          h('button', { class: 'primario ancho', onclick: agregarSugerencias }, `Agregar a ${listas[0] ? `"${listas[0].nombre}"` : 'una lista nueva'}`),
         )
       : null,
-    h('form', { class: 'fila tarjeta', onsubmit: crear }, h('div', { class: 'crece' }, nombre), h('button', { class: 'primario', type: 'submit' }, '+ Crear lista')),
     listas.length
       ? listas.map((l) =>
           h(
-            'div',
-            { class: 'tarjeta fila' },
-            h('a', { href: `#/lista/${l.id}`, class: 'crece', style: { textDecoration: 'none', color: 'inherit' } }, h('b', null, l.nombre), h('div', { class: 'suave' }, `${l.items.length} producto(s)`)),
-            h('a', { class: 'boton primario', href: `#/reco/${l.id}` }, '¿Dónde compro?'),
-            h('button', { onclick: () => duplicar(l), title: 'Duplicar' }, '⧉'),
-            h('button', { class: 'peligro', onclick: () => borrar(l), title: 'Borrar' }, '🗑'),
+            'article',
+            { class: 'tarjeta lista-card' },
+            h(
+              'a',
+              { class: 'cuerpo', href: `#/lista/${l.id}`, 'aria-label': `Abrir la lista ${l.nombre}` },
+              h('span', { class: 'icono', 'aria-hidden': 'true' }, '🛒'),
+              h('div', { class: 'crece' }, h('div', { class: 'nombre' }, l.nombre), h('div', { class: 'suave' }, l.items.length ? `${productos(l.items.length)} · tocá para editar` : 'Vacía · tocá para agregar productos')),
+            ),
+            h(
+              'div',
+              { class: 'acciones' },
+              l.items.length ? h('a', { class: 'boton primario', href: `#/reco/${l.id}` }, '¿Dónde compro?') : h('a', { class: 'boton primario', href: `#/lista/${l.id}` }, 'Agregar productos'),
+              h('button', { class: 'texto', onclick: () => duplicar(l) }, 'Copiar'),
+              h('button', { class: 'texto peligro', onclick: () => borrar(l) }, 'Borrar'),
+            ),
           ),
         )
-      : h('p', { class: 'vacio' }, 'Todavía no tenés listas. Creá una, por ejemplo "Compra mensual".'),
+      : vacio('📝', 'Todavía no tenés listas.', h('br'), 'Creá la primera, por ejemplo "Compra del mes".'),
+    h('button', { class: `ancho grande${listas.length ? ' nueva-lista' : ' primario'}`, onclick: crear }, '+ Nueva lista'),
   );
 }

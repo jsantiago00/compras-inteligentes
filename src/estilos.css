@@ -106,3 +106,15 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .banner.alerta { background: transparent; border-color: var(--alerta); }
 details summary { cursor: pointer; }
 .vacio { text-align: center; color: var(--suave); padding: 24px 8px; }
+
+/* Un carrito por súper en la recomendación. */
+.grilla-carritos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.grilla-carritos .boton {
+  display: block;
+  text-align: center;
+}

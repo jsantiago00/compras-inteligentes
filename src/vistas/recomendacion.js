@@ -1,5 +1,6 @@
-// Recomendación de 7 días para una lista: mejor opción, calendario semanal,
-// ranking, compra dividida, armado del carrito y "Ya compré".
+// Recomendación de 7 días para una lista: un carrito por súper (con su total y
+// el link que lo carga en el sitio), mejor opción, calendario semanal, ranking,
+// compra dividida y "Ya compré".
 
 import { armarCarrito } from '../../lib/carrito.js';
 import { DIAS, MEDIOS, SUPERS } from '../../lib/constantes.js';
@@ -7,9 +8,8 @@ import { nombreDia, pesos } from '../../lib/formato.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
 import { recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
-import { ZONA } from '../../lib/zona.js';
 import * as api from '../api.js';
-import { estado } from '../estado.js';
+import { direccionActiva, enviosActivos, estado, zonaActiva } from '../estado.js';
 import { aviso, cargando, h, montar } from '../ui.js';
 
 const fechaCorta = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
@@ -20,7 +20,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   if (!lista) return montar(app, h('p', { class: 'vacio' }, 'No encontré esa lista. ', h('a', { href: '#/' }, 'Volver')));
   if (!lista.items.length) return montar(app, h('p', { class: 'vacio' }, 'La lista está vacía. ', h('a', { href: `#/lista/${id}` }, 'Agregá productos')));
 
-  const claveCache = `${id}|${estado.config.demo ? 'demo' : 'real'}`;
+  const claveCache = `${id}|${estado.config.demo ? 'demo' : 'real'}|${direccionActiva().id}`;
   let datos = refrescar ? null : estado.precios.get(claveCache);
   if (!datos) {
     try {
@@ -34,7 +34,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
 
   const hoy = isoLocal();
   const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro }));
-  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: estado.config.envios, hoy, supers: ZONA.supers });
+  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: enviosActivos(), hoy, supers: zonaActiva().supers });
   const nombreItem = (clave) => lista.items.find((i) => i.clave === clave)?.nombre ?? clave;
   // La mejor opción prioriza tener toda la lista; mostramos también la más barata
   // a la que le falta 1 producto, si existe.
@@ -91,6 +91,28 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     }
     contCarrito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
+
+  // Un carrito por súper: su mejor opción de la semana (menos faltantes, menor
+  // total), con el link que carga todo en el sitio del súper.
+  function tarjetaCarrito(op) {
+    const c = armarCarrito(op.super, itemsCarrito(op));
+    const total = lista.items.length;
+    const esMejor = op === r.mejor;
+    const cuando = `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? ` con ${MEDIOS[op.medio]}` : ''}`;
+    return h(
+      'div',
+      { class: `tarjeta${esMejor ? ' destacada' : ''}`, style: { margin: 0 } },
+      h('div', { class: 'fila' }, h('b', { class: 'crece', style: { fontSize: '17px' } }, SUPERS[op.super]), esMejor ? h('span', { class: 'chip mejor' }, 'Más conveniente') : null),
+      h('div', { style: { fontSize: '22px', fontWeight: 700, margin: '4px 0' } }, pesos(op.total)),
+      h('div', { class: 'suave chico' }, `${op.lineas.length} de ${total} productos · comprando ${cuando}`),
+      h('div', { class: 'suave chico' }, `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`),
+      op.faltantes.length ? h('div', { class: 'alerta chico' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null,
+      c.tipo === 'link'
+        ? h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super, style: { marginTop: '8px' } }, `🛒 Abrir carrito en ${SUPERS[op.super]} ↗`)
+        : h('button', { class: 'primario', onclick: () => armar(op), style: { marginTop: '8px' } }, `🛒 Ver productos de ${SUPERS[op.super]}`),
+    );
+  }
+  const porSuper = zonaActiva().supers.map((s) => r.ranking.find((o) => o.super === s)).filter(Boolean);
 
   async function yaCompre(ops) {
     const resumen = ops.map((o) => `${SUPERS[o.super]} con ${MEDIOS[o.medio]}: ${pesos(o.total)}`).join('\n');
@@ -192,9 +214,13 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     fict ? h('div', { class: 'banner alerta chico' }, `Hay ${fict} promo(s) de ejemplo FICTICIAS cargadas. `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
     !promos.length ? h('div', { class: 'banner chico' }, 'No tenés promos bancarias cargadas. ', h('a', { href: '#/promos' }, 'Cargalas'), ' para que la recomendación las tenga en cuenta.') : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta chico' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Configurá los reales')) : null,
+    h('h2', null, 'Tus carritos'),
+    h('p', { class: 'suave chico' }, `Entrega en ${direccionActiva().nombre} (${direccionActiva().direccion ?? `CP ${direccionActiva().codigoPostal}`}). Cada botón abre el sitio del súper con el carrito ya cargado: elegí ahí la misma dirección, revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
+    h('div', { class: 'grilla-carritos' }, porSuper.map(tarjetaCarrito)),
+    contCarrito,
+    h('h2', null, 'Detalle de la mejor opción'),
     tarjetaOpcion(r.mejor, { destacada: true }),
     masBarataIncompleta ? h('div', { class: 'banner chico' }, `💡 Si no te importa que falte ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, ${masBarataIncompleta.fecha === hoy ? 'hoy' : `el ${nombreDia(masBarataIncompleta.fecha)}`} en ${textoOpcion(masBarataIncompleta)} sale ${pesos(masBarataIncompleta.total)} (${pesos(r.mejor.total - masBarataIncompleta.total)} menos, pero comprás menos cosas).`) : null,
-    contCarrito,
     div
       ? h(
           'section',

@@ -1,45 +1,38 @@
 #!/usr/bin/env node
-// Diagnóstico de fuentes de promos bancarias (APIs públicas de Macro, MODO y
-// Semana Nación del BNA). Imprime estructura y ejemplos.
+// Diagnóstico de Semana Nación (BNA): estructura de __NEXT_DATA__ por súper.
 
 import { USER_AGENT } from '../lib/scrapers/http.js';
 
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
-async function ver(url, { max = 3000, headers = {} } = {}) {
-  await espera(1200);
+
+function resumir(v, prof = 0, max = 4) {
+  if (prof > max) return '…';
+  if (Array.isArray(v)) return v.length ? [`[${v.length}]`, resumir(v[0], prof + 1, max)] : [];
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).slice(0, 40).map(([k, x]) => [k, resumir(x, prof + 1, max)]));
+  return typeof v === 'string' ? v.slice(0, 120) : v;
+}
+
+for (const slug of ['coto', 'jumbo', 'vea', 'carrefour']) {
+  await espera(1500);
+  const url = `https://semananacion.com.ar/semananacion/${slug}`;
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'application/json, text/html', ...headers } });
-    const t = await res.text();
-    console.log(`\n### ${res.status} ${res.headers.get('content-type')} ${url} (${t.length} bytes)`);
-    console.log(t.replace(/\s+/g, ' ').slice(0, max));
-    return t;
+    const html = await (await fetch(url, { headers: { 'User-Agent': USER_AGENT } })).text();
+    const m = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+    console.log(`\n### ${url} next_data=${Boolean(m)} (${html.length} bytes)`);
+    const desc = html.match(/<meta name="description" content="([^"]*)"/);
+    console.log('description:', desc?.[1]);
+    if (!m) continue;
+    const data = JSON.parse(m[1]);
+    console.log('estructura:', JSON.stringify(resumir(data.props?.pageProps ?? data, 0, 5)).slice(0, 5000));
+    // Todo string que mencione %, días, tope o vigencia.
+    const textos = new Set();
+    (function rec(v) {
+      if (typeof v === 'string') {
+        if (/%|tope|vigencia|lunes|martes|mi[eé]rcoles|jueves|viernes|s[aá]bado|domingo|reintegro|MODO/i.test(v) && v.length < 1500) textos.add(v.replace(/\s+/g, ' '));
+      } else if (v && typeof v === 'object') Object.values(v).forEach(rec);
+    })(data);
+    for (const t of [...textos].slice(0, 40)) console.log('  ·', t);
   } catch (e) {
-    console.log(`\n### ERROR ${url}: ${e.message} ${e.cause?.code ?? ''}`);
-    return '';
+    console.log(`### ERROR ${url}: ${e.message}`);
   }
 }
-
-// Macro
-await ver('https://apipublic.macro.com.ar/v1/card-benefits/categories', { max: 2500 });
-for (const k of ['coto', 'carrefour', 'jumbo', 'vea']) await ver(`https://apipublic.macro.com.ar/v1/card-benefits/predictive?keyword=${k}`, { max: 2500 });
-await ver('https://apipublic.macro.com.ar/v1/card-benefits/?keyword=coto', { max: 4000 });
-await ver('https://apipublic.macro.com.ar/v1/card-benefits/?page=1', { max: 2500 });
-
-// MODO: buscar en el HTML cómo llama a promoshub
-const html = await ver('https://www.modo.com.ar/promos', { max: 0 });
-for (const m of html.matchAll(/.{0,200}promoshub.{0,300}/g)) console.log('  [modo]', m[0].replace(/\s+/g, ' '));
-const chunks = [...new Set([...html.matchAll(/\/_next\/static\/chunks\/[^"']+\.js/g)].map((m) => m[0]))];
-console.log('  chunks:', chunks.length);
-for (const c of chunks.slice(0, 40)) {
-  await espera(300);
-  try {
-    const js = await (await fetch('https://www.modo.com.ar' + c, { headers: { 'User-Agent': USER_AGENT } })).text();
-    for (const m of js.matchAll(/.{0,160}promoshub.{0,260}/g)) console.log('  [chunk]', c.split('/').pop(), m[0]);
-  } catch {}
-}
-await ver('https://promoshub.modo.com.ar/', { max: 800 });
-await ver('https://promoshub.modo.com.ar/api/promos?category=supermercados', { max: 1500 });
-
-// BNA Semana Nación
-await ver('https://semananacion.com.ar/semananacion/coto', { max: 2500 });
-await ver('https://semananacion.com.ar/', { max: 2500 });

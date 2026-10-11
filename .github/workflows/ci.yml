@@ -29,6 +29,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Diagnóstico de endpoints
+        run: node scripts/diagnostico-sitios.js
+        continue-on-error: true
       - name: Smoke contra los sitios reales
         run: npm run smoke
         continue-on-error: true

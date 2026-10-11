@@ -2,10 +2,9 @@
 // súper de la zona (unificados por EAN, con confirmación de matches difusos).
 
 import { SUPERS } from '../../lib/constantes.js';
-import { ZONA } from '../../lib/zona.js';
 import { pesos } from '../../lib/formato.js';
 import * as api from '../api.js';
-import { estado } from '../estado.js';
+import { estado, zonaActiva } from '../estado.js';
 import { aviso, cargando, h, montar } from '../ui.js';
 
 const precioDe = (p) => p.precioOferta ?? p.precioLista;
@@ -108,7 +107,7 @@ export async function vistaLista(app, id) {
       'details',
       { class: 'chico' },
       h('summary', { class: 'suave' }, Object.entries(it.refs ?? {}).length ? `En ${Object.keys(it.refs).map((s) => SUPERS[s]).join(', ')} — ver qué producto` : 'No lo encontré en ningún súper'),
-      ZONA.supers.map((sup) => {
+      zonaActiva().supers.map((sup) => {
         const opciones = it.alternativas?.[sup] ?? [];
         if (!opciones.length) return h('div', { class: 'suave' }, `${SUPERS[sup]}: no encontrado`);
         const actual = it.refs?.[sup]?.sku ?? '';
@@ -139,7 +138,7 @@ export async function vistaLista(app, id) {
   async function armarDesdeTexto(e) {
     e.preventDefault();
     if (!textoLista.value.trim()) return;
-    montar(contLibre, cargando('Buscando cada renglón en los 4 súper… (puede tardar unos segundos)'));
+    montar(contLibre, cargando('Buscando cada renglón en los súper de tu zona… (puede tardar unos segundos)'));
     try {
       const { renglones } = await api.resolver(textoLista.value, { demo: estado.config.demo });
       const noEncontrados = [];
@@ -264,7 +263,7 @@ export async function vistaLista(app, id) {
     h(
       'form',
       { class: 'tarjeta', onsubmit: armarDesdeTexto },
-      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Un producto por renglón, con la cantidad adelante si querés. Busco cada uno en los 4 súper y elijo el producto más conveniente de cada uno (lo podés cambiar después).'),
+      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Un producto por renglón, con la cantidad adelante si querés. Busco cada uno en los súper que entregan en tu dirección y elijo el producto más conveniente de cada uno (lo podés cambiar después).'),
       textoLista,
       h('button', { class: 'primario', type: 'submit', style: { marginTop: '8px' } }, 'Armar lista'),
     ),

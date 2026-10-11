@@ -3,17 +3,18 @@
 
 import { IDS_SUPERS } from '../lib/constantes.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
-import { almacenMemoria, obtenerAlmacen } from '../lib/servidor/almacen.js';
+import { almacenDeZona, almacenMemoria, obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { errorCliente, handler, query, responder } from '../lib/servidor/api.js';
 import { obtenerPrecio } from '../lib/servidor/precios.js';
-import { ZONA } from '../lib/zona.js';
+import { sufijoZona, zonaDePedido } from '../lib/zona.js';
 
 export default handler(async (req, res) => {
-  const { ean, sku, super: sup, demo } = query(req);
+  const { ean, sku, super: sup, demo, zona: z } = query(req);
+  const zona = zonaDePedido(z);
   if (!ean && !(sku && sup)) throw errorCliente('Pasá ?ean=... o ?super=...&sku=...');
-  const supers = sup ? [sup].filter((s) => IDS_SUPERS.includes(s)) : ZONA.supers;
-  const adaptadores = await crearAdaptadores({ demo: demo === '1' });
-  const almacen = demo === '1' ? almacenMemoria() : await obtenerAlmacen();
+  const supers = sup ? [sup].filter((s) => IDS_SUPERS.includes(s)) : zona.supers;
+  const adaptadores = await crearAdaptadores({ demo: demo === '1', zona });
+  const almacen = demo === '1' ? almacenMemoria() : almacenDeZona(await obtenerAlmacen(), sufijoZona(zona));
   const resultado = {};
   const errores = {};
   await Promise.all(

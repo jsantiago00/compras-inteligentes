@@ -4,10 +4,11 @@
 
 import { armarCarrito } from '../../lib/carrito.js';
 import { DIAS, nombreMedio, SUPERS } from '../../lib/constantes.js';
-import { nombreDia, pesos } from '../../lib/formato.js';
+import { convieneOtraPresentacion, nombreDia, pesos, porUnidadTexto, presentacion } from '../../lib/formato.js';
+import { costoItem } from '../../lib/motor/promos.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
-import { recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
+import { envasesItem, recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
 import * as api from '../api.js';
 import { direccionActiva, enviosActivos, estado, misMedios, zonaActiva } from '../estado.js';
 import { aviso, cargando, h, montar } from '../ui.js';
@@ -33,7 +34,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   }
 
   const hoy = isoLocal();
-  const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro }));
+  const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro, necesidad: i.necesidad ?? null }));
   const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: enviosActivos(), hoy, supers: zonaActiva().supers, medios: misMedios().length ? misMedios() : ['cualquiera'] });
   const nombreItem = (clave) => lista.items.find((i) => i.clave === clave)?.nombre ?? clave;
   // La mejor opción prioriza tener toda la lista; mostramos también la más barata
@@ -105,7 +106,10 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     const costos = zonaActiva().supers.map((s) => {
       const p = porSuper[s];
       const precio = p && p.disponible !== false ? (p.precioOferta ?? p.precioLista) : null;
-      return [s, precio != null ? Math.round(precio * it.cantidad) : null, p];
+      if (precio == null) return [s, null, p, 0];
+      // Envases de la presentación de ese súper (ej. 2 L = 1 bidón o 2 botellas).
+      const envases = envasesItem({ cantidad: it.cantidad, necesidad: it.necesidad }, p);
+      return [s, Math.round(costoItem(p, envases).costo), p, envases];
     });
     const minimo = Math.min(...costos.filter(([, c]) => c != null).map(([, c]) => c));
     return h(
@@ -119,12 +123,17 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
         h(
           'div',
           { class: 'precios-super' },
-          costos.map(([s, c, p]) =>
+          costos.map(([s, c, p, envases]) =>
             c == null
               ? h('span', { class: 'chip', style: { opacity: 0.6 } }, `${SUPERS[s]}: no hay`)
-              : h('span', { class: `chip${c === minimo ? ' mejor' : ''}`, title: p?.nombre ?? '' }, `${SUPERS[s]} ${pesos(c)}`),
+              : h(
+                  'span',
+                  { class: `chip${c === minimo ? ' mejor' : ''}`, title: `${p?.nombre ?? ''}${porUnidadTexto(p) ? ` · ${porUnidadTexto(p)}` : ''}` },
+                  `${SUPERS[s]} ${pesos(c)}${presentacion(p) && !p.multiplicador && (!it.necesidad || p.unidad === it.necesidad.unidad) ? ` · ${envases}×${presentacion(p)}` : ''}`,
+                ),
           ),
         ),
+        it.mejorPorUnidad && convieneOtraPresentacion(it.mejorPorUnidad, costos.map((c) => c[2]).filter(Boolean)) ? h('div', { class: 'suave chico', style: { marginTop: '4px' } }, `💲 Más barato por ${it.mejorPorUnidad.unidad === 'l' ? 'litro' : it.mejorPorUnidad.unidad === 'kg' ? 'kilo' : 'unidad'}: ${porUnidadTexto(it.mejorPorUnidad)} en ${SUPERS[it.mejorPorUnidad.super]} (${presentacion(it.mejorPorUnidad)})`) : null,
       ),
     );
   }

@@ -3,13 +3,13 @@
 // compra dividida y "Ya compré".
 
 import { armarCarrito } from '../../lib/carrito.js';
-import { DIAS, MEDIOS, nombreMedio, SUPERS } from '../../lib/constantes.js';
+import { DIAS, nombreMedio, SUPERS } from '../../lib/constantes.js';
 import { nombreDia, pesos } from '../../lib/formato.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
 import { recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
 import * as api from '../api.js';
-import { direccionActiva, enviosActivos, estado, zonaActiva } from '../estado.js';
+import { direccionActiva, enviosActivos, estado, misMedios, zonaActiva } from '../estado.js';
 import { aviso, cargando, h, montar } from '../ui.js';
 
 const fechaCorta = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
@@ -34,7 +34,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
 
   const hoy = isoLocal();
   const items = lista.items.map((i) => ({ clave: i.clave, nombre: i.nombre, cantidad: i.cantidad, rubro: i.rubro }));
-  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: enviosActivos(), hoy, supers: zonaActiva().supers });
+  const r = recomendar({ items, precios: datos.precios, promos, pedidos, envios: enviosActivos(), hoy, supers: zonaActiva().supers, medios: misMedios().length ? misMedios() : ['cualquiera'] });
   const nombreItem = (clave) => lista.items.find((i) => i.clave === clave)?.nombre ?? clave;
   // La mejor opción prioriza tener toda la lista; mostramos también la más barata
   // a la que le falta 1 producto, si existe.
@@ -183,7 +183,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   const otros = porSuper.filter((o) => o.super !== r.mejor.super);
 
   async function yaCompre(ops) {
-    const resumen = ops.map((o) => `${SUPERS[o.super]} con ${MEDIOS[o.medio]}: ${pesos(o.total)}`).join('\n');
+    const resumen = ops.map((o) => `${SUPERS[o.super]} con ${nombreMedio(o.medio)}: ${pesos(o.total)}`).join('\n');
     if (!confirm(`¿Registrar la compra de hoy?\n${resumen}`)) return;
     for (const op of ops) {
       await estado.store.guardar('pedidos', {

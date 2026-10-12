@@ -6,6 +6,7 @@ import * as api from '../api.js';
 import { DIRECCION_PRINCIPAL, direccionActiva, direcciones, enviosActivos, estado, guardarConfig } from '../estado.js';
 import { firebaseConfigurado, salir } from '../firebase.js';
 import { aviso, h, montar } from '../ui.js';
+import { seccionMedios } from './medios.js';
 
 export async function vistaAjustes(app) {
   const cfg = estado.config;
@@ -131,6 +132,7 @@ export async function vistaAjustes(app) {
         estadoAlta,
       ),
     ),
+    seccionMedios(() => vistaAjustes(app)),
     h(
       'form',
       { class: 'tarjeta', onsubmit: guardarEnvios },

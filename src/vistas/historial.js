@@ -1,6 +1,6 @@
 // Compras registradas ("Ya compré") + cada cuánto se compra cada producto.
 
-import { MEDIOS, SUPERS } from '../../lib/constantes.js';
+import { nombreMedio, SUPERS } from '../../lib/constantes.js';
 import { nombreDia, pesos } from '../../lib/formato.js';
 import { aIso, isoLocal } from '../../lib/motor/fechas.js';
 import { frecuencias } from '../../lib/motor/sugerencias.js';
@@ -33,7 +33,7 @@ export async function vistaHistorial(app) {
             h(
               'div',
               { class: 'contenido' },
-              h('div', { class: 'suave chico' }, `${MEDIOS[p.medio]}${p.descuentoBancario ? ` · ahorro del banco ${pesos(p.descuentoBancario)}` : ''}`),
+              h('div', { class: 'suave chico' }, `${nombreMedio(p.medio)}${p.descuentoBancario ? ` · ahorro del banco ${pesos(p.descuentoBancario)}` : ''}`),
               h('ul', { style: { paddingLeft: '20px' } }, (p.items ?? []).map((i) => h('li', null, `${i.nombre} ×${i.cantidad}${i.costo ? ` — ${pesos(i.costo)}` : ''}`))),
               h('button', { class: 'texto peligro', onclick: () => borrar(p) }, 'Borrar esta compra'),
             ),

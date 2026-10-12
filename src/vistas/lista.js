@@ -5,7 +5,7 @@ import { SUPERS } from '../../lib/constantes.js';
 import { pesos } from '../../lib/formato.js';
 import * as api from '../api.js';
 import { estado, zonaActiva } from '../estado.js';
-import { aviso, cargando, h, montar } from '../ui.js';
+import { aviso, cargando, h, montar, vacio } from '../ui.js';
 
 const precioDe = (p) => p.precioOferta ?? p.precioLista;
 
@@ -52,7 +52,7 @@ function aplicarMatches(resultado, matches) {
   return { ...resultado, grupos: [...grupos.values()], pendientes };
 }
 
-export async function vistaLista(app, id) {
+export async function vistaLista(app, id, { pendientes = [] } = {}) {
   montar(app, cargando());
   const lista = await estado.store.obtener('listas', id);
   if (!lista) return montar(app, h('p', { class: 'vacio' }, 'No encontré esa lista. ', h('a', { href: '#/' }, 'Volver')));
@@ -64,10 +64,18 @@ export async function vistaLista(app, id) {
     for (const k of [...estado.precios.keys()]) if (k.startsWith(`${lista.id}|`)) estado.precios.delete(k);
   };
 
+  const vacia = !lista.items.length;
   const contItems = h('div');
   const contResultados = h('div');
+  const contAccion = h('div');
 
   function dibujarItems() {
+    montar(
+      contAccion,
+      lista.items.length
+        ? h('div', { class: 'accion-fija' }, h('a', { class: 'boton primario grande', href: `#/reco/${lista.id}` }, 'Ver dónde conviene comprar →'))
+        : null,
+    );
     montar(
       contItems,
       lista.items.length
@@ -78,11 +86,11 @@ export async function vistaLista(app, id) {
               h(
                 'li',
                 null,
-                it.imagen ? h('img', { class: 'miniatura', src: it.imagen, alt: '', loading: 'lazy' }) : null,
+                it.imagen ? h('img', { class: 'miniatura', src: it.imagen, alt: '', loading: 'lazy' }) : h('span', { class: 'miniatura vacia', 'aria-hidden': 'true' }, '🛍️'),
                 h(
                   'div',
                   { class: 'crece', style: { flex: 1, minWidth: 0 } },
-                  h('div', null, it.nombre),
+                  h('div', { class: 'nombre-item' }, it.nombre),
                   it.generico
                     ? detalleGenerico(it)
                     : h('div', { class: 'suave chico' }, [it.marca, Object.keys(it.refs ?? {}).map((s) => SUPERS[s]).join(' · ')].filter(Boolean).join(' — ')),
@@ -90,23 +98,31 @@ export async function vistaLista(app, id) {
                 h(
                   'span',
                   { class: 'cantidad' },
-                  h('button', { 'aria-label': 'Menos', onclick: () => cambiar(it, -1) }, '−'),
-                  h('b', null, it.cantidad),
-                  h('button', { 'aria-label': 'Más', onclick: () => cambiar(it, 1) }, '+'),
+                  h('button', { 'aria-label': it.cantidad <= paso(it) ? `Sacar ${it.nombre}` : `Menos ${it.nombre}`, onclick: () => cambiar(it, -1) }, it.cantidad <= paso(it) ? '🗑' : '−'),
+                  h('b', { 'aria-label': `Cantidad: ${textoCantidad(it)}` }, textoCantidad(it)),
+                  h('button', { 'aria-label': `Más ${it.nombre}`, onclick: () => cambiar(it, 1) }, '+'),
                 ),
               ),
             ),
           )
-        : h('p', { class: 'vacio' }, 'La lista está vacía. Buscá productos abajo.'),
+        : null,
     );
+  }
+
+  // En qué súper está: corto, para que el nombre del producto tenga lugar.
+  function resumenSupers(supers) {
+    if (!supers.length) return 'No lo encontré';
+    if (supers.length === zonaActiva().supers.length) return 'Cambiar producto';
+    const nombres = supers.map((s) => SUPERS[s]);
+    return `Solo en ${nombres.length > 1 ? `${nombres.slice(0, -1).join(', ')} y ${nombres.at(-1)}` : nombres[0]}`;
   }
 
   // Ítem de lista libre: qué producto se eligió en cada súper, con opción de cambiarlo.
   function detalleGenerico(it) {
     return h(
       'details',
-      { class: 'chico' },
-      h('summary', { class: 'suave' }, Object.entries(it.refs ?? {}).length ? `En ${Object.keys(it.refs).map((s) => SUPERS[s]).join(', ')} — ver qué producto` : 'No lo encontré en ningún súper'),
+      { class: 'cambiar-producto' },
+      h('summary', null, resumenSupers(Object.keys(it.refs ?? {}))),
       zonaActiva().supers.map((sup) => {
         const opciones = it.alternativas?.[sup] ?? [];
         if (!opciones.length) return h('div', { class: 'suave' }, `${SUPERS[sup]}: no encontrado`);
@@ -133,12 +149,12 @@ export async function vistaLista(app, id) {
     dibujarItems();
   }
 
-  const textoLista = h('textarea', { rows: 6, placeholder: '2 yerba playadito\nleche entera\narroz 1kg\nfideos tirabuzón\ncoca cola 2.25', 'aria-label': 'Lista escrita, un producto por renglón' });
+  const textoLista = h('textarea', { rows: 5, placeholder: '2 yerba playadito\nleche entera\narroz 1kg\nfideos tirabuzón\ncoca cola 2.25', 'aria-label': 'Productos que necesitás, uno por renglón' });
   const contLibre = h('div');
   async function armarDesdeTexto(e) {
     e.preventDefault();
     if (!textoLista.value.trim()) return;
-    montar(contLibre, cargando('Buscando cada renglón en los súper de tu zona… (puede tardar unos segundos)'));
+    montar(contLibre, cargando('Buscando en los súper… puede tardar unos segundos'));
     try {
       const { renglones } = await api.resolver(textoLista.value, { demo: estado.config.demo });
       const noEncontrados = [];
@@ -153,21 +169,32 @@ export async function vistaLista(app, id) {
         else lista.items.push({ ...datos, cantidad: r.cantidad });
       }
       await guardar();
+      // La primera carga cambia el armado de la pantalla (lista arriba, "agregar más" abajo).
+      if (vacia && lista.items.length) {
+        await vistaLista(app, id, { pendientes: noEncontrados });
+        if (!noEncontrados.length) aviso(`Listo, agregué ${lista.items.length === 1 ? '1 producto' : `${lista.items.length} productos`}`);
+        return;
+      }
       dibujarItems();
       textoLista.value = noEncontrados.join('\n');
       montar(
         contLibre,
         noEncontrados.length
-          ? h('div', { class: 'banner alerta chico' }, `No encontré: ${noEncontrados.join(', ')}. Te los dejé en el cuadro: probá escribirlos distinto (por ejemplo con la marca).`)
-          : h('div', { class: 'banner chico' }, `Listo: ${renglones.length} producto(s) agregados. Tocá "¿Dónde compro?" para ver qué súper te conviene.`),
+          ? h('div', { class: 'banner alerta' }, `No encontré: ${noEncontrados.join(', ')}. Te los dejé en el cuadro: probá escribirlos de otra forma (por ejemplo con la marca).`)
+          : h('div', { class: 'banner' }, `✅ Listo, agregué ${renglones.length === 1 ? '1 producto' : `${renglones.length} productos`}.`),
       );
     } catch (err) {
       montar(contLibre, h('div', { class: 'banner alerta' }, `Error: ${err.message}`));
     }
   }
 
-  async function cambiar(it, delta) {
-    it.cantidad += delta;
+  // Los productos por peso (carne, pollo, queso al corte) van en kg, de a medio kilo.
+  const porKg = (it) => Object.values(it.refs ?? {}).some((r) => r?.multiplicador || /por k(g|ilo)/i.test(r?.nombre ?? '')) || /por k(g|ilo)/i.test(it.nombre ?? '');
+  const paso = (it) => (porKg(it) ? 0.5 : 1);
+  const textoCantidad = (it) => (porKg(it) ? `${String(it.cantidad).replace('.', ',')} kg` : it.cantidad);
+
+  async function cambiar(it, sentido) {
+    it.cantidad = Math.round((it.cantidad + sentido * paso(it)) * 10) / 10;
     if (it.cantidad <= 0) lista.items = lista.items.filter((x) => x !== it);
     await guardar();
     dibujarItems();
@@ -236,12 +263,12 @@ export async function vistaLista(app, id) {
     );
   }
 
-  const campo = h('input', { type: 'search', placeholder: 'Buscar producto (ej.: yerba playadito)', 'aria-label': 'Buscar producto' });
+  const campo = h('input', { type: 'search', placeholder: 'Ej.: yerba playadito', 'aria-label': 'Buscar un producto' });
   async function buscar(e) {
     e.preventDefault();
     const texto = campo.value.trim();
     if (texto.length < 2) return;
-    montar(contResultados, cargando('Buscando en Jumbo, Vea, Carrefour y Coto…'));
+    montar(contResultados, cargando('Buscando…'));
     try {
       const [r, matches] = await Promise.all([api.buscar(texto, { demo: estado.config.demo }), estado.store.listar('matches')]);
       dibujarResultados(aplicarMatches(r, matches));
@@ -250,26 +277,44 @@ export async function vistaLista(app, id) {
     }
   }
 
-  const nombre = h('input', { value: lista.nombre, 'aria-label': 'Nombre de la lista', onchange: async () => { lista.nombre = nombre.value.trim() || lista.nombre; await guardar(); aviso('Nombre guardado'); } });
+  const nombre = h('input', { class: 'titulo-editable', value: lista.nombre, 'aria-label': 'Nombre de la lista (tocá para cambiarlo)', onchange: async () => { lista.nombre = nombre.value.trim() || lista.nombre; await guardar(); aviso('Nombre guardado'); } });
+
+  if (pendientes.length) {
+    textoLista.value = pendientes.join('\n');
+    montar(contLibre, h('div', { class: 'banner alerta' }, `No encontré: ${pendientes.join(', ')}. Te los dejé en el cuadro: probá escribirlos de otra forma (por ejemplo con la marca).`));
+  }
+  const escribir = h(
+    'form',
+    { class: 'tarjeta', onsubmit: armarDesdeTexto },
+    h('p', { class: 'suave', style: { marginTop: 0 } }, 'Uno por renglón. Si querés más de uno, poné la cantidad adelante (por ejemplo "2 leche").'),
+    textoLista,
+    h('button', { class: 'primario ancho', type: 'submit', style: { marginTop: '12px' } }, 'Agregar a la lista'),
+    contLibre,
+  );
 
   dibujarItems();
   montar(
     app,
-    h('div', { class: 'fila' }, h('a', { href: '#/' }, '← Listas')),
-    h('div', { class: 'fila', style: { margin: '8px 0 12px' } }, h('div', { class: 'crece' }, nombre), h('a', { class: 'boton primario', href: `#/reco/${lista.id}` }, '¿Dónde compro?')),
-    contItems,
-    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios guardados (captura real del 11/10/2026, no se actualizan). Desactivalo en Ajustes.') : null,
-    h('h2', null, 'Escribí tu lista'),
+    h('a', { href: '#/', class: 'boton texto', style: { marginLeft: '-10px' } }, '← Mis listas'),
+    nombre,
+    estado.config.demo ? h('div', { class: 'banner alerta' }, 'Modo prueba: los precios son de ejemplo (del 11/10/2026). Se desactiva en Ajustes.') : null,
+    vacia ? h('div', { class: 'paso' }, h('span', { class: 'num' }, '1'), '¿Qué necesitás comprar?') : h('h2', null, 'Tu lista'),
+    vacia ? escribir : contItems,
+    vacia ? contItems : h('div', { class: 'paso' }, h('span', { class: 'num' }, '+'), 'Agregar más productos'),
+    vacia ? null : escribir,
     h(
-      'form',
-      { class: 'tarjeta', onsubmit: armarDesdeTexto },
-      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Un producto por renglón, con la cantidad adelante si querés. Busco cada uno en los súper que entregan en tu dirección y elijo el producto más conveniente de cada uno (lo podés cambiar después).'),
-      textoLista,
-      h('button', { class: 'primario', type: 'submit', style: { marginTop: '8px' } }, 'Armar lista'),
+      'details',
+      { class: 'desplegable' },
+      h('summary', null, '🔎 Buscar un producto específico'),
+      h(
+        'div',
+        { class: 'contenido' },
+        h('p', { class: 'suave', style: { marginTop: 0 } }, 'Para elegir una marca o un tamaño exacto y ver el precio en cada súper.'),
+        h('form', { class: 'fila', onsubmit: buscar, role: 'search' }, h('div', { class: 'crece' }, campo), h('button', { class: 'primario', type: 'submit' }, 'Buscar')),
+        contResultados,
+      ),
     ),
-    contLibre,
-    h('h2', null, 'O buscá un producto puntual'),
-    h('form', { class: 'fila', onsubmit: buscar, role: 'search' }, h('div', { class: 'crece' }, campo), h('button', { type: 'submit' }, '🔎 Buscar')),
-    contResultados,
+    contAccion,
   );
+  if (lista.items.length) app.classList.add('con-accion-fija');
 }

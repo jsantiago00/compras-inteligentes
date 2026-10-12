@@ -36,5 +36,10 @@ export function aviso(texto) {
 }
 
 export function cargando(texto = 'Cargando…') {
-  return h('p', { class: 'vacio' }, texto);
+  return h('p', { class: 'cargando', role: 'status' }, texto);
+}
+
+/** Mensaje de pantalla vacía, con un emoji grande arriba. */
+export function vacio(emoji, ...texto) {
+  return h('div', { class: 'vacio' }, h('span', { class: 'emoji', 'aria-hidden': 'true' }, emoji), ...texto);
 }

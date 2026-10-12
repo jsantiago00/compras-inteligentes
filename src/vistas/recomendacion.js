@@ -87,27 +87,31 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     contCarrito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${MEDIOS[op.medio]}` : ''}`;
+  const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
+  const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
+  function botonCarrito(op, { grande = false } = {}) {
+    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
+    return c.tipo === 'link'
+      ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
+      : h('button', { class: `primario${grande ? ' grande' : ''}`, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);
+  }
+
   // Un carrito por súper: su mejor opción de la semana (menos faltantes, menor
   // total), con el link que carga todo en el sitio del súper.
   function tarjetaCarrito(op) {
-    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
-    const total = lista.items.length;
-    const esMejor = op === r.mejor;
-    const cuando = `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? ` con ${MEDIOS[op.medio]}` : ''}`;
     return h(
       'div',
-      { class: `tarjeta${esMejor ? ' destacada' : ''}`, style: { margin: 0 } },
-      h('div', { class: 'fila' }, h('b', { class: 'crece', style: { fontSize: '17px' } }, SUPERS[op.super]), esMejor ? h('span', { class: 'chip mejor' }, 'Más conveniente') : null),
-      h('div', { style: { fontSize: '22px', fontWeight: 700, margin: '4px 0' } }, pesos(op.total)),
-      h('div', { class: 'suave chico' }, `${op.lineas.length} de ${total} productos · comprando ${cuando}`),
-      h('div', { class: 'suave chico' }, `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`),
-      op.faltantes.length ? h('div', { class: 'alerta chico' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null,
-      c.tipo === 'link'
-        ? h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super, style: { marginTop: '8px' } }, `🛒 Abrir carrito en ${SUPERS[op.super]} ↗`)
-        : h('button', { class: 'primario', onclick: () => armar(op), style: { marginTop: '8px' } }, `🛒 Ver productos de ${SUPERS[op.super]}`),
+      { class: 'tarjeta carrito' },
+      h('div', { class: 'encabezado' }, h('span', { class: 'super' }, SUPERS[op.super]), h('span', { class: 'monto' }, pesos(op.total))),
+      h('div', { class: 'suave' }, `${op.lineas.length} de ${lista.items.length} productos · ${cuando(op)}`),
+      h('div', { class: 'suave chico' }, desglose(op)),
+      noTiene(op),
+      botonCarrito(op),
     );
   }
   const porSuper = zonaActiva().supers.map((s) => r.ranking.find((o) => o.super === s)).filter(Boolean);
+  const otros = porSuper.filter((o) => o.super !== r.mejor.super);
 
   async function yaCompre(ops) {
     const resumen = ops.map((o) => `${SUPERS[o.super]} con ${MEDIOS[o.medio]}: ${pesos(o.total)}`).join('\n');
@@ -179,90 +183,113 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
 
   function elegir(op) {
     montar(detalle, tarjetaOpcion(op, { titulo: 'Opción elegida' }));
+    const contenedor = detalle.closest('details');
+    if (contenedor) contenedor.open = true;
     detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   const calendario = h(
     'div',
-    { class: 'calendario', role: 'list' },
+    { class: 'semana', role: 'list' },
     r.calendario.map((d) =>
       h(
         'button',
-        { class: `dia${r.mejor.fecha === d.fecha ? ' mejor' : ''}`, role: 'listitem', disabled: !d.mejor, onclick: () => d.mejor && elegir(d.mejor), title: d.mejor ? textoOpcion(d.mejor) : 'sin datos', style: { flexDirection: 'column', minHeight: 0 } },
+        { class: `dia${r.mejor.fecha === d.fecha ? ' mejor' : ''}`, role: 'listitem', disabled: !d.mejor, onclick: () => d.mejor && elegir(d.mejor), 'aria-label': d.mejor ? `${nombreDia(d.fecha)}: ${textoOpcion(d.mejor)}, ${pesos(d.mejor.total)}` : 'sin datos' },
         h('b', null, d.fecha === hoy ? 'Hoy' : DIAS[new Date(d.fecha + 'T12:00').getDay()].slice(0, 3)),
-        h('span', null, fechaCorta(d.fecha)),
-        h('span', null, d.mejor ? pesos(d.mejor.total) : '—'),
-        h('span', { class: 'suave' }, d.mejor ? SUPERS[d.mejor.super] : ''),
+        h('span', { class: 'suave chico' }, fechaCorta(d.fecha)),
+        h('span', { class: 'precio' }, d.mejor ? pesos(d.mejor.total) : '—'),
+        h('span', { class: 'suave chico' }, d.mejor ? SUPERS[d.mejor.super] : ''),
       ),
     ),
   );
+  // Opciones distintas (mismo súper y mismo total en otro día no suma nada).
+  const vistas = new Set();
+  const alternativas = r.ranking.filter((o) => {
+    const k = `${o.super}|${o.medio}|${o.total}`;
+    if (vistas.has(k)) return false;
+    vistas.add(k);
+    return true;
+  });
+  const desplegable = (titulo, ...contenido) => h('details', { class: 'desplegable' }, h('summary', null, titulo), h('div', { class: 'contenido' }, ...contenido));
 
   const div = r.compraDividida;
   const actualizado = new Date(datos.cuando).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
   const fict = promos.filter((p) => p.ficticia).length;
 
+  const m = r.mejor;
   montar(
     app,
-    h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'crece' }, `← ${lista.nombre}`), h('button', { onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Precios')),
-    h('h1', null, '¿Dónde y cuándo compro?'),
-    estado.config.demo ? h('div', { class: 'banner alerta chico' }, 'Modo demo: precios guardados (captura real del 11/10/2026, no se actualizan).') : null,
-    fict ? h('div', { class: 'banner alerta chico' }, `Hay ${fict} promo(s) de ejemplo FICTICIAS cargadas. `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
-    !promos.length ? h('div', { class: 'banner chico' }, 'No tenés promos bancarias cargadas. ', h('a', { href: '#/promos' }, 'Cargalas'), ' para que la recomendación las tenga en cuenta.') : null,
-    estado.config.enviosFicticios ? h('div', { class: 'banner alerta chico' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Configurá los reales')) : null,
-    h('h2', null, 'Tus carritos'),
-    h('p', { class: 'suave chico' }, `Entrega en ${direccionActiva().nombre} (${direccionActiva().direccion ?? `CP ${direccionActiva().codigoPostal}`}). Cada botón abre el sitio del súper con el carrito ya cargado: elegí ahí la misma dirección, revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
-    h('div', { class: 'grilla-carritos' }, porSuper.map(tarjetaCarrito)),
+    h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'boton texto crece', style: { marginLeft: '-10px', justifyContent: 'flex-start' } }, `← ${lista.nombre}`), h('button', { class: 'texto', onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Actualizar')),
+    h('h1', null, '¿Dónde conviene comprar?'),
+    estado.config.demo ? h('div', { class: 'banner alerta' }, 'Modo prueba: los precios son de ejemplo (del 11/10/2026).') : null,
+    fict ? h('div', { class: 'banner alerta' }, `Hay ${fict === 1 ? '1 promo de ejemplo' : `${fict} promos de ejemplo`} (no son reales). `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
+    estado.config.enviosFicticios ? h('div', { class: 'banner alerta' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Cargá los reales')) : null,
+
+    // La respuesta, bien grande.
+    h(
+      'section',
+      { class: 'tarjeta destacada hero', id: 'mejor-opcion' },
+      h('div', { class: 'etiqueta' }, 'Te conviene'),
+      h('div', { class: 'donde' }, SUPERS[m.super]),
+      h('div', { class: 'suave' }, cuando(m)),
+      h('div', { class: 'monto' }, pesos(m.total)),
+      r.ahorroVsCara > 0 ? h('div', { class: 'ahorro' }, `Ahorrás ${pesos(r.ahorroVsCara)}`) : null,
+      h('div', { class: 'suave chico' }, desglose(m)),
+      noTiene(m),
+      botonCarrito(m, { grande: true }),
+      h('p', { class: 'suave chico', style: { margin: '10px 0 0' } }, `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
+      h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '4px' } }, '✅ Ya compré: guardarlo en Compras'),
+    ),
     contCarrito,
-    h('h2', null, 'Detalle de la mejor opción'),
-    tarjetaOpcion(r.mejor, { destacada: true }),
-    masBarataIncompleta ? h('div', { class: 'banner chico' }, `💡 Si no te importa que falte ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, ${masBarataIncompleta.fecha === hoy ? 'hoy' : `el ${nombreDia(masBarataIncompleta.fecha)}`} en ${textoOpcion(masBarataIncompleta)} sale ${pesos(masBarataIncompleta.total)} (${pesos(r.mejor.total - masBarataIncompleta.total)} menos, pero comprás menos cosas).`) : null,
+    !promos.length ? h('div', { class: 'banner' }, '💳 Todavía no cargaste promos del banco. ', h('a', { href: '#/promos' }, 'Cargalas'), ' y vas a ahorrar más.') : null,
+
+    otros.length ? h('h2', null, 'Los otros súper') : null,
+    otros.length ? h('div', { class: 'grilla-carritos' }, otros.map(tarjetaCarrito)) : null,
+    masBarataIncompleta ? h('div', { class: 'banner' }, `💡 Si no te hace falta ${masBarataIncompleta.faltantes.map(nombreItem).join(', ')}, en ${SUPERS[masBarataIncompleta.super]} sale ${pesos(masBarataIncompleta.total)} (${pesos(m.total - masBarataIncompleta.total)} menos).`) : null,
+
+    h('h2', null, 'Más opciones'),
     div
-      ? h(
-          'section',
-          { class: 'tarjeta' },
-          h('h2', { style: { marginTop: 0 } }, `✂️ Compra dividida: ${pesos(div.total)} (ahorrás ${pesos(div.ahorro)} más)`),
-          h('p', { class: 'suave chico' }, `El ${nombreDia(div.fecha)} ${fechaCorta(div.fecha)}, ya contando los dos envíos (${pesos(div.envio)}).`),
+      ? desplegable(
+          `✂️ Comprar en dos súper: ${pesos(div.total)}`,
+          h('p', { class: 'suave', style: { marginTop: 0 } }, `Ahorrás ${pesos(div.ahorro)} más, ${div.fecha === hoy ? 'hoy' : `el ${nombreDia(div.fecha)} ${fechaCorta(div.fecha)}`}, ya contando los dos envíos (${pesos(div.envio)}).`),
           div.partes.map((p) =>
             h(
               'div',
-              { class: 'tarjeta' },
-              h('b', null, `${textoOpcion(p)}: ${pesos(p.total)}`),
+              { class: 'tarjeta carrito', style: { marginBottom: '12px' } },
+              h('div', { class: 'encabezado' }, h('span', { class: 'super' }, SUPERS[p.super]), h('span', { class: 'monto' }, pesos(p.total))),
               h('div', { class: 'chico' }, p.lineas.map((l) => `${nombreItem(l.clave)} ×${l.cantidad}`).join(', ')),
-              h('div', { class: 'suave chico' }, `Desc. bancario ${pesos(p.descuentoBancario)} · envío ${p.envio ? pesos(p.envio) : 'gratis'}`),
-              h('button', { onclick: () => armar(p), style: { marginTop: '6px' } }, `🛒 Carrito ${SUPERS[p.super]}`),
+              h('div', { class: 'suave chico' }, desglose(p)),
+              botonCarrito(p),
             ),
           ),
-          h('button', { onclick: () => yaCompre(div.partes) }, '✅ Ya compré (las dos)'),
+          h('button', { class: 'texto', onclick: () => yaCompre(div.partes) }, '✅ Ya compré en los dos'),
         )
       : null,
-    h('h2', null, 'Semana'),
-    calendario,
-    detalle,
-    h('h2', null, 'Ranking de alternativas'),
-    h(
-      'div',
-      { class: 'tabla-scroll tarjeta' },
+    desplegable('📅 ¿Y otros días?', h('p', { class: 'suave', style: { marginTop: 0 } }, 'Lo más barato de cada día de la semana (cambian las promos del banco). Tocá un día para ver el detalle.'), calendario, detalle),
+    desplegable('🧮 Ver las cuentas', tarjetaOpcion(m)),
+    desplegable(
+      '📋 Todas las opciones',
       h(
-        'table',
-        null,
-        h('thead', null, h('tr', null, h('th', null, 'Día'), h('th', null, 'Dónde y cómo'), h('th', { class: 'num' }, 'Total'), h('th', null, ''))),
+        'div',
+        { class: 'tabla-scroll' },
         h(
-          'tbody',
+          'table',
           null,
-          r.ranking.slice(0, 15).map((o) =>
-            h(
-              'tr',
-              null,
-              h('td', null, `${o.fecha === hoy ? 'Hoy' : nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`),
-              h('td', null, textoOpcion(o), o.faltantes.length ? h('div', { class: 'alerta chico' }, `faltan ${o.faltantes.length}`) : null),
-              h('td', { class: 'num' }, pesos(o.total)),
-              h('td', null, h('button', { onclick: () => elegir(o) }, 'Ver')),
+          h('tbody', null,
+            alternativas.slice(0, 12).map((o) =>
+              h(
+                'tr',
+                null,
+                h('td', null, h('b', null, SUPERS[o.super]), h('div', { class: 'suave chico' }, `${o.fecha === hoy ? 'Hoy' : `${nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`}${o.promo ? ` · ${MEDIOS[o.medio]}` : ''}`), o.faltantes.length ? h('div', { class: 'alerta chico' }, `le ${o.faltantes.length === 1 ? 'falta 1' : `faltan ${o.faltantes.length}`}`) : null),
+                h('td', { class: 'num' }, h('b', null, pesos(o.total))),
+                h('td', { class: 'num' }, h('button', { class: 'texto', onclick: () => elegir(o) }, 'Ver')),
+              ),
             ),
           ),
         ),
       ),
     ),
-    h('p', { class: 'suave chico' }, `Precios actualizados a las ${actualizado}. El cálculo asume los precios de hoy para toda la semana; las promos bancarias cambian por día.`),
-    datos.errores?.length ? h('details', { class: 'tarjeta chico' }, h('summary', null, `${datos.errores.length} consulta(s) fallaron`), h('ul', null, datos.errores.slice(0, 20).map((e) => h('li', null, `${SUPERS[e.super]} · ${nombreItem(e.clave)}: ${e.error}`)))) : null,
+    h('p', { class: 'suave chico' }, `Precios de las ${actualizado}. Para toda la semana se usan los precios de hoy; lo que cambia por día son las promos del banco.`),
+    datos.errores?.length ? h('details', { class: 'desplegable' }, h('summary', null, `⚠️ ${datos.errores.length} consulta(s) fallaron`), h('ul', { class: 'contenido chico' }, datos.errores.slice(0, 20).map((e) => h('li', null, `${SUPERS[e.super]} · ${nombreItem(e.clave)}: ${e.error}`)))) : null,
   );
 }

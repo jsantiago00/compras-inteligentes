@@ -6,6 +6,7 @@ import { parsearProductosCoto } from '../lib/scrapers/coto.js';
 import { leerFixture, fetchFixtures } from '../lib/scrapers/fixtures.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
 import { parsearProductosVtex, promoDesdeTeasers, urlCarritoVtex } from '../lib/scrapers/vtex.js';
+import { armarCarrito } from '../lib/carrito.js';
 import { unificar } from '../lib/scrapers/matching.js';
 import { ZONA } from '../lib/zona.js';
 
@@ -62,14 +63,20 @@ test('VTEX: teasers .NET y planos, efecto PercentualDiscount y exclusión por BI
   assert.equal(promoDesdeTeasers({ PromotionTeasers: [{ Name: '3x2 Lácteos', Conditions: { MinimumQuantity: 3 } }] }).tipo, 'nxm');
 });
 
-test('VTEX: pesables usan unitMultiplier como contenido (sintético)', () => {
+test('VTEX: pesables se manejan por kg y guardan la porción del carrito (sintético)', () => {
   const [p] = parsearProductosVtex(
     [{ productName: 'Queso Cremoso', brand: 'X', linkText: 'queso', items: [{ itemId: '9', ean: '1', name: 'Queso Cremoso', measurementUnit: 'kg', unitMultiplier: 0.5, sellers: [{ sellerId: '1', commertialOffer: { Price: 4000, ListPrice: 4000, AvailableQuantity: 5, IsAvailable: true } }] }] }],
     { super: 'jumbo', base: 'https://www.jumbo.com.ar' },
   );
-  assert.equal(p.contenido, 0.5);
+  // Price es por kg; el carrito vende porciones de 0.5 kg.
+  assert.equal(p.contenido, 1);
   assert.equal(p.unidad, 'kg');
-  assert.equal(p.precioPorUnidad.valor, 8000);
+  assert.equal(p.precioLista, 4000);
+  assert.equal(p.precioPorUnidad.valor, 4000);
+  assert.equal(p.multiplicador, 0.5);
+  // 1 kg = 2 porciones; 1,5 kg = 3; nunca menos de 1.
+  const url = urlCarritoVtex('https://www.jumbo.com.ar', [{ sku: '9', cantidad: 1, multiplicador: 0.5 }, { sku: '8', cantidad: 1.5, multiplicador: 0.5 }, { sku: '7', cantidad: 0.02, multiplicador: 0.1 }], { sc: '32' });
+  assert.equal(url, 'https://www.jumbo.com.ar/checkout/cart/add?sku=9&qty=2&seller=1&sku=8&qty=3&seller=1&sku=7&qty=1&seller=1&sc=32');
 });
 
 test('VTEX: link de carrito con el mismo formato que addToCartLink de la API', () => {
@@ -147,4 +154,11 @@ test('zona de entrega: los adaptadores VTEX piden los precios de la sucursal de 
   assert.deepEqual(regionDe('www.carrefour.com.ar'), { channel: '1', sucursales: 'SW#carrefourar0029;carrefourar0899' });
   // Coto no entrega en la zona.
   assert.ok(!ZONA.supers.includes('coto'));
+});
+
+test('armarCarrito: con la sucursal de la zona como vendedor y porciones de los pesables', () => {
+  const c = armarCarrito('jumbo', [{ sku: '20218', cantidad: 1, multiplicador: 0.5, seller: '1' }, { sku: '315800', cantidad: 2 }], { sucursales: { jumbo: ['jumboargentinaj5222mendoza'] } });
+  assert.equal(c.url, 'https://www.jumbo.com.ar/checkout/cart/add?sku=20218&qty=2&seller=jumboargentinaj5222mendoza&sku=315800&qty=2&seller=jumboargentinaj5222mendoza&sc=32');
+  // Sin zona, queda el vendedor que vino del catálogo.
+  assert.match(armarCarrito('vea', [{ sku: '1', cantidad: 1, seller: '1' }]).url, /seller=1&sc=34$/);
 });

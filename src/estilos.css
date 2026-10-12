@@ -169,7 +169,7 @@ label { display: block; font-size: 16px; font-weight: 600; color: var(--suave); 
 .miniatura { width: 56px; height: 56px; object-fit: contain; border-radius: 12px; background: #fff; flex: none; border: 1px solid var(--borde); }
 .miniatura.vacia { display: grid; place-items: center; font-size: 26px; background: var(--tarjeta-2); }
 .cantidad { display: inline-flex; align-items: center; gap: 4px; flex: none; }
-.cantidad b { min-width: 28px; text-align: center; font-size: 20px; }
+.cantidad b { min-width: 28px; text-align: center; font-size: 19px; white-space: nowrap; }
 .cantidad button { width: 44px; min-width: 44px; min-height: 44px; padding: 0; font-size: 24px; border-radius: 50%; }
 
 .precios-super { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }

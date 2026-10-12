@@ -53,18 +53,13 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     return op.lineas.map((l) => {
       const p = datos.precios[l.clave]?.[op.super] ?? {};
       const ref = lista.items.find((i) => i.clave === l.clave)?.refs?.[op.super] ?? {};
-      return { sku: p.sku ?? ref.sku, seller: p.seller ?? ref.seller ?? '1', cantidad: l.cantidad, nombre: nombreItem(l.clave), url: p.url ?? ref.url };
+      return { sku: p.sku ?? ref.sku, seller: p.seller ?? ref.seller ?? '1', multiplicador: p.multiplicador ?? ref.multiplicador ?? null, cantidad: l.cantidad, nombre: nombreItem(l.clave), url: p.url ?? ref.url };
     });
   }
 
   async function armar(op) {
-    const its = itemsCarrito(op);
-    let c;
-    try {
-      c = await api.carrito(op.super, its);
-    } catch {
-      c = armarCarrito(op.super, its); // sin server: se arma igual en el navegador
-    }
+    // Con la sucursal de la dirección activa como vendedor (precios y stock de esa sucursal).
+    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     if (c.tipo === 'link') {
       montar(
         contCarrito,
@@ -92,13 +87,11 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     contCarrito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // Un carrito por súper: su mejor opción de la semana (menos faltantes, menor
-  // total), con el link que carga todo en el sitio del súper.
   const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${MEDIOS[op.medio]}` : ''}`;
   const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
   const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
   function botonCarrito(op, { grande = false } = {}) {
-    const c = armarCarrito(op.super, itemsCarrito(op));
+    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     return c.tipo === 'link'
       ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
       : h('button', { class: `primario${grande ? ' grande' : ''}`, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);

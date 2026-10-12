@@ -98,9 +98,9 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
                 h(
                   'span',
                   { class: 'cantidad' },
-                  h('button', { 'aria-label': it.cantidad === 1 ? `Sacar ${it.nombre}` : `Uno menos de ${it.nombre}`, onclick: () => cambiar(it, -1) }, it.cantidad === 1 ? '🗑' : '−'),
-                  h('b', { 'aria-label': `Cantidad: ${it.cantidad}` }, it.cantidad),
-                  h('button', { 'aria-label': `Uno más de ${it.nombre}`, onclick: () => cambiar(it, 1) }, '+'),
+                  h('button', { 'aria-label': it.cantidad <= paso(it) ? `Sacar ${it.nombre}` : `Menos ${it.nombre}`, onclick: () => cambiar(it, -1) }, it.cantidad <= paso(it) ? '🗑' : '−'),
+                  h('b', { 'aria-label': `Cantidad: ${textoCantidad(it)}` }, textoCantidad(it)),
+                  h('button', { 'aria-label': `Más ${it.nombre}`, onclick: () => cambiar(it, 1) }, '+'),
                 ),
               ),
             ),
@@ -188,8 +188,13 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
     }
   }
 
-  async function cambiar(it, delta) {
-    it.cantidad += delta;
+  // Los productos por peso (carne, pollo, queso al corte) van en kg, de a medio kilo.
+  const porKg = (it) => Object.values(it.refs ?? {}).some((r) => r?.multiplicador || /por k(g|ilo)/i.test(r?.nombre ?? '')) || /por k(g|ilo)/i.test(it.nombre ?? '');
+  const paso = (it) => (porKg(it) ? 0.5 : 1);
+  const textoCantidad = (it) => (porKg(it) ? `${String(it.cantidad).replace('.', ',')} kg` : it.cantidad);
+
+  async function cambiar(it, sentido) {
+    it.cantidad = Math.round((it.cantidad + sentido * paso(it)) * 10) / 10;
     if (it.cantidad <= 0) lista.items = lista.items.filter((x) => x !== it);
     await guardar();
     dibujarItems();

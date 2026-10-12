@@ -2,8 +2,8 @@
 
 import { SUPERS } from '../../lib/constantes.js';
 import { pesos } from '../../lib/formato.js';
-import * as api from '../api.js';
-import { DIRECCION_PRINCIPAL, direccionActiva, direcciones, enviosActivos, estado, guardarConfig } from '../estado.js';
+import { crearDireccion } from '../direcciones.js';
+import { direccionActiva, direcciones, enviosActivos, estado, guardarConfig } from '../estado.js';
 import { firebaseConfigurado, salir } from '../firebase.js';
 import { aviso, h, montar } from '../ui.js';
 import { seccionMedios } from './medios.js';
@@ -12,7 +12,7 @@ export async function vistaAjustes(app) {
   const cfg = estado.config;
   const activa = direccionActiva();
   const envios = enviosActivos();
-  const filas = activa.supers.map((s) => {
+  const filas = (activa?.supers ?? []).map((s) => {
     const e = envios[s] ?? { costo: null, minimoGratis: null };
     const costo = h('input', { type: 'number', min: 0, step: 'any', value: e.costo ?? '', placeholder: '¿?', 'aria-label': `Costo de envío ${SUPERS[s]}` });
     const minimo = h('input', { type: 'number', min: 0, step: 'any', value: e.minimoGratis ?? '', placeholder: 'nunca', 'aria-label': `Mínimo para envío gratis ${SUPERS[s]}` });
@@ -22,8 +22,7 @@ export async function vistaAjustes(app) {
   async function guardarEnvios(ev) {
     ev.preventDefault();
     const nuevos = Object.fromEntries(filas.map(({ s, costo, minimo }) => [s, { costo: costo.value === '' ? null : Number(costo.value), minimoGratis: minimo.value === '' ? null : Number(minimo.value) }]));
-    if (activa.id === DIRECCION_PRINCIPAL.id) await guardarConfig({ envios: nuevos, enviosFicticios: false });
-    else await guardarConfig({ direcciones: (cfg.direcciones ?? []).map((d) => (d.id === activa.id ? { ...d, envios: nuevos } : d)) });
+    await guardarConfig({ direcciones: (cfg.direcciones ?? []).map((d) => (d.id === activa.id ? { ...d, envios: nuevos } : d)) });
     estado.precios.clear();
     aviso('Envíos guardados');
     vistaAjustes(app);
@@ -38,11 +37,11 @@ export async function vistaAjustes(app) {
 
   async function borrar(d) {
     if (!confirm(`¿Borrar la dirección "${d.nombre}"?`)) return;
-    await guardarConfig({
-      direcciones: (cfg.direcciones ?? []).filter((x) => x.id !== d.id),
-      direccionActiva: cfg.direccionActiva === d.id ? DIRECCION_PRINCIPAL.id : cfg.direccionActiva,
-    });
+    const quedan = (cfg.direcciones ?? []).filter((x) => x.id !== d.id);
+    await guardarConfig({ direcciones: quedan, direccionActiva: cfg.direccionActiva === d.id ? (quedan[0]?.id ?? null) : cfg.direccionActiva });
     estado.precios.clear();
+    // Sin direcciones, la app vuelve a pedir una (bienvenida).
+    if (!quedan.length) location.hash = '#/';
     vistaAjustes(app);
   }
 
@@ -58,26 +57,12 @@ export async function vistaAjustes(app) {
     if (boton) boton.disabled = true;
     montar(estadoAlta, h('p', { class: 'suave chico' }, 'Buscando qué súper entregan en ese código postal… (unos segundos)'));
     try {
-      const z = await api.zonaDeCodigoPostal(cp.value.trim());
-      if (!z.supers.length) {
-        montar(estadoAlta, h('div', { class: 'banner alerta chico' }, `Ningún súper hace envío a domicilio al CP ${z.codigoPostal}.`, h('ul', null, z.avisos.map((a) => h('li', null, a)))));
+      const r = await crearDireccion({ nombre: nombre.value, direccion: direccion.value, codigoPostal: cp.value });
+      if (!r.direccion) {
+        montar(estadoAlta, h('div', { class: 'banner alerta chico' }, `Ningún súper hace envío a domicilio al CP ${r.zona.codigoPostal}.`, h('ul', null, r.zona.avisos.map((a) => h('li', null, a)))));
         return;
       }
-      const nueva = {
-        id: `dir-${Date.now().toString(36)}`,
-        nombre: nombre.value.trim(),
-        direccion: direccion.value.trim() || null,
-        codigoPostal: z.codigoPostal,
-        localidad: z.localidad,
-        provincia: z.provincia,
-        supers: z.supers,
-        sucursales: z.sucursales,
-        nombresSucursales: z.nombresSucursales,
-        envios: z.envios,
-        avisos: z.avisos,
-      };
-      await guardarConfig({ direcciones: [...(cfg.direcciones ?? []), nueva] });
-      aviso(`Dirección "${nueva.nombre}" agregada`);
+      aviso(`Dirección "${r.direccion.nombre}" agregada y en uso`);
       vistaAjustes(app);
     } catch (e) {
       montar(estadoAlta, h('div', { class: 'banner alerta chico' }, `No pude agregarla: ${e.message}`));
@@ -87,14 +72,14 @@ export async function vistaAjustes(app) {
   }
 
   function tarjetaDireccion(d) {
-    const enUso = d.id === activa.id;
+    const enUso = d.id === activa?.id;
     return h(
       'div',
       { class: `tarjeta${enUso ? ' destacada' : ''}`, style: { margin: '0 0 8px' } },
       h('div', { class: 'fila' },
         h('div', { class: 'crece' }, h('b', null, d.nombre), h('div', { class: 'suave chico' }, [d.direccion, `CP ${d.codigoPostal}`, d.localidad].filter(Boolean).join(' · '))),
         enUso ? h('span', { class: 'chip mejor' }, 'En uso') : h('button', { class: 'secundario', onclick: () => usar(d) }, 'Usar esta'),
-        d.id !== DIRECCION_PRINCIPAL.id ? h('button', { class: 'texto peligro', onclick: () => borrar(d), 'aria-label': `Borrar ${d.nombre}` }, 'Borrar') : null,
+        h('button', { class: 'texto peligro', onclick: () => borrar(d), 'aria-label': `Borrar ${d.nombre}` }, 'Borrar'),
       ),
       h('ul', { class: 'chico', style: { margin: '6px 0 0', paddingLeft: '18px' } },
         d.supers.map((s) => h('li', null, `${SUPERS[s]}: ${d.nombresSucursales?.[s] ?? 'sucursal por defecto'}${d.envios?.[s]?.costo ? ` · envío ${pesos(d.envios[s].costo)}` : ''}`)),
@@ -122,7 +107,7 @@ export async function vistaAjustes(app) {
       h(
         'form',
         { onsubmit: agregar, style: { marginTop: '10px' } },
-        h('h3', { style: { marginTop: '18px' } }, 'Agregar otra casa'),
+        h('h3', { style: { marginTop: '18px' } }, direcciones().length ? 'Agregar otra casa' : 'Agregá tu dirección'),
         h('div', { class: 'grilla2' },
           h('label', null, 'Nombre', nombre),
           h('label', null, 'Código postal', cp),
@@ -133,11 +118,12 @@ export async function vistaAjustes(app) {
       ),
     ),
     seccionMedios(() => vistaAjustes(app)),
-    h(
+    !activa
+      ? null
+      : h(
       'form',
       { class: 'tarjeta', onsubmit: guardarEnvios },
       h('h2', { style: { marginTop: 0 } }, `Costo de envío a ${activa.nombre}`),
-      cfg.enviosFicticios && activa.id === DIRECCION_PRINCIPAL.id ? h('div', { class: 'banner alerta chico' }, 'Estos valores son de ejemplo (ficticios). Cargá los reales de tu zona.') : null,
       h('table', null,
         h('thead', null, h('tr', null, h('th', null, 'Súper'), h('th', null, 'Costo ($)'), h('th', null, 'Gratis desde ($)'))),
         h('tbody', null, filas.map((f) => h('tr', null, h('td', null, SUPERS[f.s]), h('td', null, f.costo), h('td', null, f.minimo)))),

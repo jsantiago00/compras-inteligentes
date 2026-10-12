@@ -6,11 +6,26 @@ import { crearCliente } from '../lib/scrapers/http.js';
 import { obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { cuerpo, errorCliente, handler, responder } from '../lib/servidor/api.js';
 import { DIAS_CACHE_ZONA, resolverZona } from '../lib/servidor/zonas.js';
+import { ZONA } from '../lib/zona.js';
 
 export default handler(async (req, res) => {
   if (req.method !== 'POST') throw errorCliente('Usar POST');
   const { codigoPostal } = await cuerpo(req);
   const cp = String(codigoPostal ?? '').trim();
+  // Godoy Cruz (5501): sucursales y envíos verificados a mano (incluido Coto).
+  if (cp === ZONA.codigoPostal) {
+    return responder(res, 200, {
+      codigoPostal: cp,
+      localidad: 'Godoy Cruz',
+      provincia: 'Mendoza',
+      coordenadas: ZONA.coordenadas,
+      supers: ZONA.supers,
+      sucursales: ZONA.sucursales,
+      nombresSucursales: ZONA.nombresSucursales,
+      envios: ZONA.envios,
+      avisos: [],
+    });
+  }
   const almacen = await obtenerAlmacen();
   const guardada = /^\d{4}$/.test(cp) ? await almacen.get('zonas', cp) : null;
   if (guardada && Date.now() - guardada.fecha < DIAS_CACHE_ZONA * 86400_000) {

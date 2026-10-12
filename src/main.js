@@ -1,11 +1,12 @@
 // Arranque de la PWA: sesión (Firebase o local), router por hash y service worker.
 
 import './estilos.css';
-import { estado, cargarConfig } from './estado.js';
+import { cargarConfig, direccionActiva, estado } from './estado.js';
 import { storeFirestore, storeLocal } from './datos.js';
 import { entrarConGoogle, escucharSesion, firebaseConfigurado } from './firebase.js';
 import { h, montar } from './ui.js';
 import { vistaAjustes } from './vistas/ajustes.js';
+import { vistaBienvenida } from './vistas/bienvenida.js';
 import { vistaHistorial } from './vistas/historial.js';
 import { vistaLista } from './vistas/lista.js';
 import { vistaListas } from './vistas/listas.js';
@@ -25,6 +26,12 @@ const RUTAS = [
 
 async function navegar() {
   if (!estado.store) return;
+  // Sin dirección de entrega (cuenta nueva): primero la bienvenida.
+  if (!direccionActiva()) {
+    document.querySelectorAll('.tabs a').forEach((a) => a.classList.remove('activa'));
+    app.className = '';
+    return vistaBienvenida(app, navegar);
+  }
   const hash = location.hash || '#/';
   for (const [re, vista, tab] of RUTAS) {
     const m = hash.match(re);

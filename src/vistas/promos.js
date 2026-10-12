@@ -1,14 +1,15 @@
 // Promos bancarias: alta, edición y baja. Colección `promos` con el esquema
 // de CLAUDE.md. El seed de ejemplo es FICTICIO y está marcado como tal.
 
-import { DIAS, MEDIOS, SUPERS } from '../../lib/constantes.js';
+import { DIAS, MEDIOS, nombreMedio, SUPERS } from '../../lib/constantes.js';
 import { pesos } from '../../lib/formato.js';
 import { promosEjemplo } from '../../lib/ejemplos.js';
 import sugeridas from '../../lib/promosSugeridas.json';
 import { confirmarSugerencia, sugerenciasPendientes } from '../../lib/motor/promosSugeridas.js';
 import { aIso, isoLocal } from '../../lib/motor/fechas.js';
+import * as api from '../api.js';
 import { estado, zonaActiva } from '../estado.js';
-import { aviso, h, montar } from '../ui.js';
+import { aviso, cargando, h, montar } from '../ui.js';
 
 const opciones = (obj, actual) => Object.entries(obj).map(([v, t]) => h('option', { value: v, selected: v === actual }, t));
 
@@ -19,7 +20,7 @@ function formulario(promo, alGuardar, alCancelar) {
   };
   const campos = {
     super: h('select', { name: 'super' }, opciones(Object.fromEntries(zonaActiva().supers.map((s) => [s, SUPERS[s]])), p.super)),
-    medio: h('select', { name: 'medio' }, opciones(MEDIOS, p.medio)),
+    medio: h('select', { name: 'medio' }, opciones({ ...MEDIOS, todos: 'Cualquier medio de pago' }, p.medio)),
     porcentaje: h('input', { name: 'porcentaje', type: 'number', min: 1, max: 100, step: 'any', required: true, value: p.porcentaje }),
     tipo: h('select', { name: 'tipo' }, opciones({ reintegro: 'Reintegro', descuento_caja: 'Descuento en caja' }, p.tipo)),
     tope: h('input', { name: 'tope', type: 'number', min: 0, step: 'any', placeholder: 'sin tope', value: p.tope ?? '' }),
@@ -70,6 +71,7 @@ function formulario(promo, alGuardar, alCancelar) {
 }
 
 export async function vistaPromos(app) {
+  montar(app, cargando('Buscando promos…'));
   const promos = await estado.store.listar('promos');
   promos.sort((a, b) => a.super.localeCompare(b.super) || a.medio.localeCompare(b.medio));
   const hoy = isoLocal();
@@ -91,16 +93,16 @@ export async function vistaPromos(app) {
   };
   const descartadas = (await estado.store.listar('promosDescartadas')).map((d) => d.id);
   // Solo las de súper que entregan en la zona (ver lib/zona.js).
-  const pendientes = sugerenciasPendientes(sugeridas.promos.filter((p) => zonaActiva().supers.includes(p.super)), promos, descartadas, hoy);
-  const confirmar = async (sug) => {
-    await estado.store.guardar('promos', confirmarSugerencia(sug));
-    aviso('Listo: la promo ya cuenta');
-    vistaPromos(app);
-  };
-  const descartar = async (sug) => {
-    await estado.store.guardar('promosDescartadas', { id: sug.id });
-    vistaPromos(app);
-  };
+  // Las que publican los súper (al día) y, para lo que no cubren, las relevadas
+  // de las páginas del BNA. Solo de súper que entregan en la zona.
+  let deSuper = [];
+  try {
+    deSuper = (await api.promosSuper()).promos ?? [];
+  } catch {
+    // Sin server: quedan solo las relevadas.
+  }
+  const delBanco = sugeridas.promos.filter((s) => !deSuper.some((p) => p.super === s.super && p.medio === s.medio));
+  const pendientes = sugerenciasPendientes([...deSuper, ...delBanco].filter((p) => zonaActiva().supers.includes(p.super)), promos, descartadas, hoy);
 
   const fecha = (iso) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}` : '…');
   const textoDias = (p) => (p.dias?.length === 7 ? 'Todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ').replace(/^./, (c) => c.toUpperCase()).replace(/, ([^,]+)$/, ' y $1'));
@@ -115,14 +117,38 @@ export async function vistaPromos(app) {
     );
   const titulo = (p) => [
     h('div', { class: 'promo-titulo' }, `${p.porcentaje}% en ${SUPERS[p.super]}`),
-    h('div', { class: 'suave' }, `con ${MEDIOS[p.medio]} · ${p.tipo === 'reintegro' ? 'te lo devuelven después' : 'descuento en la caja'}`),
+    h('div', { class: 'suave' }, `con ${nombreMedio(p.medio)} · ${p.tipo === 'reintegro' ? 'te lo devuelven después' : 'descuento en la caja'}`),
   ];
 
-  const tarjetaSugerida = (p) =>
-    h(
+  // La misma promo para varios medios (ej. MODO con BNA y con Macro) va en una sola tarjeta.
+  const grupos = [];
+  for (const p of pendientes) {
+    const k = [p.super, p.porcentaje, (p.dias ?? []).join(), p.vigenciaDesde, p.vigenciaHasta, p.tope, p.tipoTope, p.minimoCompra, p.tipo].join('|');
+    const g = grupos.find((x) => x.k === k);
+    if (g) g.promos.push(p);
+    else grupos.push({ k, promos: [p] });
+  }
+  const medios = (ps) => {
+    const n = ps.map((p) => nombreMedio(p.medio));
+    return n.length > 1 ? `${n.slice(0, -1).join(', ')} o ${n.at(-1)}` : n[0];
+  };
+  const confirmarGrupo = async (ps) => {
+    for (const p of ps) await estado.store.guardar('promos', confirmarSugerencia(p));
+    aviso('Listo: la promo ya cuenta');
+    vistaPromos(app);
+  };
+  const descartarGrupo = async (ps) => {
+    for (const p of ps) await estado.store.guardar('promosDescartadas', { id: p.id });
+    vistaPromos(app);
+  };
+
+  const tarjetaSugerida = ({ promos: ps }) => {
+    const p = ps[0];
+    return h(
       'div',
       { class: 'tarjeta promo-sugerida' },
-      titulo(p),
+      h('div', { class: 'promo-titulo' }, `${p.porcentaje}% en ${SUPERS[p.super]}`),
+      h('div', { class: 'suave' }, `con ${medios(ps)} · ${p.tipo === 'reintegro' ? 'te lo devuelven después' : 'descuento en la caja'}`),
       detalles(p),
       p.soloPresencial ? h('div', { class: 'falta' }, 'Solo comprando en el local: no sirve para comprar por internet.') : null,
       h(
@@ -131,10 +157,11 @@ export async function vistaPromos(app) {
         h('summary', null, 'Ver condiciones'),
         p.notas ? h('p', { class: 'chico' }, p.notas) : null,
         p.textoFuente ? h('p', { class: 'suave chico' }, p.textoFuente) : null,
-        h('a', { class: 'chico', href: p.fuente, target: '_blank', rel: 'noopener' }, 'Ver en la página del banco ↗'),
+        h('a', { class: 'chico', href: p.fuente, target: '_blank', rel: 'noopener' }, p.origenSuper ? `Ver en la página de ${SUPERS[p.super]} ↗` : 'Ver en la página del banco ↗'),
       ),
-      h('div', { class: 'fila', style: { marginTop: '12px' } }, h('button', { class: 'primario crece', onclick: () => confirmar(p) }, '✓ Sí, la uso'), h('button', { onclick: () => descartar(p) }, 'No me sirve')),
+      h('div', { class: 'fila', style: { marginTop: '12px' } }, h('button', { class: 'primario crece', onclick: () => confirmarGrupo(ps) }, '✓ Sí, la uso'), h('button', { onclick: () => descartarGrupo(ps) }, 'No me sirve')),
     );
+  };
 
   const cargarEjemplo = async () => {
     for (const p of promosEjemplo(hoy)) await estado.store.guardar('promos', p);
@@ -150,9 +177,9 @@ export async function vistaPromos(app) {
       ? h(
           'section',
           null,
-          h('h2', null, `Encontré ${pendientes.length === 1 ? '1 promo' : `${pendientes.length} promos`} para vos`),
+          h('h2', null, `Encontré ${grupos.length === 1 ? '1 promo' : `${grupos.length} promos`} para vos`),
           h('p', { class: 'suave', style: { marginTop: '-4px' } }, '¿Las usás? Confirmá las que te sirvan.'),
-          pendientes.map(tarjetaSugerida),
+          grupos.map(tarjetaSugerida),
         )
       : null,
     h('h2', null, 'Tus promos'),
@@ -166,6 +193,8 @@ export async function vistaPromos(app) {
             titulo(p),
             detalles(p),
             vencida ? h('div', { class: 'falta' }, 'Ya venció') : null,
+            // Se sugería hasta el 12/10/2026; según Carrefour es solo para jubilados y en el local.
+            /^bna-carrefour-lunesaviernes-5/.test(p.origen ?? '') ? h('div', { class: 'falta' }, 'Según Carrefour, esta promo es solo para jubilados y solo en el local. Conviene borrarla.') : null,
             p.soloPresencial ? h('div', { class: 'falta' }, 'Solo comprando en el local') : null,
             p.rubrosExcluidos?.length ? h('div', { class: 'suave chico' }, `No incluye: ${p.rubrosExcluidos.join(', ')}`) : null,
             h('div', { class: 'fila', style: { marginTop: '8px' } }, h('button', { class: 'texto', onclick: () => editar(p) }, 'Editar'), h('button', { class: 'texto peligro', onclick: () => borrar(p) }, 'Borrar')),

@@ -3,7 +3,7 @@
 // compra dividida y "Ya compré".
 
 import { armarCarrito } from '../../lib/carrito.js';
-import { DIAS, MEDIOS, SUPERS } from '../../lib/constantes.js';
+import { DIAS, MEDIOS, nombreMedio, SUPERS } from '../../lib/constantes.js';
 import { nombreDia, pesos } from '../../lib/formato.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
@@ -67,7 +67,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
           'div',
           { class: 'tarjeta' },
           h('b', null, `Carrito de ${SUPERS[op.super]}`),
-          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, MEDIOS[op.medio])] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
+          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, medioDe(op))] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
           h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `Abrir carrito en ${SUPERS[op.super]} ↗`),
           h('p', { class: 'chico', style: { wordBreak: 'break-all' } }, h('code', null, c.url)),
         ),
@@ -87,7 +87,9 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     contCarrito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${MEDIOS[op.medio]}` : ''}`;
+  // El medio con el que conviene pagar ("cualquier medio" si la promo es para todos).
+  const medioDe = (op) => nombreMedio(op.promo?.medio === 'todos' ? 'todos' : op.medio);
+  const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${medioDe(op)}` : ''}`;
   const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
   const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
   // El carrito del súper muestra los productos con sus ofertas; el envío y el
@@ -227,7 +229,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
         h('tbody', null,
           h('tr', null, h('td', null, 'Subtotal (con promos de góndola)'), h('td', { class: 'num' }, pesos(op.subtotal))),
           op.ahorroGondola > 0 ? h('tr', null, h('td', { class: 'suave' }, '  incluye ahorro de góndola'), h('td', { class: 'num ok' }, `−${pesos(op.ahorroGondola)}`)) : null,
-          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${MEDIOS[op.medio]}` : 'Sin promo bancaria ese día', op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
+          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${medioDe(op)}` : 'Sin promo bancaria ese día', op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
           h('tr', null, h('td', null, 'Envío'), h('td', { class: 'num' }, op.envio ? pesos(op.envio) : 'gratis')),
           h('tr', null, h('th', null, 'Total'), h('th', { class: 'num' }, pesos(op.total))),
         ),
@@ -348,7 +350,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
               h(
                 'tr',
                 null,
-                h('td', null, h('b', null, SUPERS[o.super]), h('div', { class: 'suave chico' }, `${o.fecha === hoy ? 'Hoy' : `${nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`}${o.promo ? ` · ${MEDIOS[o.medio]}` : ''}`), o.faltantes.length ? h('div', { class: 'alerta chico' }, `le ${o.faltantes.length === 1 ? 'falta 1' : `faltan ${o.faltantes.length}`}`) : null),
+                h('td', null, h('b', null, SUPERS[o.super]), h('div', { class: 'suave chico' }, `${o.fecha === hoy ? 'Hoy' : `${nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`}${o.promo ? ` · ${medioDe(o)}` : ''}`), o.faltantes.length ? h('div', { class: 'alerta chico' }, `le ${o.faltantes.length === 1 ? 'falta 1' : `faltan ${o.faltantes.length}`}`) : null),
                 h('td', { class: 'num' }, h('b', null, pesos(o.total))),
                 h('td', { class: 'num' }, h('button', { class: 'texto', onclick: () => elegir(o) }, 'Ver')),
               ),

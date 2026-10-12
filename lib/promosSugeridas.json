@@ -1,6 +1,6 @@
 {
   "relevado": "2026-10-11",
-  "nota": "Promos relevadas de fuentes oficiales del BNA (bna.com.ar y semananacion.com.ar). No se aplican hasta que el usuario las confirma en la app. La app solo muestra las de súper que entregan en la zona (lib/zona.js). Macro no publica sus promos en una fuente abierta: cargarlas a mano.",
+  "nota": "Promos relevadas de fuentes oficiales del BNA (bna.com.ar y semananacion.com.ar). La app suma las que publican los propios súper (api/promos.js) y estas quedan para lo que ellos no cubren. No se aplican hasta que el usuario las confirma. Macro no publica sus promos en una fuente abierta. La de Carrefour 5% BNA de lunes a viernes se sacó: según el sitio de Carrefour es solo para jubilados y solo en el local.",
   "promos": [
     {
       "id": "bna-coto-martes-20",
@@ -67,54 +67,6 @@
       "fuente": "https://semananacion.com.ar/semananacion/vea",
       "textoFuente": "Semana Nación (ficha): VIERNES -20% · Mínimo de compra: $100.000 · Tope: $25.000 por mes por cliente · Del 01/07/26 al 31/10/26 · Presencial y Online. T&C: PROMOCIÓN VÁLIDA ... PARA COMPRAS ABONADAS CON TARJETAS DE CRÉDITO VISA Y MASTERCARD DEL BNA O TARJETA DE DEBITO MASTERCARD DEL BNA PAGANDO EXCLUSIVAMENTE CON BNA+ MODO, ESCANEANDO QR DE MODO ... EL DESCUENTO SE VERÁ REFLEJADO EN LA CUENTA MONETARIA ... DENTRO DE LOS 30 DÍAS HÁBILES.",
       "confianza": "oficial"
-    },
-    {
-      "id": "bna-carrefour-lunesaviernes-5-visa",
-      "super": "carrefour",
-      "medio": "visa_bna",
-      "dias": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "porcentaje": 5,
-      "tipoTope": "por_compra",
-      "tope": null,
-      "tipo": "descuento_caja",
-      "minimoCompra": null,
-      "vigenciaDesde": "2026-10-01",
-      "vigenciaHasta": "2026-10-31",
-      "rubrosExcluidos": [],
-      "fuente": "https://semananacion.com.ar/semananacion/carrefour",
-      "textoFuente": "Semana Nación: ¡Ahorrá con BNA-SEMANANACION en Supermercados con 5% de descuento los Lunes, Martes, Miércoles, Jueves y Viernes en Carrefour, con tarjetas de crédito y débito Visa o Mastercard.",
-      "confianza": "oficial (parcial)",
-      "notas": "Con tarjeta de crédito o débito del BNA (sin MODO). La ficha no publica tope, mínimo, vigencia, tipo de descuento ni si aplica online: se cargó sin tope, como descuento en caja y vigente en octubre. Verificalo antes de confirmar."
-    },
-    {
-      "id": "bna-carrefour-lunesaviernes-5-master",
-      "super": "carrefour",
-      "medio": "master_bna",
-      "dias": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "porcentaje": 5,
-      "tipoTope": "por_compra",
-      "tope": null,
-      "tipo": "descuento_caja",
-      "minimoCompra": null,
-      "vigenciaDesde": "2026-10-01",
-      "vigenciaHasta": "2026-10-31",
-      "rubrosExcluidos": [],
-      "fuente": "https://semananacion.com.ar/semananacion/carrefour",
-      "textoFuente": "Semana Nación: ¡Ahorrá con BNA-SEMANANACION en Supermercados con 5% de descuento los Lunes, Martes, Miércoles, Jueves y Viernes en Carrefour, con tarjetas de crédito y débito Visa o Mastercard.",
-      "confianza": "oficial (parcial)",
-      "notas": "Con tarjeta de crédito o débito del BNA (sin MODO). La ficha no publica tope, mínimo, vigencia, tipo de descuento ni si aplica online: se cargó sin tope, como descuento en caja y vigente en octubre. Verificalo antes de confirmar."
     }
   ]
 }

@@ -3,7 +3,7 @@
 // compra dividida y "Ya compré".
 
 import { armarCarrito } from '../../lib/carrito.js';
-import { DIAS, MEDIOS, SUPERS } from '../../lib/constantes.js';
+import { DIAS, MEDIOS, nombreMedio, SUPERS } from '../../lib/constantes.js';
 import { nombreDia, pesos } from '../../lib/formato.js';
 import { detectarSubaPrevia } from '../../lib/motor/historialPrecios.js';
 import { isoLocal } from '../../lib/motor/fechas.js';
@@ -67,7 +67,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
           'div',
           { class: 'tarjeta' },
           h('b', null, `Carrito de ${SUPERS[op.super]}`),
-          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, MEDIOS[op.medio])] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
+          h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, medioDe(op))] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
           h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `Abrir carrito en ${SUPERS[op.super]} ↗`),
           h('p', { class: 'chico', style: { wordBreak: 'break-all' } }, h('code', null, c.url)),
         ),
@@ -87,9 +87,76 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     contCarrito.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${MEDIOS[op.medio]}` : ''}`;
+  // El medio con el que conviene pagar ("cualquier medio" si la promo es para todos).
+  const medioDe = (op) => nombreMedio(op.promo?.medio === 'todos' ? 'todos' : op.medio);
+  const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${medioDe(op)}` : ''}`;
   const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
   const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
+  // El carrito del súper muestra los productos con sus ofertas; el envío y el
+  // reintegro del banco aparecen recién al pagar.
+  const enCarrito = (op) => h('div', { class: 'chico', style: { marginTop: '4px' } }, `En el carrito de ${SUPERS[op.super]} vas a ver `, h('b', null, pesos(op.subtotal)), op.envio ? ' (el envío se suma al pagar)' : '');
+
+  // La lista que escribió el usuario, con el precio de cada producto en cada súper.
+  const porKg = (it) => Object.values(it.refs ?? {}).some((x) => x?.multiplicador) || Object.values(datos.precios[it.clave] ?? {}).some((p) => p?.multiplicador);
+  const cantidadTexto = (it) => (porKg(it) ? `${String(it.cantidad).replace('.', ',')} kg` : `× ${it.cantidad}`);
+  function filaLista(it) {
+    const porSuper = datos.precios[it.clave] ?? {};
+    const costos = zonaActiva().supers.map((s) => {
+      const p = porSuper[s];
+      const precio = p && p.disponible !== false ? (p.precioOferta ?? p.precioLista) : null;
+      return [s, precio != null ? Math.round(precio * it.cantidad) : null, p];
+    });
+    const minimo = Math.min(...costos.filter(([, c]) => c != null).map(([, c]) => c));
+    return h(
+      'li',
+      null,
+      it.imagen ? h('img', { class: 'miniatura', src: it.imagen, alt: '', loading: 'lazy' }) : h('span', { class: 'miniatura vacia', 'aria-hidden': 'true' }, '🛍️'),
+      h(
+        'div',
+        { class: 'crece', style: { flex: 1, minWidth: 0 } },
+        h('div', { class: 'nombre-item' }, it.nombre, ' ', h('span', { class: 'suave', style: { fontWeight: 500 } }, cantidadTexto(it))),
+        h(
+          'div',
+          { class: 'precios-super' },
+          costos.map(([s, c, p]) =>
+            c == null
+              ? h('span', { class: 'chip', style: { opacity: 0.6 } }, `${SUPERS[s]}: no hay`)
+              : h('span', { class: `chip${c === minimo ? ' mejor' : ''}`, title: p?.nombre ?? '' }, `${SUPERS[s]} ${pesos(c)}`),
+          ),
+        ),
+      ),
+    );
+  }
+  // Abierta o cerrada según la dejó el usuario la última vez.
+  let abierta = false;
+  try {
+    abierta = localStorage.getItem('ci:tu-lista-abierta') === '1';
+  } catch {
+    // sin localStorage
+  }
+  const seccionLista = h(
+    'details',
+    {
+      class: 'desplegable',
+      id: 'tu-lista',
+      open: abierta,
+      ontoggle: (e) => {
+        try {
+          localStorage.setItem('ci:tu-lista-abierta', e.target.open ? '1' : '0');
+        } catch {
+          // sin localStorage
+        }
+      },
+    },
+    h('summary', null, `📝 Tu lista (${lista.items.length} ${lista.items.length === 1 ? 'producto' : 'productos'})`),
+    h(
+      'div',
+      { class: 'contenido' },
+      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Lo que cuesta cada cosa en cada súper (en verde, el más barato).'),
+      h('ul', { class: 'lista-items' }, lista.items.map(filaLista)),
+      h('a', { class: 'boton secundario ancho', href: `#/lista/${id}`, style: { marginTop: '12px' } }, '✏️ Cambiar la lista'),
+    ),
+  );
   function botonCarrito(op, { grande = false } = {}) {
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     return c.tipo === 'link'
@@ -107,6 +174,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       h('div', { class: 'suave' }, `${op.lineas.length} de ${lista.items.length} productos · ${cuando(op)}`),
       h('div', { class: 'suave chico' }, desglose(op)),
       noTiene(op),
+      enCarrito(op),
       botonCarrito(op),
     );
   }
@@ -161,7 +229,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
         h('tbody', null,
           h('tr', null, h('td', null, 'Subtotal (con promos de góndola)'), h('td', { class: 'num' }, pesos(op.subtotal))),
           op.ahorroGondola > 0 ? h('tr', null, h('td', { class: 'suave' }, '  incluye ahorro de góndola'), h('td', { class: 'num ok' }, `−${pesos(op.ahorroGondola)}`)) : null,
-          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${MEDIOS[op.medio]}` : 'Sin promo bancaria ese día', op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
+          h('tr', null, h('td', null, op.promo ? `${op.promo.tipo === 'reintegro' ? 'Reintegro' : 'Descuento en caja'} ${op.promo.porcentaje}% ${medioDe(op)}` : 'Sin promo bancaria ese día', op.motivoBanco ? h('div', { class: 'alerta chico' }, op.motivoBanco) : null), h('td', { class: 'num ok' }, op.descuentoBancario ? `−${pesos(op.descuentoBancario)}` : '—')),
           h('tr', null, h('td', null, 'Envío'), h('td', { class: 'num' }, op.envio ? pesos(op.envio) : 'gratis')),
           h('tr', null, h('th', null, 'Total'), h('th', { class: 'num' }, pesos(op.total))),
         ),
@@ -221,6 +289,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     app,
     h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'boton texto crece', style: { marginLeft: '-10px', justifyContent: 'flex-start' } }, `← ${lista.nombre}`), h('button', { class: 'texto', onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Actualizar')),
     h('h1', null, '¿Dónde conviene comprar?'),
+    seccionLista,
     estado.config.demo ? h('div', { class: 'banner alerta' }, 'Modo prueba: los precios son de ejemplo (del 11/10/2026).') : null,
     fict ? h('div', { class: 'banner alerta' }, `Hay ${fict === 1 ? '1 promo de ejemplo' : `${fict} promos de ejemplo`} (no son reales). `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Cargá los reales')) : null,
@@ -236,6 +305,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       r.ahorroVsCara > 0 ? h('div', { class: 'ahorro' }, `Ahorrás ${pesos(r.ahorroVsCara)}`) : null,
       h('div', { class: 'suave chico' }, desglose(m)),
       noTiene(m),
+      enCarrito(m),
       botonCarrito(m, { grande: true }),
       h('p', { class: 'suave chico', style: { margin: '10px 0 0' } }, `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
       h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '4px' } }, '✅ Ya compré: guardarlo en Compras'),
@@ -280,7 +350,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
               h(
                 'tr',
                 null,
-                h('td', null, h('b', null, SUPERS[o.super]), h('div', { class: 'suave chico' }, `${o.fecha === hoy ? 'Hoy' : `${nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`}${o.promo ? ` · ${MEDIOS[o.medio]}` : ''}`), o.faltantes.length ? h('div', { class: 'alerta chico' }, `le ${o.faltantes.length === 1 ? 'falta 1' : `faltan ${o.faltantes.length}`}`) : null),
+                h('td', null, h('b', null, SUPERS[o.super]), h('div', { class: 'suave chico' }, `${o.fecha === hoy ? 'Hoy' : `${nombreDia(o.fecha)} ${fechaCorta(o.fecha)}`}${o.promo ? ` · ${medioDe(o)}` : ''}`), o.faltantes.length ? h('div', { class: 'alerta chico' }, `le ${o.faltantes.length === 1 ? 'falta 1' : `faltan ${o.faltantes.length}`}`) : null),
                 h('td', { class: 'num' }, h('b', null, pesos(o.total))),
                 h('td', { class: 'num' }, h('button', { class: 'texto', onclick: () => elegir(o) }, 'Ver')),
               ),

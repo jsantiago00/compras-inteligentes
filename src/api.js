@@ -36,3 +36,8 @@ export function resolver(texto, { demo } = {}) {
 export function zonaDeCodigoPostal(codigoPostal) {
   return post('/api/zona', { codigoPostal });
 }
+
+/** Promos bancarias publicadas por los súper (ver lib/promosSuper.js). */
+export function promosSuper() {
+  return pedir('/api/promos');
+}

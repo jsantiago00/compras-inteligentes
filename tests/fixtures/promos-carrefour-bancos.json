@@ -1,0 +1,126 @@
+[
+ {
+  "id": "0a9f7049-7dae-11eb-82ac-168f7102b63f",
+  "name": "Banco_Formosa"
+ },
+ {
+  "id": "6441fa25-7dae-11eb-82ac-12df44c85f71",
+  "name": "HSBC"
+ },
+ {
+  "id": "ea64badf-7dad-11eb-82ac-0e3c1e616a8d",
+  "name": "Bancor"
+ },
+ {
+  "id": "40fc80fc-5c51-11ed-83ab-16eeef977571",
+  "name": "Banco_Columbia"
+ },
+ {
+  "id": "8e156adc-7dae-11eb-82ac-02e6e1c23cf1",
+  "name": "Otros_Bancos"
+ },
+ {
+  "id": "d016ad24-7dad-11eb-82ac-0ab835577baf",
+  "name": "Banco_Entre_Rios"
+ },
+ {
+  "id": "83d7d1b7-7dae-11eb-82ac-16ea56c26dbf",
+  "name": "Macro"
+ },
+ {
+  "id": "7a83be15-0170-409a-83f1-34e7d8014d6d",
+  "name": "Banco Galicia"
+ },
+ {
+  "id": "deb62fe4-7dad-11eb-82ac-0abd31a25a99",
+  "name": "Banco_Nacion"
+ },
+ {
+  "id": "59fdd175-7dae-11eb-82ac-0abd31a25a99",
+  "name": "Galicia"
+ },
+ {
+  "id": "54b5a689-7dae-11eb-82ac-0e5742ad38db",
+  "name": "Frances"
+ },
+ {
+  "id": "b74f97e9-7dae-11eb-82ac-16ea56c26dbf",
+  "name": "Superville"
+ },
+ {
+  "id": "1b25e893-7dae-11eb-82ac-02fe02227875",
+  "name": "Banco_Hipotecario"
+ },
+ {
+  "id": "962da28b-7dae-11eb-82ac-02f0e64629af",
+  "name": "Patagonia"
+ },
+ {
+  "id": "6e86cd9b-7dae-11eb-82ac-02f0e64629af",
+  "name": "ICBC"
+ },
+ {
+  "id": "b16eed64-2df2-11ec-82ac-12aeae09a3ef",
+  "name": "Mercado Pago"
+ },
+ {
+  "id": "b1b27cc9-7dad-11eb-82ac-12645066f413",
+  "name": "BanCo"
+ },
+ {
+  "id": "91821366-6ee6-4b29-ac6a-b09c590703ef",
+  "name": "Tarjeta Naranja"
+ },
+ {
+  "id": "8153eb03-198c-4e73-b5a1-07ac54c4e42e",
+  "name": "Cuenta Dni"
+ },
+ {
+  "id": "442cdb4d-e69c-4065-a25f-972544be6228",
+  "name": "Mi Carrefour"
+ },
+ {
+  "id": "7aff4849-7dae-11eb-82ac-168f7102b63f",
+  "name": "ITAU"
+ },
+ {
+  "id": "c5a6894b-7dad-11eb-82ac-0abd31a25a99",
+  "name": "Banco_Ciudad"
+ },
+ {
+  "id": "4474c298-7dae-11eb-82ac-0ab835577baf",
+  "name": "Citi"
+ },
+ {
+  "id": "a669adc2-7dae-11eb-82ac-167012224c27",
+  "name": "Santander_Rio"
+ },
+ {
+  "id": "2b2bb317-7dae-11eb-82ac-0e6f76342787",
+  "name": "BPN"
+ },
+ {
+  "id": "f5f18036-7dad-11eb-82ac-120f42bf4277",
+  "name": "Banco_San_Juan"
+ },
+ {
+  "id": "3918de52-7dae-11eb-82ac-168f7102b63f",
+  "name": "Banco_Credicoop"
+ },
+ {
+  "id": "22dfcf4a-7dae-11eb-82ac-0ae2cf4e832d",
+  "name": "Banco_Provincia"
+ },
+ {
+  "id": "7ced531f-098e-11ef-8452-0ee4380cf18d",
+  "name": "BBVA"
+ },
+ {
+  "id": "6ff8cef9-c027-4f5f-bce6-dedf36c6a3be",
+  "name": "Club La Nación"
+ },
+ {
+  "id": "ec75bbe7-d24f-4fbc-9883-48255da62d62",
+  "name": "Cuenta Digital"
+ }
+]

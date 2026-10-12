@@ -2,12 +2,56 @@
 
 import { ZONA } from '../lib/zona.js';
 
+// Último resultado de precios por lista, para no volver a pedirlos al ir y
+// volver entre la lista y la recomendación. Se guarda en el navegador (30 min)
+// porque al abrir el sitio del súper el celular suele recargar la app.
+function cachePrecios({ minutos = 30, maximo = 6, clave = 'ci:cache-precios' } = {}) {
+  const leer = () => {
+    try {
+      return JSON.parse(localStorage.getItem(clave) ?? '{}');
+    } catch {
+      return {};
+    }
+  };
+  const escribir = (datos) => {
+    try {
+      localStorage.setItem(clave, JSON.stringify(datos));
+    } catch {
+      // Sin lugar o sin localStorage: queda solo hasta la próxima recarga.
+    }
+  };
+  const vigente = (e) => e && Date.now() - (e.cuando ?? 0) < minutos * 60_000;
+  return {
+    get(k) {
+      const e = leer()[k];
+      return vigente(e) ? e : undefined;
+    },
+    set(k, datos) {
+      const todo = Object.fromEntries(Object.entries(leer()).filter(([, e]) => vigente(e)));
+      todo[k] = datos;
+      // Solo las más recientes.
+      const ordenadas = Object.entries(todo).sort((a, b) => b[1].cuando - a[1].cuando).slice(0, maximo);
+      escribir(Object.fromEntries(ordenadas));
+    },
+    delete(k) {
+      const todo = leer();
+      delete todo[k];
+      escribir(todo);
+    },
+    keys() {
+      return Object.keys(leer());
+    },
+    clear() {
+      escribir({});
+    },
+  };
+}
+
 export const estado = {
   store: null,
   usuario: null,
   config: null,
-  // Último resultado de precios por lista (para no volver a pedirlos al navegar).
-  precios: new Map(),
+  precios: cachePrecios(),
 };
 
 const CONFIG_INICIAL = { id: 'general', envios: ZONA.envios, enviosFicticios: false, demo: false };

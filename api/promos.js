@@ -1,8 +1,8 @@
 // GET /api/promos
-// Promos bancarias publicadas por Jumbo, Vea y Carrefour, ya filtradas a los
+// Promos bancarias publicadas por Jumbo, Vea, Carrefour y Coto, ya filtradas a los
 // medios del usuario (ver lib/promosSuper.js). Se cachean 12 h.
 
-import { promosCarrefour, promosCencosud } from '../lib/promosSuper.js';
+import { promosCarrefour, promosCencosud, promosCoto } from '../lib/promosSuper.js';
 import { crearCliente } from '../lib/scrapers/http.js';
 import { obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { handler, responder } from '../lib/servidor/api.js';
@@ -35,6 +35,12 @@ export default handler(async (req, res) => {
     promos.push(...promosCarrefour(bp, bancos));
   } catch (e) {
     errores.carrefour = e.message;
+  }
+
+  try {
+    promos.push(...promosCoto(await cliente.json('https://www.coto.com.ar/rest/model/atg/actors/cProfileActor/getPromocionesMulticanal?enviroment=ag')));
+  } catch (e) {
+    errores.coto = e.message;
   }
 
   const datos = { relevado: new Date().toISOString().slice(0, 10), promos, errores };

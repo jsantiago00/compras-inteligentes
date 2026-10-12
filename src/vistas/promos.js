@@ -113,7 +113,7 @@ export async function vistaPromos(app) {
       h('span', { class: 'chip' }, `📅 ${textoDias(p)}`),
       h('span', { class: 'chip' }, p.tope != null ? `Tope ${pesos(p.tope)}${p.tipoTope === 'mensual' ? ' por mes' : p.tipoTope === 'semanal' ? ' por semana' : ' por compra'}` : 'Sin tope'),
       p.minimoCompra ? h('span', { class: 'chip' }, `Compra mínima ${pesos(p.minimoCompra)}`) : null,
-      h('span', { class: 'chip' }, `Hasta el ${fecha(aIso(p.vigenciaHasta))}`),
+      p.vigenciaHasta ? h('span', { class: 'chip' }, `Hasta el ${fecha(aIso(p.vigenciaHasta))}`) : null,
     );
   const titulo = (p) => [
     h('div', { class: 'promo-titulo' }, `${p.porcentaje}% en ${SUPERS[p.super]}`),
@@ -123,13 +123,13 @@ export async function vistaPromos(app) {
   // La misma promo para varios medios (ej. MODO con BNA y con Macro) va en una sola tarjeta.
   const grupos = [];
   for (const p of pendientes) {
-    const k = [p.super, p.porcentaje, (p.dias ?? []).join(), p.vigenciaDesde, p.vigenciaHasta, p.tope, p.tipoTope, p.minimoCompra, p.tipo].join('|');
+    const k = [p.super, p.porcentaje, (p.dias ?? []).join(), p.vigenciaDesde, p.vigenciaHasta, p.tope, p.tipoTope, p.minimoCompra, p.tipo, Boolean(p.soloPresencial)].join('|');
     const g = grupos.find((x) => x.k === k);
     if (g) g.promos.push(p);
     else grupos.push({ k, promos: [p] });
   }
   const medios = (ps) => {
-    const n = ps.map((p) => nombreMedio(p.medio));
+    const n = [...new Set(ps.map((p) => nombreMedio(p.medio)))];
     return n.length > 1 ? `${n.slice(0, -1).join(', ')} o ${n.at(-1)}` : n[0];
   };
   const confirmarGrupo = async (ps) => {
@@ -150,6 +150,7 @@ export async function vistaPromos(app) {
       h('div', { class: 'promo-titulo' }, `${p.porcentaje}% en ${SUPERS[p.super]}`),
       h('div', { class: 'suave' }, `con ${medios(ps)} · ${p.tipo === 'reintegro' ? 'te lo devuelven después' : 'descuento en la caja'}`),
       detalles(p),
+      p.condicion ? h('div', { class: 'banner', style: { margin: '6px 0' } }, `ℹ️ ${p.condicion}`) : null,
       p.soloPresencial ? h('div', { class: 'falta' }, 'Solo comprando en el local: no sirve para comprar por internet.') : null,
       h(
         'details',

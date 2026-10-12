@@ -1,5 +1,6 @@
 // Estado global de la app: store activo y configuración del usuario.
 
+import { MEDIOS_INICIALES } from '../lib/medios.js';
 import { ZONA } from '../lib/zona.js';
 
 // Último resultado de precios por lista, para no volver a pedirlos al ir y
@@ -60,6 +61,7 @@ export async function cargarConfig() {
   const guardada = (await estado.store.obtener('config', 'general')) ?? {};
   // Configs viejas con los costos de envío de ejemplo: pasan a los reales de la zona.
   if (guardada.enviosFicticios) Object.assign(guardada, { envios: ZONA.envios, enviosFicticios: false });
+  if (!guardada.medios) guardada.medios = Object.keys(guardada).length ? [...MEDIOS_INICIALES] : [];
   estado.config = { ...CONFIG_INICIAL, ...guardada };
   return estado.config;
 }
@@ -103,4 +105,12 @@ export function enviosActivos() {
   // La principal completa con los valores de la zona los súper que no estén guardados (ej. Coto).
   if (d.id === DIRECCION_PRINCIPAL.id) return { ...ZONA.envios, ...(estado.config?.envios ?? {}) };
   return d.envios ?? {};
+}
+
+/**
+ * Medios de pago del usuario (ids de lib/medios.js). Las cuentas que ya
+ * usaban la app antes de poder elegir arrancan con BNA y Macro; las nuevas, vacías.
+ */
+export function misMedios() {
+  return estado.config?.medios ?? [];
 }

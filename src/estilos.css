@@ -270,3 +270,14 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .dias-semana label:has(input:checked) { border-color: var(--primario); background: var(--primario-suave); }
 .dias-semana input { width: 20px; height: 20px; }
 button.texto.peligro, .boton.texto.peligro { color: var(--peligro); }
+
+/* Ajustes → Tus medios de pago */
+.lista-bancos { display: flex; flex-direction: column; gap: 12px; margin: 12px 0; }
+.fila-banco .nombre-banco { font-weight: 700; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-medio {
+  min-height: 44px; padding: 8px 14px; border-radius: 999px; font-size: 16px; font-weight: 600;
+  background: var(--tarjeta); border: 1.5px solid var(--borde); color: var(--texto);
+}
+.chip-medio.activo { background: var(--primario); border-color: var(--primario); color: var(--primario-texto); }
+.chip-medio.activo::before { content: '✓ '; }

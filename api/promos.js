@@ -8,8 +8,8 @@ import { obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { handler, responder } from '../lib/servidor/api.js';
 
 const HORAS = 12;
-// Cambiar al sumar fuentes, así no queda la caché vieja (v2: suma Coto; v3: Cuenta Digital Carrefour).
-const CLAVE = 'actual-v3';
+// Cambiar al sumar fuentes, así no queda la caché vieja (v2: suma Coto; v3: Cuenta Digital Carrefour; v4: todos los bancos).
+const CLAVE = 'actual-v4';
 const CAMPOS_CARREFOUR = [
   'id', 'title', 'sub_title', 'discount_percentage', 'active_from', 'active_to', 'active', 'legal', 'ecommerce', 'idBank',
   'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',

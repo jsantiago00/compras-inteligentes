@@ -8,7 +8,8 @@ import sugeridas from '../../lib/promosSugeridas.json';
 import { confirmarSugerencia, sugerenciasPendientes } from '../../lib/motor/promosSugeridas.js';
 import { aIso, isoLocal } from '../../lib/motor/fechas.js';
 import * as api from '../api.js';
-import { estado, zonaActiva } from '../estado.js';
+import { estado, misMedios, zonaActiva } from '../estado.js';
+import { tieneMedio } from '../../lib/medios.js';
 import { aviso, cargando, h, montar } from '../ui.js';
 
 const opciones = (obj, actual) => Object.entries(obj).map(([v, t]) => h('option', { value: v, selected: v === actual }, t));
@@ -20,7 +21,7 @@ function formulario(promo, alGuardar, alCancelar) {
   };
   const campos = {
     super: h('select', { name: 'super' }, opciones(Object.fromEntries(zonaActiva().supers.map((s) => [s, SUPERS[s]])), p.super)),
-    medio: h('select', { name: 'medio' }, opciones({ ...MEDIOS, todos: 'Cualquier medio de pago' }, p.medio)),
+    medio: h('select', { name: 'medio' }, opciones({ ...Object.fromEntries([...new Set([...misMedios(), p.medio].filter((m) => MEDIOS[m]))].map((m) => [m, MEDIOS[m]])), todos: 'Cualquier medio de pago' }, p.medio)),
     porcentaje: h('input', { name: 'porcentaje', type: 'number', min: 1, max: 100, step: 'any', required: true, value: p.porcentaje }),
     tipo: h('select', { name: 'tipo' }, opciones({ reintegro: 'Reintegro', descuento_caja: 'Descuento en caja' }, p.tipo)),
     tope: h('input', { name: 'tope', type: 'number', min: 0, step: 'any', placeholder: 'sin tope', value: p.tope ?? '' }),
@@ -102,7 +103,8 @@ export async function vistaPromos(app) {
     // Sin server: quedan solo las relevadas.
   }
   const delBanco = sugeridas.promos.filter((s) => !deSuper.some((p) => p.super === s.super && p.medio === s.medio));
-  const pendientes = sugerenciasPendientes([...deSuper, ...delBanco].filter((p) => zonaActiva().supers.includes(p.super)), promos, descartadas, hoy);
+  // Solo las que puede usar con sus medios de pago (Ajustes → Tus medios de pago).
+  const pendientes = sugerenciasPendientes([...deSuper, ...delBanco].filter((p) => zonaActiva().supers.includes(p.super) && tieneMedio(misMedios(), p.medio)), promos, descartadas, hoy);
 
   const fecha = (iso) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}` : '…');
   const textoDias = (p) => (p.dias?.length === 7 ? 'Todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ').replace(/^./, (c) => c.toUpperCase()).replace(/, ([^,]+)$/, ' y $1'));
@@ -129,7 +131,9 @@ export async function vistaPromos(app) {
     else grupos.push({ k, promos: [p] });
   }
   const medios = (ps) => {
-    const n = [...new Set(ps.map((p) => nombreMedio(p.medio)))];
+    // Los medios del usuario con los que vale (MODO de cualquier banco → sus MODO).
+    const suyos = misMedios().filter((m) => ps.some((p) => p.medio === m || (p.medio === 'modo_*' && m.startsWith('modo_'))));
+    const n = [...new Set(ps.some((p) => p.medio === 'todos') ? [nombreMedio('todos')] : suyos.length ? suyos.map(nombreMedio) : ps.map((p) => nombreMedio(p.medio)))];
     return n.length > 1 ? `${n.slice(0, -1).join(', ')} o ${n.at(-1)}` : n[0];
   };
   const confirmarGrupo = async (ps) => {
@@ -164,6 +168,10 @@ export async function vistaPromos(app) {
     );
   };
 
+  // Arriba las que sirven para comprar online; las de solo en el local, plegadas.
+  const online = grupos.filter((g) => !g.promos[0].soloPresencial);
+  const enLocal = grupos.filter((g) => g.promos[0].soloPresencial);
+
   const cargarEjemplo = async () => {
     for (const p of promosEjemplo(hoy)) await estado.store.guardar('promos', p);
     aviso('Se cargaron promos de ejemplo (no son reales)');
@@ -173,14 +181,18 @@ export async function vistaPromos(app) {
   montar(
     app,
     h('h1', null, 'Promos del banco'),
+    !misMedios().length ? h('div', { class: 'banner alerta' }, 'Elegí tus bancos y tarjetas en ', h('a', { href: '#/ajustes' }, 'Ajustes → Tus medios de pago'), ' para ver las promos que podés usar.') : null,
     h('p', { class: 'suave', style: { marginTop: '-6px' } }, 'Las promos que confirmes se usan para calcular dónde y qué día te conviene comprar.'),
     pendientes.length
       ? h(
           'section',
           null,
-          h('h2', null, `Encontré ${grupos.length === 1 ? '1 promo' : `${grupos.length} promos`} para vos`),
+          h('h2', null, `Encontré ${online.length === 1 ? '1 promo' : `${online.length} promos`} para vos`),
           h('p', { class: 'suave', style: { marginTop: '-4px' } }, '¿Las usás? Confirmá las que te sirvan.'),
-          grupos.map(tarjetaSugerida),
+          online.map(tarjetaSugerida),
+          enLocal.length
+            ? h('details', { class: 'desplegable' }, h('summary', null, `🏪 En el local (${enLocal.length}): no cuentan para comprar online`), h('div', { class: 'contenido' }, enLocal.map(tarjetaSugerida)))
+            : null,
         )
       : null,
     h('h2', null, 'Tus promos'),

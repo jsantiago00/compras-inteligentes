@@ -8,6 +8,7 @@
 
 import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { DIAS, MEDIOS, SUPERS } from '../lib/constantes.js';
+import { MEDIOS_INICIALES } from '../lib/medios.js';
 import { extraerBna, extraerSemanaNacion, huella, interpretarPromo, interpretarSemanaNacion } from '../lib/promosRelevamiento.js';
 import { crearCliente } from '../lib/scrapers/http.js';
 import { ZONA } from '../lib/zona.js';
@@ -98,7 +99,7 @@ const md = [
     f.texto ? `<details><summary>Texto de la fuente</summary>\n\n> ${f.texto.slice(0, 1500)}\n</details>` : '',
     '',
   ]),
-  `Medios del usuario: ${Object.values(MEDIOS).join(', ')}. Macro no publica sus promos en una fuente abierta: revisarlas en la app de Macro / MODO.`,
+  `Medios del usuario: ${MEDIOS_INICIALES.map((m) => MEDIOS[m]).join(', ')}. Macro no publica sus promos en una fuente abierta: revisarlas en la app de Macro / MODO.`,
 ].join('\n');
 writeFileSync('relevamiento-promos.md', md);
 

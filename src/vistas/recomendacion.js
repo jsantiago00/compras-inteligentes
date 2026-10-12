@@ -53,18 +53,13 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     return op.lineas.map((l) => {
       const p = datos.precios[l.clave]?.[op.super] ?? {};
       const ref = lista.items.find((i) => i.clave === l.clave)?.refs?.[op.super] ?? {};
-      return { sku: p.sku ?? ref.sku, seller: p.seller ?? ref.seller ?? '1', cantidad: l.cantidad, nombre: nombreItem(l.clave), url: p.url ?? ref.url };
+      return { sku: p.sku ?? ref.sku, seller: p.seller ?? ref.seller ?? '1', multiplicador: p.multiplicador ?? ref.multiplicador ?? null, cantidad: l.cantidad, nombre: nombreItem(l.clave), url: p.url ?? ref.url };
     });
   }
 
   async function armar(op) {
-    const its = itemsCarrito(op);
-    let c;
-    try {
-      c = await api.carrito(op.super, its);
-    } catch {
-      c = armarCarrito(op.super, its); // sin server: se arma igual en el navegador
-    }
+    // Con la sucursal de la dirección activa como vendedor (precios y stock de esa sucursal).
+    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     if (c.tipo === 'link') {
       montar(
         contCarrito,
@@ -95,7 +90,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   // Un carrito por súper: su mejor opción de la semana (menos faltantes, menor
   // total), con el link que carga todo en el sitio del súper.
   function tarjetaCarrito(op) {
-    const c = armarCarrito(op.super, itemsCarrito(op));
+    const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     const total = lista.items.length;
     const esMejor = op === r.mejor;
     const cuando = `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? ` con ${MEDIOS[op.medio]}` : ''}`;

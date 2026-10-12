@@ -100,5 +100,7 @@ export function zonaActiva() {
 
 export function enviosActivos() {
   const d = direccionActiva();
-  return (d.id === DIRECCION_PRINCIPAL.id ? estado.config?.envios : d.envios) ?? {};
+  // La principal completa con los valores de la zona los súper que no estén guardados (ej. Coto).
+  if (d.id === DIRECCION_PRINCIPAL.id) return { ...ZONA.envios, ...(estado.config?.envios ?? {}) };
+  return d.envios ?? {};
 }

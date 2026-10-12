@@ -102,7 +102,7 @@ que entrega en la dirección, así que cada súper VTEX consulta solo esa sucurs
 | Jumbo | `jumboargentinaj5222mendoza`: Jumbo Godoy Cruz, Balcarce 897 |
 | Vea | `jumboargentinav171sarmientoyalen`: Vea Godoy Cruz, Sarmiento 998 |
 | Carrefour | `carrefourar0029` (Hiper Mendoza Azul) y `carrefourar0899` (Hogar & Electro) |
-| Coto | `209`: Coto Mendoza (Perú y Pellegrini). Precios de la lista nacional y stock de la sucursal (`product.sDisp_209`: 1004 hay, 1001 no hay). Costo de envío desconocido (cargarlo en Ajustes) |
+| Coto | `209`: Coto Mendoza (Perú y Pellegrini). Precios de la lista nacional y stock de la sucursal (`product.sDisp_209`: 1004 hay, 1001 no hay). Envío $3.990 |
 
 - Cómo se verificó: simulando el checkout con las coordenadas de Godoy Cruz
   (`POST /api/checkout/pub/orderForms/simulation` con `geoCoordinates` y `seller`). Solo esas sucursales ofrecen

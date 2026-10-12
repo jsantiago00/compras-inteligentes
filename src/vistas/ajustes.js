@@ -12,15 +12,15 @@ export async function vistaAjustes(app) {
   const activa = direccionActiva();
   const envios = enviosActivos();
   const filas = activa.supers.map((s) => {
-    const e = envios[s] ?? { costo: 0, minimoGratis: null };
-    const costo = h('input', { type: 'number', min: 0, step: 'any', value: e.costo ?? 0, 'aria-label': `Costo de envío ${SUPERS[s]}` });
+    const e = envios[s] ?? { costo: null, minimoGratis: null };
+    const costo = h('input', { type: 'number', min: 0, step: 'any', value: e.costo ?? '', placeholder: '¿?', 'aria-label': `Costo de envío ${SUPERS[s]}` });
     const minimo = h('input', { type: 'number', min: 0, step: 'any', value: e.minimoGratis ?? '', placeholder: 'nunca', 'aria-label': `Mínimo para envío gratis ${SUPERS[s]}` });
     return { s, costo, minimo };
   });
 
   async function guardarEnvios(ev) {
     ev.preventDefault();
-    const nuevos = Object.fromEntries(filas.map(({ s, costo, minimo }) => [s, { costo: Number(costo.value || 0), minimoGratis: minimo.value === '' ? null : Number(minimo.value) }]));
+    const nuevos = Object.fromEntries(filas.map(({ s, costo, minimo }) => [s, { costo: costo.value === '' ? null : Number(costo.value), minimoGratis: minimo.value === '' ? null : Number(minimo.value) }]));
     if (activa.id === DIRECCION_PRINCIPAL.id) await guardarConfig({ envios: nuevos, enviosFicticios: false });
     else await guardarConfig({ direcciones: (cfg.direcciones ?? []).map((d) => (d.id === activa.id ? { ...d, envios: nuevos } : d)) });
     estado.precios.clear();

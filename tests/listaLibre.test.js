@@ -81,3 +81,16 @@ test('lista libre contra respuestas reales: elige y la recomendación cubre la l
   assert.equal(reco.mejor.faltantes.length, 0);
   assert.equal(reco.mejor.lineas.length, 3);
 });
+
+test('sinónimos: "carne molida" y "patamuslo" como los nombra Coto', async () => {
+  const { variantes } = await import('../lib/motor/listaLibre.js');
+  assert.deepEqual(variantes('carne molida'), ['carne molida', 'carne picada', 'picada especial']);
+  assert.deepEqual(variantes('patamuslo'), ['patamuslo', 'pata muslo']);
+  assert.deepEqual(variantes('yerba'), ['yerba']);
+  const r = elegirProductos('carne molida', {
+    coto: [p('coto', null, 'Picada De Cerdo X KG', 8500, 1), p('coto', null, 'Picada Especial X KG', 12999, 1)],
+  });
+  // La de cerdo es más barata pero no es carne molida.
+  assert.equal(r.elegidos.coto.nombre, 'Picada Especial X KG');
+  assert.ok(elegirProductos('patamuslo', { coto: [p('coto', null, 'Pata Muslo Con Piel X Kg Congelados', 3999, 1)] }).elegidos.coto);
+});

@@ -96,7 +96,7 @@ test('Coto: parsea el JSON real de Endeca', () => {
   for (const p of productos) {
     for (const c of CAMPOS) assert.ok(c in p, `falta ${c}`);
     assert.ok(p.precioLista > 0);
-    assert.match(p.url, /^https:\/\/www\.cotodigital\.com\.ar\/sitios\/cdigi\/productos\/.+\/_\/R-\d+-\d+-\d+$/);
+    assert.match(p.url, /^https:\/\/www\.coto\.com\.ar\/sitios\/cdigi\/productos\/.+\/_\/R-\d+-\d+-\d+$/);
   }
   const coca = productos.find((p) => p.ean === COCA);
   assert.equal(coca.marca, 'COCA COLA');
@@ -152,8 +152,8 @@ test('zona de entrega: los adaptadores VTEX piden los precios de la sucursal de 
   assert.deepEqual(regionDe('www.jumbo.com.ar'), { channel: '32', sucursales: 'SW#jumboargentinaj5222mendoza' });
   assert.deepEqual(regionDe('www.vea.com.ar'), { channel: '34', sucursales: 'SW#jumboargentinav171sarmientoyalen' });
   assert.deepEqual(regionDe('www.carrefour.com.ar'), { channel: '1', sucursales: 'SW#carrefourar0029;carrefourar0899' });
-  // Coto no entrega en la zona.
-  assert.ok(!ZONA.supers.includes('coto'));
+  // Coto: sucursal de Mendoza.
+  assert.deepEqual(ZONA.sucursales.coto, ['209']);
 });
 
 test('armarCarrito: con la sucursal de la zona como vendedor y porciones de los pesables', () => {
@@ -161,4 +161,19 @@ test('armarCarrito: con la sucursal de la zona como vendedor y porciones de los 
   assert.equal(c.url, 'https://www.jumbo.com.ar/checkout/cart/add?sku=20218&qty=2&seller=jumboargentinaj5222mendoza&sku=315800&qty=2&seller=jumboargentinaj5222mendoza&sc=32');
   // Sin zona, queda el vendedor que vino del catálogo.
   assert.match(armarCarrito('vea', [{ sku: '1', cantidad: 1, seller: '1' }]).url, /seller=1&sc=34$/);
+});
+
+test('Coto: stock y lista de precios de la sucursal de la zona (sintético)', () => {
+  const reg = (extra) => ({
+    attributes: { 'product.displayName': ['Leche Entera 1 L'], 'sku.repositoryId': ['sku1'], 'sku.activePrice': ['1899.0'], 'product.sDisp_200': ['1004'], ...extra },
+  });
+  const [hay] = parsearProductosCoto([reg({ 'product.sDisp_209': ['1004'] })], { sucursal: '209' });
+  assert.equal(hay.disponible, true);
+  const [noHay] = parsearProductosCoto([reg({ 'product.sDisp_209': ['1001'] })], { sucursal: '209' });
+  assert.equal(noHay.disponible, false);
+  // Sin sucursal (o sin dato de esa sucursal) vale el stock general.
+  assert.equal(parsearProductosCoto([reg({ 'product.sDisp_209': ['1001'] })])[0].disponible, true);
+  // Sucursal con lista de precios propia.
+  const [propia] = parsearProductosCoto([reg({ 'sku.dtoPrice078': [JSON.stringify({ precioLista: 2100.0 })] })], { sucursal: '078' });
+  assert.equal(propia.precioLista, 2100);
 });

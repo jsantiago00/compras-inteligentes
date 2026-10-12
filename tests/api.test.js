@@ -22,8 +22,8 @@ test('GET /api/buscar unifica por EAN', async () => {
   const r = await llamar(buscar, { url: '/api/buscar?q=arroz%20gallo&demo=1' });
   assert.equal(r.status, 200);
   const g = r.json.grupos.find((x) => x.ean === '7790070431417');
-  // Por defecto, solo los súper que entregan en la zona (Coto no llega a Godoy Cruz).
-  assert.deepEqual(Object.keys(g.porSuper).sort(), ['carrefour', 'jumbo', 'vea']);
+  // Por defecto, los súper que entregan en la zona (los 4 en Godoy Cruz).
+  assert.deepEqual(Object.keys(g.porSuper).sort(), ['carrefour', 'coto', 'jumbo', 'vea']);
   const conCoto = await llamar(buscar, { url: '/api/buscar?q=arroz%20gallo&supers=coto&demo=1' });
   assert.ok(conCoto.json.grupos.some((x) => x.porSuper.coto));
   assert.ok(Array.isArray(r.json.pendientes));
@@ -33,7 +33,7 @@ test('GET /api/buscar unifica por EAN', async () => {
 test('POST /api/precios devuelve precios por ítem y súper', async () => {
   const r = await llamar(precios, { method: 'POST', body: { demo: true, items: [{ clave: 'coca', ean: '7790895000997' }] } });
   assert.equal(r.status, 200);
-  assert.deepEqual(Object.keys(r.json.precios.coca).sort(), ['carrefour', 'jumbo', 'vea']);
+  assert.deepEqual(Object.keys(r.json.precios.coca).sort(), ['carrefour', 'coto', 'jumbo', 'vea']);
   assert.equal((await llamar(precios, { method: 'GET' })).status, 400);
 });
 
@@ -49,7 +49,7 @@ test('POST /api/resolver arma la lista libre renglón por renglón', async () =>
   const [coca, yerba, nada] = r.json.renglones;
   assert.equal(coca.cantidad, 2);
   assert.equal(coca.ean, '7790895000997');
-  assert.deepEqual(Object.keys(coca.elegidos).sort(), ['carrefour', 'jumbo', 'vea']);
+  assert.deepEqual(Object.keys(coca.elegidos).sort(), ['carrefour', 'coto', 'jumbo', 'vea']);
   assert.ok(Object.keys(yerba.elegidos).length >= 2);
   assert.deepEqual(nada.elegidos, {});
   assert.equal((await llamar(resolver, { method: 'POST', body: { texto: '' } })).status, 400);

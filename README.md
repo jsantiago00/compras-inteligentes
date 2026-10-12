@@ -102,7 +102,7 @@ que entrega en la dirección, así que cada súper VTEX consulta solo esa sucurs
 | Jumbo | `jumboargentinaj5222mendoza`: Jumbo Godoy Cruz, Balcarce 897 |
 | Vea | `jumboargentinav171sarmientoyalen`: Vea Godoy Cruz, Sarmiento 998 |
 | Carrefour | `carrefourar0029` (Hiper Mendoza Azul) y `carrefourar0899` (Hogar & Electro) |
-| Coto | **No entrega en Mendoza.** Queda fuera de las comparaciones; el adaptador sigue disponible con `?supers=coto` |
+| Coto | `209`: Coto Mendoza (Perú y Pellegrini). Precios de la lista nacional y stock de la sucursal (`product.sDisp_209`: 1004 hay, 1001 no hay). Envío $3.990 |
 
 - Cómo se verificó: simulando el checkout con las coordenadas de Godoy Cruz
   (`POST /api/checkout/pub/orderForms/simulation` con `geoCoordinates` y `seller`). Solo esas sucursales ofrecen
@@ -112,7 +112,7 @@ que entrega en la dirección, así que cada súper VTEX consulta solo esa sucurs
   (todas sus sucursales) para cualquier CP. Por eso se fijan las sucursales en vez de resolverlas.
 - `sc` (sales channel) por súper, configurable con `VTEX_SC_*`: **Jumbo 32, Vea 34, Carrefour 1** (en Jumbo y Vea
   `sc=1` responde `400 "sc is inactive"`).
-- La API y la app usan `ZONA.supers` (Jumbo, Vea, Carrefour): búsquedas, precios, lista libre, recomendación,
+- La API y la app usan `ZONA.supers` (Jumbo, Vea, Carrefour, Coto): búsquedas, precios, lista libre, recomendación,
   costos de envío y promos sugeridas.
 - **Para cambiar de dirección:** en el sitio del súper, elegir la dirección de entrega y mirar en DevTools el
   `selectedSeller` que se manda a `/api/sessions`; actualizar `lib/zona.js`.

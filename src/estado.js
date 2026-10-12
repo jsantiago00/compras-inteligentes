@@ -81,7 +81,7 @@ export const DIRECCION_PRINCIPAL = {
   provincia: 'Mendoza',
   supers: ZONA.supers,
   sucursales: ZONA.sucursales,
-  nombresSucursales: { jumbo: 'Jumbo Godoy Cruz', vea: 'Vea Godoy Cruz (Sarmiento 998)', carrefour: 'Hiper Mendoza Azul' },
+  nombresSucursales: { jumbo: 'Jumbo Godoy Cruz', vea: 'Vea Godoy Cruz (Sarmiento 998)', carrefour: 'Hiper Mendoza Azul', coto: 'Coto Mendoza (Perú y Pellegrini)' },
 };
 
 export function direcciones() {
@@ -100,5 +100,7 @@ export function zonaActiva() {
 
 export function enviosActivos() {
   const d = direccionActiva();
-  return (d.id === DIRECCION_PRINCIPAL.id ? estado.config?.envios : d.envios) ?? {};
+  // La principal completa con los valores de la zona los súper que no estén guardados (ej. Coto).
+  if (d.id === DIRECCION_PRINCIPAL.id) return { ...ZONA.envios, ...(estado.config?.envios ?? {}) };
+  return d.envios ?? {};
 }

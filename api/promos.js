@@ -8,6 +8,8 @@ import { obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { handler, responder } from '../lib/servidor/api.js';
 
 const HORAS = 12;
+// Cambiar al sumar fuentes, así no queda la caché vieja (v2: suma Coto).
+const CLAVE = 'actual-v2';
 const CAMPOS_CARREFOUR = [
   'id', 'title', 'sub_title', 'discount_percentage', 'active_from', 'active_to', 'active', 'legal', 'ecommerce', 'idBank',
   'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
@@ -15,7 +17,7 @@ const CAMPOS_CARREFOUR = [
 
 export default handler(async (req, res) => {
   const almacen = await obtenerAlmacen();
-  const guardado = await almacen.get('promosSuper', 'actual');
+  const guardado = await almacen.get('promosSuper', CLAVE);
   if (guardado && Date.now() - guardado.fecha < HORAS * 3600_000) return responder(res, 200, guardado.datos);
 
   const cliente = crearCliente({ intervaloMs: 1200 });
@@ -44,6 +46,6 @@ export default handler(async (req, res) => {
   }
 
   const datos = { relevado: new Date().toISOString().slice(0, 10), promos, errores };
-  if (!Object.keys(errores).length) await almacen.set('promosSuper', 'actual', { fecha: Date.now(), datos });
+  if (!Object.keys(errores).length) await almacen.set('promosSuper', CLAVE, { fecha: Date.now(), datos });
   responder(res, 200, datos);
 });

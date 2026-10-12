@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { promoAplica } from '../lib/motor/promos.js';
-import { condicionesDeTexto, mediosAplicables, promosCarrefour, promosCencosud } from '../lib/promosSuper.js';
+import { condicionesDeTexto, mediosAplicables, promosCarrefour, promosCencosud, promosCoto } from '../lib/promosSuper.js';
 
 const leer = (f) => JSON.parse(readFileSync(new URL(`./fixtures/${f}`, import.meta.url), 'utf8'));
 const HOY = '2026-10-11';
@@ -55,4 +55,17 @@ test('mediosAplicables y condicionesDeTexto', () => {
   // Redacción del 12/10/2026 (MODO 30% por un día).
   const d = condicionesDeTexto('Tope de reintegro $30.000 por usuario por promoción para compras mayor o iguales a $100.000.');
   assert.deepEqual([d.tope, d.minimoCompra, d.tipo], [30000, 100000, 'reintegro']);
+});
+
+test('Coto: Comunidad Coto los miércoles (con aviso) y las de MODO solo en el local', () => {
+  const ps = promosCoto(leer('promos-coto.json'), { hoy: '2026-10-12' });
+  const online = ps.filter((p) => !p.soloPresencial);
+  assert.equal(online.length, 1);
+  assert.deepEqual([online[0].medio, online[0].porcentaje, online[0].dias], ['todos', 15, [3]]);
+  assert.match(online[0].condicion, /Comunidad Coto/);
+  // MODO 25% los martes (cualquier banco por MODO) y 10% adicional con BNA+: solo presenciales.
+  const modo = ps.filter((p) => p.medio.startsWith('modo_'));
+  assert.ok(modo.length >= 3 && modo.every((p) => p.soloPresencial && p.dias.join() === '2'));
+  // Cuotas sin interés, otros bancos, Mercado Pago y jubilados quedan afuera.
+  assert.ok(!ps.some((p) => /cuotas/i.test(p.notas)));
 });

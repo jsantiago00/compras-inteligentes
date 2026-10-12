@@ -90,6 +90,71 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${MEDIOS[op.medio]}` : ''}`;
   const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
   const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
+  // El carrito del súper muestra los productos con sus ofertas; el envío y el
+  // reintegro del banco aparecen recién al pagar.
+  const enCarrito = (op) => h('div', { class: 'chico', style: { marginTop: '4px' } }, `En el carrito de ${SUPERS[op.super]} vas a ver `, h('b', null, pesos(op.subtotal)), op.envio ? ' (el envío se suma al pagar)' : '');
+
+  // La lista que escribió el usuario, con el precio de cada producto en cada súper.
+  const porKg = (it) => Object.values(it.refs ?? {}).some((x) => x?.multiplicador) || Object.values(datos.precios[it.clave] ?? {}).some((p) => p?.multiplicador);
+  const cantidadTexto = (it) => (porKg(it) ? `${String(it.cantidad).replace('.', ',')} kg` : `× ${it.cantidad}`);
+  function filaLista(it) {
+    const porSuper = datos.precios[it.clave] ?? {};
+    const costos = zonaActiva().supers.map((s) => {
+      const p = porSuper[s];
+      const precio = p && p.disponible !== false ? (p.precioOferta ?? p.precioLista) : null;
+      return [s, precio != null ? Math.round(precio * it.cantidad) : null, p];
+    });
+    const minimo = Math.min(...costos.filter(([, c]) => c != null).map(([, c]) => c));
+    return h(
+      'li',
+      null,
+      it.imagen ? h('img', { class: 'miniatura', src: it.imagen, alt: '', loading: 'lazy' }) : h('span', { class: 'miniatura vacia', 'aria-hidden': 'true' }, '🛍️'),
+      h(
+        'div',
+        { class: 'crece', style: { flex: 1, minWidth: 0 } },
+        h('div', { class: 'nombre-item' }, it.nombre, ' ', h('span', { class: 'suave', style: { fontWeight: 500 } }, cantidadTexto(it))),
+        h(
+          'div',
+          { class: 'precios-super' },
+          costos.map(([s, c, p]) =>
+            c == null
+              ? h('span', { class: 'chip', style: { opacity: 0.6 } }, `${SUPERS[s]}: no hay`)
+              : h('span', { class: `chip${c === minimo ? ' mejor' : ''}`, title: p?.nombre ?? '' }, `${SUPERS[s]} ${pesos(c)}`),
+          ),
+        ),
+      ),
+    );
+  }
+  // Abierta o cerrada según la dejó el usuario la última vez.
+  let abierta = false;
+  try {
+    abierta = localStorage.getItem('ci:tu-lista-abierta') === '1';
+  } catch {
+    // sin localStorage
+  }
+  const seccionLista = h(
+    'details',
+    {
+      class: 'desplegable',
+      id: 'tu-lista',
+      open: abierta,
+      ontoggle: (e) => {
+        try {
+          localStorage.setItem('ci:tu-lista-abierta', e.target.open ? '1' : '0');
+        } catch {
+          // sin localStorage
+        }
+      },
+    },
+    h('summary', null, `📝 Tu lista (${lista.items.length} ${lista.items.length === 1 ? 'producto' : 'productos'})`),
+    h(
+      'div',
+      { class: 'contenido' },
+      h('p', { class: 'suave chico', style: { marginTop: 0 } }, 'Lo que cuesta cada cosa en cada súper (en verde, el más barato).'),
+      h('ul', { class: 'lista-items' }, lista.items.map(filaLista)),
+      h('a', { class: 'boton secundario ancho', href: `#/lista/${id}`, style: { marginTop: '12px' } }, '✏️ Cambiar la lista'),
+    ),
+  );
   function botonCarrito(op, { grande = false } = {}) {
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     return c.tipo === 'link'
@@ -107,6 +172,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       h('div', { class: 'suave' }, `${op.lineas.length} de ${lista.items.length} productos · ${cuando(op)}`),
       h('div', { class: 'suave chico' }, desglose(op)),
       noTiene(op),
+      enCarrito(op),
       botonCarrito(op),
     );
   }
@@ -221,6 +287,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     app,
     h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'boton texto crece', style: { marginLeft: '-10px', justifyContent: 'flex-start' } }, `← ${lista.nombre}`), h('button', { class: 'texto', onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Actualizar')),
     h('h1', null, '¿Dónde conviene comprar?'),
+    seccionLista,
     estado.config.demo ? h('div', { class: 'banner alerta' }, 'Modo prueba: los precios son de ejemplo (del 11/10/2026).') : null,
     fict ? h('div', { class: 'banner alerta' }, `Hay ${fict === 1 ? '1 promo de ejemplo' : `${fict} promos de ejemplo`} (no son reales). `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Cargá los reales')) : null,
@@ -236,6 +303,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       r.ahorroVsCara > 0 ? h('div', { class: 'ahorro' }, `Ahorrás ${pesos(r.ahorroVsCara)}`) : null,
       h('div', { class: 'suave chico' }, desglose(m)),
       noTiene(m),
+      enCarrito(m),
       botonCarrito(m, { grande: true }),
       h('p', { class: 'suave chico', style: { margin: '10px 0 0' } }, `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
       h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '4px' } }, '✅ Ya compré: guardarlo en Compras'),

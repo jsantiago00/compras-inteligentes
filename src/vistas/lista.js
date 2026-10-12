@@ -2,7 +2,7 @@
 // súper de la zona (unificados por EAN, con confirmación de matches difusos).
 
 import { SUPERS } from '../../lib/constantes.js';
-import { pesos } from '../../lib/formato.js';
+import { convieneOtraPresentacion, pesos, porUnidadTexto, presentacion } from '../../lib/formato.js';
 import * as api from '../api.js';
 import { estado, zonaActiva } from '../estado.js';
 import { aviso, cargando, h, montar, vacio } from '../ui.js';
@@ -29,7 +29,7 @@ export function chipsPrecios(porSuper) {
       if (p.disponible === false) return h('span', { class: 'chip' }, `${SUPERS[sup]}: sin stock`);
       const promo = textoPromo(p);
       return [
-        h('span', { class: `chip${precioDe(p) === minimo ? ' mejor' : ''}`, title: p.precioPorUnidad ? `${pesos(p.precioPorUnidad.valor)} ${p.precioPorUnidad.unidad}` : '' }, `${SUPERS[sup]}: ${pesos(precioDe(p))}${p.precioOferta ? ' (oferta)' : ''}`),
+        h('span', { class: `chip${precioDe(p) === minimo ? ' mejor' : ''}`, title: p.precioPorUnidad ? `${pesos(p.precioPorUnidad.valor)} ${p.precioPorUnidad.unidad}` : '' }, `${SUPERS[sup]}: ${pesos(precioDe(p))}${p.precioOferta ? ' (oferta)' : ''}${porUnidadTexto(p) ? ` · ${porUnidadTexto(p)}` : ''}`),
         promo ? h('span', { class: 'chip promo' }, `${SUPERS[sup]} ${promo}`) : null,
       ];
     }),
@@ -91,6 +91,8 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
                   'div',
                   { class: 'crece', style: { flex: 1, minWidth: 0 } },
                   h('div', { class: 'nombre-item' }, it.nombre),
+                  // Lo más barato por litro/kilo/unidad entre todos los súper.
+                  it.mejorPorUnidad && convieneOtraPresentacion(it.mejorPorUnidad, Object.values(it.refs ?? {})) ? h('div', { class: 'suave chico' }, `💲 Más barato por ${it.mejorPorUnidad.unidad === 'l' ? 'litro' : it.mejorPorUnidad.unidad === 'kg' ? 'kilo' : 'unidad'}: ${porUnidadTexto(it.mejorPorUnidad)} en ${SUPERS[it.mejorPorUnidad.super]} (${presentacion(it.mejorPorUnidad)})`) : null,
                   it.generico
                     ? detalleGenerico(it)
                     : h('div', { class: 'suave chico' }, [it.marca, Object.keys(it.refs ?? {}).map((s) => SUPERS[s]).join(' · ')].filter(Boolean).join(' — ')),
@@ -164,7 +166,7 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
           continue;
         }
         const existente = lista.items.find((i) => i.clave === r.clave);
-        const datos = { clave: r.clave, generico: true, nombre: r.texto, ean: r.ean, refs: r.elegidos, alternativas: r.alternativas, imagen: r.imagen, rubro: r.rubro };
+        const datos = { clave: r.clave, generico: true, nombre: r.texto, ean: r.ean, refs: r.elegidos, alternativas: r.alternativas, imagen: r.imagen, rubro: r.rubro, necesidad: r.necesidad ?? null, mejorPorUnidad: r.mejorPorUnidad ?? null };
         if (existente) Object.assign(existente, datos, { cantidad: existente.cantidad + r.cantidad });
         else lista.items.push({ ...datos, cantidad: r.cantidad });
       }

@@ -30,6 +30,7 @@ async function navegar() {
     const m = hash.match(re);
     if (!m) continue;
     document.querySelectorAll('.tabs a').forEach((a) => a.classList.toggle('activa', a.dataset.tab === tab));
+    app.className = '';
     try {
       await vista(m);
     } catch (e) {
@@ -45,7 +46,7 @@ async function iniciar(store, usuario = null) {
   estado.store = store;
   estado.usuario = usuario;
   await cargarConfig();
-  document.getElementById('estado-cuenta').textContent = usuario ? usuario.displayName ?? usuario.email : 'modo local';
+  document.getElementById('estado-cuenta').textContent = usuario ? (usuario.displayName ?? usuario.email) : '';
   navegar();
 }
 
@@ -57,10 +58,11 @@ if (firebaseConfigurado) {
     estado.store = null;
     montar(
       app,
-      h('div', { class: 'tarjeta', style: { textAlign: 'center', marginTop: '40px' } },
+      h('div', { class: 'tarjeta pantalla-entrada' },
+        h('img', { src: '/iconos/icono-192.png', alt: '' }),
         h('h1', null, 'Compras Inteligentes'),
-        h('p', { class: 'suave' }, 'Entrá con tu cuenta de Google para ver tus listas, promos e historial.'),
-        h('button', { class: 'primario', onclick: () => entrarConGoogle().catch((e) => alert(e.message)) }, 'Entrar con Google'),
+        h('p', null, 'Armá tu lista y te digo en qué súper, qué día y con qué tarjeta te conviene comprar.'),
+        h('button', { class: 'primario grande ancho', onclick: () => entrarConGoogle().catch((e) => alert(e.message)) }, 'Entrar con Google'),
       ),
     );
   });

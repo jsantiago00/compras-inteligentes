@@ -30,7 +30,7 @@ function formulario(promo, alGuardar, alCancelar) {
     rubrosExcluidos: h('input', { name: 'rubrosExcluidos', placeholder: 'ej.: Bebidas alcohólicas, Electro', value: (p.rubrosExcluidos ?? []).join(', ') }),
     notas: h('textarea', { name: 'notas', rows: 2 }, p.notas ?? ''),
   };
-  const dias = DIAS.map((d, i) => h('label', { class: 'fila', style: { display: 'inline-flex', marginRight: '10px' } }, h('input', { type: 'checkbox', value: i, checked: p.dias.includes(i) }), d.slice(0, 3)));
+  const dias = DIAS.map((d, i) => h('label', null, h('input', { type: 'checkbox', value: i, checked: p.dias.includes(i) }), d.slice(0, 3)));
 
   async function enviar(e) {
     e.preventDefault();
@@ -61,8 +61,8 @@ function formulario(promo, alGuardar, alCancelar) {
     'form',
     { class: 'tarjeta', onsubmit: enviar },
     h('div', { class: 'grilla2' }, campo('Súper', campos.super), campo('Medio de pago', campos.medio), campo('Porcentaje', campos.porcentaje), campo('Tipo', campos.tipo), campo('Tope ($)', campos.tope), campo('Tipo de tope', campos.tipoTope), campo('Mínimo de compra ($)', campos.minimoCompra), h('div'), campo('Vigente desde', campos.vigenciaDesde), campo('Hasta', campos.vigenciaHasta)),
-    h('label', null, 'Días'),
-    h('div', null, dias),
+    h('label', null, 'Días (si no marcás ninguno, todos)'),
+    h('div', { class: 'dias-semana' }, dias),
     campo('Rubros excluidos (separados por coma)', campos.rubrosExcluidos),
     campo('Notas', campos.notas),
     h('div', { class: 'fila', style: { marginTop: '10px' } }, h('button', { class: 'primario', type: 'submit' }, 'Guardar'), h('button', { type: 'button', onclick: alCancelar }, 'Cancelar')),
@@ -81,7 +81,7 @@ export async function vistaPromos(app) {
     vistaPromos(app);
   };
   const editar = (p) => {
-    montar(editor, formulario(p, guardar, () => montar(editor)));
+    montar(editor, h('h2', null, p ? 'Editar promo' : 'Nueva promo'), formulario(p, guardar, () => montar(editor)));
     editor.scrollIntoView({ behavior: 'smooth' });
   };
   const borrar = async (p) => {
@@ -94,73 +94,86 @@ export async function vistaPromos(app) {
   const pendientes = sugerenciasPendientes(sugeridas.promos.filter((p) => zonaActiva().supers.includes(p.super)), promos, descartadas, hoy);
   const confirmar = async (sug) => {
     await estado.store.guardar('promos', confirmarSugerencia(sug));
-    aviso('Promo confirmada: ya cuenta en la recomendación');
+    aviso('Listo: la promo ya cuenta');
     vistaPromos(app);
   };
   const descartar = async (sug) => {
     await estado.store.guardar('promosDescartadas', { id: sug.id });
     vistaPromos(app);
   };
+
+  const fecha = (iso) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}` : '…');
+  const textoDias = (p) => (p.dias?.length === 7 ? 'Todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ').replace(/^./, (c) => c.toUpperCase()).replace(/, ([^,]+)$/, ' y $1'));
+  const detalles = (p) =>
+    h(
+      'div',
+      { class: 'promo-detalle' },
+      h('span', { class: 'chip' }, `📅 ${textoDias(p)}`),
+      h('span', { class: 'chip' }, p.tope != null ? `Tope ${pesos(p.tope)}${p.tipoTope === 'mensual' ? ' por mes' : p.tipoTope === 'semanal' ? ' por semana' : ' por compra'}` : 'Sin tope'),
+      p.minimoCompra ? h('span', { class: 'chip' }, `Compra mínima ${pesos(p.minimoCompra)}`) : null,
+      h('span', { class: 'chip' }, `Hasta el ${fecha(aIso(p.vigenciaHasta))}`),
+    );
+  const titulo = (p) => [
+    h('div', { class: 'promo-titulo' }, `${p.porcentaje}% en ${SUPERS[p.super]}`),
+    h('div', { class: 'suave' }, `con ${MEDIOS[p.medio]} · ${p.tipo === 'reintegro' ? 'te lo devuelven después' : 'descuento en la caja'}`),
+  ];
+
   const tarjetaSugerida = (p) =>
     h(
       'div',
-      { class: 'tarjeta banner' },
-      h('b', null, `${SUPERS[p.super]} · ${MEDIOS[p.medio]} · ${p.porcentaje}% ${p.tipo === 'reintegro' ? 'reintegro' : 'en caja'}`),
-      h('div', { class: 'suave chico' }, [
-        p.dias?.length === 7 ? 'todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', '),
-        p.tope != null ? `tope ${pesos(p.tope)} ${p.tipoTope.replace('_', ' ')}` : 'sin tope',
-        p.minimoCompra ? `mínimo ${pesos(p.minimoCompra)}` : null,
-        `vigencia ${aIso(p.vigenciaDesde) ?? '…'} a ${aIso(p.vigenciaHasta) ?? '…'}`,
-      ].filter(Boolean).join(' · ')),
-      p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo para compras en el local: no aplica a compras online, así que no cuenta en la recomendación.') : null,
-      p.textoFuente ? h('blockquote', { class: 'chico', style: { margin: '6px 0', paddingLeft: '8px', borderLeft: '3px solid var(--borde)' } }, p.textoFuente) : null,
-      h('div', { class: 'chico' }, h('a', { href: p.fuente, target: '_blank', rel: 'noopener' }, 'Ver fuente oficial ↗')),
-      h('div', { class: 'fila', style: { marginTop: '6px' } }, h('button', { class: 'primario', onclick: () => confirmar(p) }, 'Confirmar'), h('button', { onclick: () => descartar(p) }, 'Descartar')),
+      { class: 'tarjeta promo-sugerida' },
+      titulo(p),
+      detalles(p),
+      p.soloPresencial ? h('div', { class: 'falta' }, 'Solo comprando en el local: no sirve para comprar por internet.') : null,
+      h(
+        'details',
+        { class: 'cambiar-producto' },
+        h('summary', null, 'Ver condiciones'),
+        p.notas ? h('p', { class: 'chico' }, p.notas) : null,
+        p.textoFuente ? h('p', { class: 'suave chico' }, p.textoFuente) : null,
+        h('a', { class: 'chico', href: p.fuente, target: '_blank', rel: 'noopener' }, 'Ver en la página del banco ↗'),
+      ),
+      h('div', { class: 'fila', style: { marginTop: '12px' } }, h('button', { class: 'primario crece', onclick: () => confirmar(p) }, '✓ Sí, la uso'), h('button', { onclick: () => descartar(p) }, 'No me sirve')),
     );
 
   const cargarEjemplo = async () => {
     for (const p of promosEjemplo(hoy)) await estado.store.guardar('promos', p);
-    aviso('Se cargaron promos de ejemplo FICTICIAS');
+    aviso('Se cargaron promos de ejemplo (no son reales)');
     vistaPromos(app);
   };
 
   montar(
     app,
-    h('h1', null, 'Promos bancarias'),
-    h('p', { class: 'suave chico' }, 'Cargá las promos vigentes de tus medios de pago (MODO, Visa y Mastercard de BNA y Macro). La app no inventa promos: los ejemplos son ficticios.'),
-    h('div', { class: 'fila' }, h('button', { class: 'primario', onclick: () => editar(null) }, '+ Nueva promo'), !promos.length ? h('button', { onclick: cargarEjemplo }, 'Cargar ejemplos (ficticios)') : null),
+    h('h1', null, 'Promos del banco'),
+    h('p', { class: 'suave', style: { marginTop: '-6px' } }, 'Las promos que confirmes se usan para calcular dónde y qué día te conviene comprar.'),
     pendientes.length
       ? h(
           'section',
           null,
-          h('h2', null, `🔎 Promos encontradas (${pendientes.length}) — confirmalas`),
-          h('p', { class: 'suave chico' }, `Relevadas de las páginas oficiales de los bancos el ${sugeridas.relevado}. No cuentan en la recomendación hasta que las confirmes.`),
+          h('h2', null, `Encontré ${pendientes.length === 1 ? '1 promo' : `${pendientes.length} promos`} para vos`),
+          h('p', { class: 'suave', style: { marginTop: '-4px' } }, '¿Las usás? Confirmá las que te sirvan.'),
           pendientes.map(tarjetaSugerida),
-          h('h2', null, 'Tus promos'),
         )
       : null,
-    editor,
+    h('h2', null, 'Tus promos'),
     promos.length
       ? promos.map((p) => {
           const vencida = aIso(p.vigenciaHasta) && aIso(p.vigenciaHasta) < hoy;
           return h(
             'div',
             { class: 'tarjeta' },
-            p.ficticia ? h('div', { class: 'alerta chico' }, '⚠ EJEMPLO FICTICIO') : null,
-            p.soloPresencial ? h('div', { class: 'alerta chico' }, '⚠ Solo en el local: no cuenta para compras online') : null,
-            h('b', null, `${SUPERS[p.super]} · ${MEDIOS[p.medio]} · ${p.porcentaje}% ${p.tipo === 'reintegro' ? 'reintegro' : 'en caja'}`),
-            h('div', { class: 'suave chico' }, [
-              (p.dias?.length === 7 ? 'todos los días' : (p.dias ?? []).map((d) => DIAS[d]).join(', ')),
-              p.tope != null ? `tope ${pesos(p.tope)} ${p.tipoTope.replace('_', ' ')}` : 'sin tope',
-              p.minimoCompra ? `mínimo ${pesos(p.minimoCompra)}` : null,
-              p.rubrosExcluidos?.length ? `excluye ${p.rubrosExcluidos.join(', ')}` : null,
-              `vigencia ${aIso(p.vigenciaDesde) ?? '…'} a ${aIso(p.vigenciaHasta) ?? '…'}`,
-            ].filter(Boolean).join(' · ')),
-            vencida ? h('div', { class: 'peligro chico' }, 'Vencida') : null,
-            p.notas ? h('div', { class: 'chico' }, p.notas) : null,
-            h('div', { class: 'fila', style: { marginTop: '6px' } }, h('button', { onclick: () => editar(p) }, 'Editar'), h('button', { class: 'peligro', onclick: () => borrar(p) }, 'Borrar')),
+            p.ficticia ? h('div', { class: 'falta', style: { marginTop: 0, marginBottom: '8px' } }, 'Ejemplo: no es una promo real') : null,
+            titulo(p),
+            detalles(p),
+            vencida ? h('div', { class: 'falta' }, 'Ya venció') : null,
+            p.soloPresencial ? h('div', { class: 'falta' }, 'Solo comprando en el local') : null,
+            p.rubrosExcluidos?.length ? h('div', { class: 'suave chico' }, `No incluye: ${p.rubrosExcluidos.join(', ')}`) : null,
+            h('div', { class: 'fila', style: { marginTop: '8px' } }, h('button', { class: 'texto', onclick: () => editar(p) }, 'Editar'), h('button', { class: 'texto peligro', onclick: () => borrar(p) }, 'Borrar')),
           );
         })
-      : h('p', { class: 'vacio' }, 'No hay promos cargadas.'),
+      : h('p', { class: 'suave' }, 'Todavía no tenés promos confirmadas.'),
+    editor,
+    h('button', { class: 'ancho nueva-lista', onclick: () => editar(null) }, '+ Cargar una promo a mano'),
+    !promos.length ? h('button', { class: 'texto ancho', onclick: cargarEjemplo, style: { marginTop: '6px' } }, 'Probar con promos de ejemplo') : null,
   );
 }

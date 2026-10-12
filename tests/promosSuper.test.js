@@ -27,7 +27,12 @@ test('Cencosud: solo MODO para BNA y Macro en Jumbo y Vea, con tope, mínimo y c
 });
 
 test('Carrefour: 10% con cualquier medio los jueves, online, tope semanal; la de jubilados BNA queda afuera', () => {
-  const ps = promosCarrefour(leer('promos-carrefour.json'), leer('promos-carrefour-bancos.json'), { hoy: HOY });
+  const todas = promosCarrefour(leer('promos-carrefour.json'), leer('promos-carrefour-bancos.json'), { hoy: HOY });
+  // Las de Cuenta Digital Carrefour Banco van aparte, con la aclaración.
+  const cuenta = todas.filter((x) => x.medio === 'cuenta_carrefour');
+  assert.ok(cuenta.length >= 4 && cuenta.every((x) => /Cuenta Digital/.test(x.condicion)));
+  assert.ok(cuenta.some((x) => x.porcentaje === 15 && x.dias.join() === '5' && !x.soloPresencial));
+  const ps = todas.filter((x) => x.medio !== 'cuenta_carrefour');
   assert.equal(ps.length, 1);
   const [p] = ps;
   assert.equal(p.medio, 'todos');

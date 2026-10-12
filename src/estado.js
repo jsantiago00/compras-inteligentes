@@ -1,7 +1,6 @@
 // Estado global de la app: store activo y configuración del usuario.
 
 import { MEDIOS_INICIALES } from '../lib/medios.js';
-import { ZONA } from '../lib/zona.js';
 
 // Último resultado de precios por lista, para no volver a pedirlos al ir y
 // volver entre la lista y la recomendación. Se guarda en el navegador (30 min)
@@ -55,12 +54,10 @@ export const estado = {
   precios: cachePrecios(),
 };
 
-const CONFIG_INICIAL = { id: 'general', envios: ZONA.envios, enviosFicticios: false, demo: false };
+const CONFIG_INICIAL = { id: 'general', demo: false };
 
 export async function cargarConfig() {
   const guardada = (await estado.store.obtener('config', 'general')) ?? {};
-  // Configs viejas con los costos de envío de ejemplo: pasan a los reales de la zona.
-  if (guardada.enviosFicticios) Object.assign(guardada, { envios: ZONA.envios, enviosFicticios: false });
   if (!guardada.medios) guardada.medios = Object.keys(guardada).length ? [...MEDIOS_INICIALES] : [];
   estado.config = { ...CONFIG_INICIAL, ...guardada };
   return estado.config;
@@ -71,40 +68,27 @@ export async function guardarConfig(cambios) {
   return estado.config;
 }
 
-// Direcciones de entrega. La principal es la de lib/zona.js (sus envíos están en
-// config.envios); las demás se agregan en Ajustes con su código postal y guardan
-// sus sucursales y envíos (config.direcciones).
-export const DIRECCION_PRINCIPAL = {
-  id: 'principal',
-  nombre: 'Casa',
-  direccion: 'Arizu 127, Godoy Cruz',
-  codigoPostal: ZONA.codigoPostal,
-  localidad: 'Godoy Cruz',
-  provincia: 'Mendoza',
-  supers: ZONA.supers,
-  sucursales: ZONA.sucursales,
-  nombresSucursales: { jumbo: 'Jumbo Godoy Cruz', vea: 'Vea Godoy Cruz (Sarmiento 998)', carrefour: 'Hiper Mendoza Azul', coto: 'Coto Mendoza (Perú y Pellegrini)' },
-};
-
+// Direcciones de entrega: cada cuenta tiene las suyas (config.direcciones),
+// cada una con sus súper, sucursales y costos de envío. Una cuenta nueva no
+// tiene ninguna y la app se la pide al entrar (vistas/bienvenida.js).
 export function direcciones() {
-  return [DIRECCION_PRINCIPAL, ...(estado.config?.direcciones ?? [])];
+  return estado.config?.direcciones ?? [];
 }
 
+/** La dirección para la que se compra (la elegida o la primera), o null. */
 export function direccionActiva() {
-  return direcciones().find((d) => d.id === estado.config?.direccionActiva) ?? DIRECCION_PRINCIPAL;
+  const ds = direcciones();
+  return ds.find((d) => d.id === estado.config?.direccionActiva) ?? ds[0] ?? null;
 }
 
 /** Súper y sucursales de la dirección activa (lo que se manda a /api). */
 export function zonaActiva() {
-  const { supers, sucursales } = direccionActiva();
-  return { supers, sucursales };
+  const d = direccionActiva();
+  return d ? { supers: d.supers ?? [], sucursales: d.sucursales ?? {} } : { supers: [], sucursales: {} };
 }
 
 export function enviosActivos() {
-  const d = direccionActiva();
-  // La principal completa con los valores de la zona los súper que no estén guardados (ej. Coto).
-  if (d.id === DIRECCION_PRINCIPAL.id) return { ...ZONA.envios, ...(estado.config?.envios ?? {}) };
-  return d.envios ?? {};
+  return direccionActiva()?.envios ?? {};
 }
 
 /**

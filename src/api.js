@@ -1,6 +1,6 @@
 // Cliente de las funciones /api del server.
 
-import { DIRECCION_PRINCIPAL, direccionActiva, zonaActiva } from './estado.js';
+import { direccionActiva, zonaActiva } from './estado.js';
 
 async function pedir(url, opciones) {
   const res = await fetch(url, opciones);
@@ -9,8 +9,8 @@ async function pedir(url, opciones) {
   return datos;
 }
 
-// La zona de la dirección activa (la principal es la default del server).
-const zona = () => (direccionActiva().id === DIRECCION_PRINCIPAL.id ? undefined : zonaActiva());
+// La zona de la dirección activa (sin dirección, el server usa su zona por defecto).
+const zona = () => (direccionActiva() ? zonaActiva() : undefined);
 
 const post = (url, cuerpo) => pedir(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cuerpo) });
 

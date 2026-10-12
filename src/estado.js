@@ -81,7 +81,7 @@ export const DIRECCION_PRINCIPAL = {
   provincia: 'Mendoza',
   supers: ZONA.supers,
   sucursales: ZONA.sucursales,
-  nombresSucursales: { jumbo: 'Jumbo Godoy Cruz', vea: 'Vea Godoy Cruz (Sarmiento 998)', carrefour: 'Hiper Mendoza Azul' },
+  nombresSucursales: { jumbo: 'Jumbo Godoy Cruz', vea: 'Vea Godoy Cruz (Sarmiento 998)', carrefour: 'Hiper Mendoza Azul', coto: 'Coto Mendoza (Perú y Pellegrini)' },
 };
 
 export function direcciones() {

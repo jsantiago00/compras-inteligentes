@@ -27,7 +27,7 @@ for (const host of ['https://www.jumbo.com.ar', 'https://www.vea.com.ar']) {
   await probar(`${host}/api/catalog_system/pub/saleschannel/default`);
 }
 
-const coto = 'https://www.cotodigital.com.ar/sitios/cdigi/categoria?Dy=1&Nrpp=3&format=json&Ntt=';
+const coto = 'https://www.coto.com.ar/sitios/cdigi/categoria?Dy=1&Nrpp=3&format=json&Ntt=';
 for (const q of ['coca cola 2.25', '7790895000997']) {
   const r = await probar(coto + encodeURIComponent(q));
   if (!r.texto) continue;

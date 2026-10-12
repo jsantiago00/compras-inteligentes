@@ -1,7 +1,7 @@
 // POST /api/resolver  { texto: "2 yerba playadito\nleche\narroz 1kg", zona?, demo? }
 // Lista libre: busca cada renglón en los súper de la zona y elige un producto por súper.
 
-import { claveLibre, elegirProductos, parsearLinea, refProducto, separarLineas } from '../lib/motor/listaLibre.js';
+import { claveLibre, elegirProductos, parsearLinea, refProducto, separarLineas, variantes } from '../lib/motor/listaLibre.js';
 import { crearAdaptadores } from '../lib/scrapers/index.js';
 import { almacenDeZona, almacenMemoria, obtenerAlmacen } from '../lib/servidor/almacen.js';
 import { cuerpo, errorCliente, handler, responder } from '../lib/servidor/api.js';
@@ -26,7 +26,15 @@ export default handler(async (req, res) => {
     lineas.map(async (linea) => {
       const { texto: t, cantidad } = parsearLinea(linea);
       const { porSuper, errores } = await buscarEnSupers({ texto: t, supers: zona.supers, adaptadores, almacen, limite: 24 });
-      const r = elegirProductos(t, porSuper);
+      let r = elegirProductos(t, porSuper);
+      // Donde no apareció, se prueba con sinónimos ("carne picada" en Coto).
+      for (const v of variantes(t).slice(1)) {
+        const faltan = zona.supers.filter((s) => !r.elegidos[s]);
+        if (!faltan.length) break;
+        const extra = await buscarEnSupers({ texto: v, supers: faltan, adaptadores, almacen, limite: 24 });
+        for (const [s, ps] of Object.entries(extra.porSuper)) porSuper[s] = [...(porSuper[s] ?? []), ...ps];
+        r = elegirProductos(t, porSuper);
+      }
       return {
         linea,
         texto: t,

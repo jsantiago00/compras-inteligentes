@@ -90,7 +90,8 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   // El medio con el que conviene pagar ("cualquier medio" si la promo es para todos).
   const medioDe = (op) => nombreMedio(op.promo?.medio === 'todos' ? 'todos' : op.medio);
   const cuando = (op) => `${op.fecha === hoy ? 'hoy' : `el ${nombreDia(op.fecha)} ${fechaCorta(op.fecha)}`}${op.promo ? `, pagando con ${medioDe(op)}` : ''}`;
-  const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + envío ${op.envio ? pesos(op.envio) : 'gratis'}`;
+  const envioTexto = (op) => (enviosActivos()[op.super]?.costo == null ? 'envío (no sé cuánto)' : `envío ${op.envio ? pesos(op.envio) : 'gratis'}`);
+  const desglose = (op) => `Productos ${pesos(op.subtotal)}${op.descuentoBancario ? ` − promo ${pesos(op.descuentoBancario)}` : ''} + ${envioTexto(op)}`;
   const noTiene = (op) => (op.faltantes.length ? h('div', { class: 'falta' }, `No tiene: ${op.faltantes.map(nombreItem).join(', ')}`) : null);
   // El carrito del súper muestra los productos con sus ofertas; el envío y el
   // reintegro del banco aparecen recién al pagar.
@@ -285,6 +286,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   const fict = promos.filter((p) => p.ficticia).length;
 
   const m = r.mejor;
+  const envioDesconocido = zonaActiva().supers.filter((s) => enviosActivos()[s]?.costo == null);
   montar(
     app,
     h('div', { class: 'fila' }, h('a', { href: `#/lista/${id}`, class: 'boton texto crece', style: { marginLeft: '-10px', justifyContent: 'flex-start' } }, `← ${lista.nombre}`), h('button', { class: 'texto', onclick: () => vistaRecomendacion(app, id, { refrescar: true }) }, '↻ Actualizar')),
@@ -293,6 +295,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     estado.config.demo ? h('div', { class: 'banner alerta' }, 'Modo prueba: los precios son de ejemplo (del 11/10/2026).') : null,
     fict ? h('div', { class: 'banner alerta' }, `Hay ${fict === 1 ? '1 promo de ejemplo' : `${fict} promos de ejemplo`} (no son reales). `, h('a', { href: '#/promos' }, 'Revisalas')) : null,
     estado.config.enviosFicticios ? h('div', { class: 'banner alerta' }, 'Los costos de envío son de ejemplo. ', h('a', { href: '#/ajustes' }, 'Cargá los reales')) : null,
+    envioDesconocido.length ? h('div', { class: 'banner alerta' }, `No sé cuánto cobra ${envioDesconocido.map((s) => SUPERS[s]).join(' y ')} el envío, así que no lo estoy sumando. `, h('a', { href: '#/ajustes' }, 'Cargalo en Ajustes')) : null,
 
     // La respuesta, bien grande.
     h(
@@ -307,7 +310,13 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       noTiene(m),
       enCarrito(m),
       botonCarrito(m, { grande: true }),
-      h('p', { class: 'suave chico', style: { margin: '10px 0 0' } }, `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`),
+      h(
+        'p',
+        { class: 'suave chico', style: { margin: '10px 0 0' } },
+        m.super === 'coto'
+          ? `Coto no deja cargar el carrito de una vez: te muestro cada producto con su link para agregarlo en coto.com.ar (con tu dirección elegida). La app nunca paga ni guarda datos de tarjeta.`
+          : `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`,
+      ),
       h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '4px' } }, '✅ Ya compré: guardarlo en Compras'),
     ),
     contCarrito,

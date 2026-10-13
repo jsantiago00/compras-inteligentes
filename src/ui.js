@@ -43,3 +43,10 @@ export function cargando(texto = 'Cargando…') {
 export function vacio(emoji, ...texto) {
   return h('div', { class: 'vacio' }, h('span', { class: 'emoji', 'aria-hidden': 'true' }, emoji), ...texto);
 }
+
+const LETRA_SUPER = { jumbo: 'J', vea: 'V', carrefour: 'C', coto: 'COTO' };
+
+/** Logo de un súper con sus colores (ver .logo-super en estilos.css). */
+export function logoSuper(sup, { grande = false } = {}) {
+  return h('span', { class: `logo-super ${sup}${grande ? ' grande' : ''}`, 'aria-hidden': 'true' }, LETRA_SUPER[sup] ?? sup.slice(0, 1).toUpperCase());
+}

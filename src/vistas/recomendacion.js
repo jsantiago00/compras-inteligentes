@@ -61,7 +61,28 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   async function armar(op) {
     // Con la sucursal de la dirección activa como vendedor (precios y stock de esa sucursal).
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
-    if (c.tipo === 'link') {
+    if (c.tipo === 'pasos') {
+      montar(
+        contCarrito,
+        h(
+          'div',
+          { class: 'tarjeta destacada' },
+          h('b', null, `Carrito de ${SUPERS[op.super]} en ${c.pasos.length} pasos`),
+          h('p', { class: 'suave chico' }, `${SUPERS[op.super]} mezcla las cantidades si se cargan todas juntas, así que va en partes. Tocá los botones en orden: cada uno suma al mismo carrito. Después revisá y pagá ahí.`),
+          h(
+            'div',
+            { class: 'columna' },
+            c.pasos.map((p, i) =>
+              h(
+                'a',
+                { class: `boton ${i === 0 ? 'primario' : 'secundario'}`, href: p.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super },
+                `${i + 1}. ${i === 0 ? 'Abrir el carrito' : 'Sumar'}: ${p.items.length === 1 ? (p.items[0].nombre ?? '1 producto') : `${p.items.length} productos`} ↗`,
+              ),
+            ),
+          ),
+        ),
+      );
+    } else if (c.tipo === 'link') {
       montar(
         contCarrito,
         h(
@@ -169,6 +190,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
   );
   function botonCarrito(op, { grande = false } = {}) {
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
+    if (c.tipo === 'pasos') return h('button', { class: grande ? 'primario grande' : 'primario', onclick: () => armar(op) }, `🛒 Armar el carrito en ${SUPERS[op.super]} (${c.pasos.length} pasos)`);
     return c.tipo === 'link'
       ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
       : h('button', { class: `primario${grande ? ' grande' : ''}`, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);

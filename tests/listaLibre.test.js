@@ -144,3 +144,9 @@ test('la cantidad del texto no se busca en el nombre ("lavandina 2l" encuentra "
   assert.equal(textoSinCantidad('aceite girasol 1,5 lts'), 'aceite girasol');
   assert.equal(esRelevante('lavandina 2l', { nombre: 'Lavandina Ayudín 2 Lts' }), true);
 });
+
+test('los productos sin TACC solo entran si se piden', () => {
+  assert.equal(esRelevante('pan frances', { nombre: 'Pan frances Schar sin tacc 100 grs' }), false);
+  assert.equal(esRelevante('pan frances sin tacc', { nombre: 'Pan frances Schar sin tacc 100 grs' }), true);
+  assert.equal(esRelevante('pan frances', { nombre: 'Pan Francés x Kg' }), true);
+});

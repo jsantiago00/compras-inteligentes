@@ -177,3 +177,20 @@ test('Coto: stock y lista de precios de la sucursal de la zona (sintético)', ()
   const [propia] = parsearProductosCoto([reg({ 'sku.dtoPrice078': [JSON.stringify({ precioLista: 2100.0 })] })], { sucursal: '078' });
   assert.equal(propia.precioLista, 2100);
 });
+
+test('armarCarrito Carrefour: un link por cantidad (Carrefour reparte mal las cantidades mezcladas)', () => {
+  const items = [
+    { sku: '25341', cantidad: 1, nombre: 'Yerba' },
+    { sku: '205787', cantidad: 1, multiplicador: 0.5, nombre: 'Jamón' }, // 1 kg = 2 porciones
+    { sku: '268348', cantidad: 1, nombre: 'Colgate' },
+  ];
+  const c = armarCarrito('carrefour', items, { sucursales: { carrefour: ['carrefourar0029'] } });
+  assert.equal(c.tipo, 'pasos');
+  assert.equal(c.pasos.length, 2);
+  assert.deepEqual(c.pasos[0].items.map((i) => i.sku), ['25341', '268348']);
+  assert.match(c.pasos[1].url, /sku=205787&qty=2&seller=carrefourar0029&sc=1$/);
+  // Todo con la misma cantidad: un solo link.
+  assert.equal(armarCarrito('carrefour', [items[0], items[2]]).tipo, 'link');
+  // Jumbo y Vea arman bien las cantidades mezcladas: un solo link.
+  assert.equal(armarCarrito('jumbo', items).tipo, 'link');
+});

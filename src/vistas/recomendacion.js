@@ -11,7 +11,7 @@ import { isoLocal } from '../../lib/motor/fechas.js';
 import { envasesItem, recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
 import * as api from '../api.js';
 import { direccionActiva, enviosActivos, estado, misMedios, zonaActiva } from '../estado.js';
-import { aviso, cargando, h, montar } from '../ui.js';
+import { aviso, cargando, enNavegador, h, montar } from '../ui.js';
 
 const fechaCorta = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
@@ -75,7 +75,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
             c.pasos.map((p, i) =>
               h(
                 'a',
-                { class: `boton ${i === 0 ? 'primario' : 'secundario'}`, href: p.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super },
+                { class: `boton ${i === 0 ? 'primario' : 'secundario'}`, href: enNavegador(p.url), target: '_blank', rel: 'noopener', 'data-carrito': op.super },
                 `${i + 1}. ${i === 0 ? 'Abrir el carrito' : 'Sumar'}: ${p.items.length === 1 ? (p.items[0].nombre ?? '1 producto') : `${p.items.length} productos`} ↗`,
               ),
             ),
@@ -90,7 +90,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
           { class: 'tarjeta' },
           h('b', null, `Carrito de ${SUPERS[op.super]}`),
           h('p', { class: 'suave chico' }, 'Se abre en el sitio del súper, donde ya estás logueado. Revisá el carrito y pagá ahí', op.promo ? [' con ', h('b', null, medioDe(op))] : null, '. La app nunca paga ni guarda datos de tarjeta.'),
-          h('a', { class: 'boton primario', href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `Abrir carrito en ${SUPERS[op.super]} ↗`),
+          h('a', { class: 'boton primario', href: enNavegador(c.url), target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `Abrir carrito en ${SUPERS[op.super]} ↗`),
           h('p', { class: 'chico', style: { wordBreak: 'break-all' } }, h('code', null, c.url)),
         ),
       );
@@ -102,7 +102,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
           { class: 'tarjeta' },
           h('b', null, `${SUPERS[op.super]}: agregá estos productos`),
           h('p', { class: 'suave chico' }, `${SUPERS[op.super]} no tiene un link público para cargar el carrito de una vez. Abrí cada producto (ya logueado) y agregalo.`),
-          h('ul', null, c.items.map((i) => h('li', null, h('a', { href: i.url, target: '_blank', rel: 'noopener' }, i.nombre), ` × ${i.cantidad}`))),
+          h('ul', null, c.items.map((i) => h('li', null, h('a', { href: enNavegador(i.url), target: '_blank', rel: 'noopener' }, i.nombre), ` × ${i.cantidad}`))),
         ),
       );
     }
@@ -192,7 +192,7 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
     if (c.tipo === 'pasos') return h('button', { class: grande ? 'primario grande' : 'primario', onclick: () => armar(op) }, `🛒 Armar el carrito en ${SUPERS[op.super]} (${c.pasos.length} pasos)`);
     return c.tipo === 'link'
-      ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: c.url, target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
+      ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: enNavegador(c.url), target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
       : h('button', { class: `primario${grande ? ' grande' : ''}`, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);
   }
 

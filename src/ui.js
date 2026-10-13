@@ -43,3 +43,15 @@ export function cargando(texto = 'Cargando…') {
 export function vacio(emoji, ...texto) {
   return h('div', { class: 'vacio' }, h('span', { class: 'emoji', 'aria-hidden': 'true' }, emoji), ...texto);
 }
+
+/**
+ * Link al sitio de un súper que se abre en el navegador. En Android, la app de
+ * Carrefour (y otras) toma los links de su sitio (assetlinks "handle_all_urls")
+ * pero no sabe cargar el carrito desde un link y lleva a otra pantalla; con un
+ * intent a Chrome se abre en el navegador (con fallback a la URL normal).
+ */
+export function enNavegador(url) {
+  if (typeof navigator === 'undefined' || !/Android/i.test(navigator.userAgent) || !/^https:\/\//.test(url)) return url;
+  const sinEsquema = url.replace(/^https:\/\//, '');
+  return `intent://${sinEsquema}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+}

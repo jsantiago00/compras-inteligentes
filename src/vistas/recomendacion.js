@@ -11,7 +11,7 @@ import { isoLocal } from '../../lib/motor/fechas.js';
 import { envasesItem, recomendar, textoOpcion } from '../../lib/motor/recomendacion.js';
 import * as api from '../api.js';
 import { direccionActiva, enviosActivos, estado, misMedios, zonaActiva } from '../estado.js';
-import { aviso, cargando, enNavegador, h, montar } from '../ui.js';
+import { aviso, cargando, enNavegador, h, logoSuper, montar } from '../ui.js';
 
 const fechaCorta = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
@@ -188,23 +188,32 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
       h('a', { class: 'boton secundario ancho', href: `#/lista/${id}`, style: { marginTop: '12px' } }, '✏️ Cambiar la lista'),
     ),
   );
-  function botonCarrito(op, { grande = false } = {}) {
+  function botonCarrito(op, { grande = false, blanco = false } = {}) {
     const c = armarCarrito(op.super, itemsCarrito(op), { sucursales: zonaActiva().sucursales });
-    if (c.tipo === 'pasos') return h('button', { class: grande ? 'primario grande' : 'primario', onclick: () => armar(op) }, `🛒 Armar el carrito en ${SUPERS[op.super]} (${c.pasos.length} pasos)`);
+    const clase = `${blanco ? 'blanco' : 'primario'}${grande ? ' grande' : ''}`;
+    if (c.tipo === 'pasos') return h('button', { class: clase, onclick: () => armar(op) }, `🛒 Armar el carrito en ${SUPERS[op.super]} (${c.pasos.length} pasos)`);
     return c.tipo === 'link'
-      ? h('a', { class: `boton primario${grande ? ' grande' : ''}`, href: enNavegador(c.url), target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
-      : h('button', { class: `primario${grande ? ' grande' : ''}`, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);
+      ? h('a', { class: `boton ${clase}`, href: enNavegador(c.url), target: '_blank', rel: 'noopener', 'data-carrito': op.super }, `🛒 Abrir el carrito en ${SUPERS[op.super]}`)
+      : h('button', { class: clase, onclick: () => armar(op) }, `🛒 Ver qué comprar en ${SUPERS[op.super]}`);
   }
 
   // Un carrito por súper: su mejor opción de la semana (menos faltantes, menor
   // total), con el link que carga todo en el sitio del súper.
   function tarjetaCarrito(op) {
+    const total = lista.items.length;
+    const dif = op.total - r.mejor.total;
     return h(
       'div',
       { class: 'tarjeta carrito' },
-      h('div', { class: 'encabezado' }, h('span', { class: 'super' }, SUPERS[op.super]), h('span', { class: 'monto' }, pesos(op.total))),
-      h('div', { class: 'suave' }, `${op.lineas.length} de ${lista.items.length} productos · ${cuando(op)}`),
-      h('div', { class: 'suave chico' }, desglose(op)),
+      h(
+        'div',
+        { class: 'fila-super' },
+        logoSuper(op.super),
+        h('div', { class: 'info' }, h('b', null, SUPERS[op.super]), h('p', null, op.faltantes.length ? `Tiene ${op.lineas.length} de ${total}` : `Tiene los ${total}`)),
+        h('div', { class: 'total' }, h('b', null, pesos(op.total)), h('span', null, op.faltantes.length && dif < 0 ? 'le faltan cosas' : dif > 0 ? `+${pesos(dif)}` : 'igual')),
+      ),
+      h('div', { class: 'barra-cobertura', 'aria-hidden': 'true' }, h('i', { style: { width: `${Math.round((op.lineas.length / total) * 100)}%` } })),
+      h('div', { class: 'suave chico' }, `${desglose(op)} · ${cuando(op)}`),
       noTiene(op),
       enCarrito(op),
       botonCarrito(op),
@@ -331,24 +340,28 @@ export async function vistaRecomendacion(app, id, { refrescar = false } = {}) {
     // La respuesta, bien grande.
     h(
       'section',
-      { class: 'tarjeta destacada hero', id: 'mejor-opcion' },
+      { class: 'hero-reco', id: 'mejor-opcion' },
       h('div', { class: 'etiqueta' }, 'Te conviene'),
-      h('div', { class: 'donde' }, SUPERS[m.super]),
-      h('div', { class: 'suave' }, cuando(m)),
+      h('div', { class: 'cabeza' }, logoSuper(m.super, { grande: true }), h('div', null, h('b', null, SUPERS[m.super]), h('small', null, cuando(m)))),
       h('div', { class: 'monto' }, pesos(m.total)),
-      r.ahorroVsCara > 0 ? h('div', { class: 'ahorro' }, `Ahorrás ${pesos(r.ahorroVsCara)}`) : null,
-      h('div', { class: 'suave chico' }, desglose(m)),
+      r.ahorroVsCara > 0 ? h('span', { class: 'ahorro' }, `Ahorrás ${pesos(r.ahorroVsCara)} 🎉`) : null,
+      h(
+        'div',
+        { class: 'desglose' },
+        h('span', null, 'Productos'), h('span', null, pesos(m.subtotal)),
+        m.descuentoBancario ? [h('span', null, `Promo ${medioDe(m)}`), h('span', null, `−${pesos(m.descuentoBancario)}`)] : null,
+        h('span', null, 'Envío'), h('span', null, enviosActivos()[m.super]?.costo == null ? 'no sé cuánto' : m.envio ? pesos(m.envio) : 'gratis'),
+      ),
       noTiene(m),
-      enCarrito(m),
-      botonCarrito(m, { grande: true }),
+      botonCarrito(m, { grande: true, blanco: true }),
       h(
         'p',
-        { class: 'suave chico', style: { margin: '10px 0 0' } },
+        { class: 'nota-hero' },
         m.super === 'coto'
           ? `Coto no deja cargar el carrito de una vez: te muestro cada producto con su link para agregarlo en coto.com.ar (con tu dirección elegida). La app nunca paga ni guarda datos de tarjeta.`
           : `Se abre la página de ${SUPERS[m.super]} con todo cargado. Elegí ahí tu dirección (${direccionActiva().nombre}), revisá y pagá. La app nunca paga ni guarda datos de tarjeta.`,
       ),
-      h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '4px' } }, '✅ Ya compré: guardarlo en Compras'),
+      h('button', { class: 'texto', onclick: () => yaCompre([m]), style: { marginTop: '6px' } }, '✓ Ya compré: guardarlo en Compras'),
     ),
     contCarrito,
     !promos.length ? h('div', { class: 'banner' }, '💳 Todavía no cargaste promos del banco. ', h('a', { href: '#/promos' }, 'Cargalas'), ' y vas a ahorrar más.') : null,

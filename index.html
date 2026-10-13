@@ -3,8 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f2f6f4" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0d1512" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f6f4" />
+    <script>
+      // Apariencia elegida en Ajustes (clara por defecto), antes de pintar para que no parpadee.
+      (function () {
+        var tema = 'claro';
+        try { tema = localStorage.getItem('ci:tema') || 'claro'; } catch (e) {}
+        document.documentElement.dataset.tema = tema;
+        var oscuro = tema === 'oscuro' || (tema === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.querySelector('meta[name=theme-color]').content = oscuro ? '#0d1512' : '#f2f6f4';
+      })();
+    </script>
     <meta name="description" content="Listas de compras y recomendación de cuándo, dónde y con qué medio de pago comprar." />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/iconos/icono-192.png" type="image/png" />

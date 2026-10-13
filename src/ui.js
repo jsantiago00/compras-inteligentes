@@ -47,8 +47,9 @@ export function vacio(emoji, ...texto) {
 const LETRA_SUPER = { jumbo: 'J', vea: 'V', carrefour: 'C', coto: 'COTO' };
 
 /** Logo de un súper con sus colores (ver .logo-super en estilos.css). */
-export function logoSuper(sup, { grande = false } = {}) {
-  return h('span', { class: `logo-super ${sup}${grande ? ' grande' : ''}`, 'aria-hidden': 'true' }, LETRA_SUPER[sup] ?? sup.slice(0, 1).toUpperCase());
+export function logoSuper(sup, { grande = false, mini = false } = {}) {
+  const letra = mini && sup === 'coto' ? 'C' : LETRA_SUPER[sup] ?? sup.slice(0, 1).toUpperCase();
+  return h('span', { class: `logo-super ${sup}${grande ? ' grande' : ''}${mini ? ' mini' : ''}`, 'aria-hidden': 'true' }, letra);
 }
 
 /**
@@ -61,4 +62,25 @@ export function enNavegador(url) {
   if (typeof navigator === 'undefined' || !/Android/i.test(navigator.userAgent) || !/^https:\/\//.test(url)) return url;
   const sinEsquema = url.replace(/^https:\/\//, '');
   return `intent://${sinEsquema}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+}
+
+/** Apariencia de la app en este dispositivo: 'claro' (por defecto), 'oscuro' o 'auto'. */
+export function temaActual() {
+  try {
+    return localStorage.getItem('ci:tema') || 'claro';
+  } catch {
+    return 'claro';
+  }
+}
+
+export function aplicarTema(tema) {
+  try {
+    localStorage.setItem('ci:tema', tema);
+  } catch {
+    // sin localStorage: vale hasta recargar
+  }
+  document.documentElement.dataset.tema = tema;
+  const oscuro = tema === 'oscuro' || (tema === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+  const meta = document.querySelector('meta[name=theme-color]');
+  if (meta) meta.content = oscuro ? '#0d1512' : '#f2f6f4';
 }

@@ -5,7 +5,7 @@ import { SUPERS } from '../../lib/constantes.js';
 import { convieneOtraPresentacion, pesos, porUnidadTexto, presentacion } from '../../lib/formato.js';
 import * as api from '../api.js';
 import { estado, zonaActiva } from '../estado.js';
-import { aviso, cargando, h, montar, vacio } from '../ui.js';
+import { aviso, cargando, h, logoSuper, montar, vacio } from '../ui.js';
 
 const precioDe = (p) => p.precioOferta ?? p.precioLista;
 
@@ -69,6 +69,9 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
   const contResultados = h('div');
   const contAccion = h('div');
 
+  const abiertos = new Set();
+  const cambiando = new Set();
+
   function dibujarItems() {
     montar(
       contAccion,
@@ -94,7 +97,7 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
                   // Lo más barato por litro/kilo/unidad entre todos los súper.
                   it.mejorPorUnidad && convieneOtraPresentacion(it.mejorPorUnidad, Object.values(it.refs ?? {})) ? h('div', { class: 'suave chico' }, `💲 Más barato por ${it.mejorPorUnidad.unidad === 'l' ? 'litro' : it.mejorPorUnidad.unidad === 'kg' ? 'kilo' : 'unidad'}: ${porUnidadTexto(it.mejorPorUnidad)} en ${SUPERS[it.mejorPorUnidad.super]} (${presentacion(it.mejorPorUnidad)})`) : null,
                   it.generico
-                    ? detalleGenerico(it)
+                    ? null
                     : h('div', { class: 'suave chico' }, [it.marca, Object.keys(it.refs ?? {}).map((s) => SUPERS[s]).join(' · ')].filter(Boolean).join(' — ')),
                 ),
                 h(
@@ -104,6 +107,7 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
                   h('b', { 'aria-label': `Cantidad: ${textoCantidad(it)}` }, textoCantidad(it)),
                   h('button', { 'aria-label': `Más ${it.nombre}`, onclick: () => cambiar(it, 1) }, '+'),
                 ),
+                panelGenerico(it),
               ),
             ),
           )
@@ -111,43 +115,96 @@ export async function vistaLista(app, id, { pendientes = [] } = {}) {
     );
   }
 
-  // En qué súper está: corto, para que el nombre del producto tenga lugar.
-  function resumenSupers(supers) {
-    if (!supers.length) return 'No lo encontré';
-    if (supers.length === zonaActiva().supers.length) return 'Cambiar producto';
-    const nombres = supers.map((s) => SUPERS[s]);
-    return `Solo en ${nombres.length > 1 ? `${nombres.slice(0, -1).join(', ')} y ${nombres.at(-1)}` : nombres[0]}`;
+  // Ítem de lista libre: qué producto se eligió en cada súper, con opción de cambiarlo.
+  // Abiertos y "cambiando" se recuerdan mientras se está en la lista.
+  function detalleGenerico(it) {
+    const supers = zonaActiva().supers;
+    const abierto = abiertos.has(it.clave);
+    const encontrados = supers.filter((s) => it.refs?.[s]);
+    const toggle = () => {
+      if (abierto) abiertos.delete(it.clave);
+      else abiertos.add(it.clave);
+      dibujarItems();
+    };
+    return h(
+      'div',
+      { class: 'detalle-producto' },
+      h(
+        'button',
+        { type: 'button', class: 'ver-productos', 'aria-expanded': String(abierto), onclick: toggle },
+        h('span', { class: 'logos-mini', 'aria-hidden': 'true' }, supers.map((s) => h('span', { class: it.refs?.[s] ? '' : 'falta-super' }, logoSuper(s, { mini: true })))),
+        h('span', null, encontrados.length ? (abierto ? 'Ocultar' : 'Ver productos') : 'No lo encontré'),
+        h('span', { 'aria-hidden': 'true' }, abierto ? '▴' : '▾'),
+      ),
+    );
   }
 
-  // Ítem de lista libre: qué producto se eligió en cada súper, con opción de cambiarlo.
-  function detalleGenerico(it) {
+  // El detalle va en un renglón de ancho completo debajo del producto.
+  const panelGenerico = (it) =>
+    it.generico
+      ? h('div', { class: 'fila-completa' }, detalleGenerico(it), abiertos.has(it.clave) ? h('div', { class: 'panel-supers' }, zonaActiva().supers.map((sup) => filaSuper(it, sup))) : null)
+      : null;
+
+  const tarjetaProducto = (p, { elegido = false, onclick } = {}) =>
+    h(
+      onclick ? 'button' : 'div',
+      { type: onclick ? 'button' : null, class: `opcion-producto${elegido ? ' elegido' : ''}`, onclick, 'aria-pressed': onclick ? String(elegido) : null },
+      p.imagen
+        ? h('img', { src: p.imagen, alt: '', loading: 'lazy', onerror: (e) => e.target.replaceWith(h('span', { class: 'sin-foto', 'aria-hidden': 'true' }, '🛍️')) })
+        : h('span', { class: 'sin-foto', 'aria-hidden': 'true' }, '🛍️'),
+      h(
+        'span',
+        { class: 'datos' },
+        h('span', { class: 'nombre' }, p.nombre),
+        h('span', { class: 'precio' }, pesos(p.precio), porUnidadTexto(p) ? h('small', null, ` · ${porUnidadTexto(p)}`) : null),
+      ),
+      elegido && onclick ? h('span', { class: 'tilde', 'aria-hidden': 'true' }, '✓') : null,
+    );
+
+  function filaSuper(it, sup) {
+    const elegido = it.refs?.[sup];
+    const opciones = [...(elegido ? [elegido] : []), ...(it.alternativas?.[sup] ?? []).filter((o) => o.sku !== elegido?.sku)];
+    const k = `${it.clave}|${sup}`;
+    const cambiandoEste = cambiando.has(k);
+    const alternar = () => {
+      if (cambiandoEste) cambiando.delete(k);
+      else cambiando.add(k);
+      dibujarItems();
+    };
     return h(
-      'details',
-      { class: 'cambiar-producto' },
-      h('summary', null, resumenSupers(Object.keys(it.refs ?? {}))),
-      zonaActiva().supers.map((sup) => {
-        const opciones = it.alternativas?.[sup] ?? [];
-        if (!opciones.length) return h('div', { class: 'suave' }, `${SUPERS[sup]}: no encontrado`);
-        const actual = it.refs?.[sup]?.sku ?? '';
-        const select = h(
-          'select',
-          { 'aria-label': `Producto en ${SUPERS[sup]}`, onchange: () => elegirAlternativa(it, sup, select.value) },
-          opciones.map((o) => h('option', { value: o.sku, selected: o.sku === actual }, `${o.nombre} — ${pesos(o.precio)}`)),
-          h('option', { value: '', selected: !actual }, `No comprarlo en ${SUPERS[sup]}`),
-        );
-        return h('label', { style: { margin: '6px 0 0' } }, SUPERS[sup], select);
-      }),
+      'div',
+      { class: 'fila-producto-super' },
+      h(
+        'div',
+        { class: 'cabecera' },
+        logoSuper(sup),
+        h('b', { class: 'crece' }, SUPERS[sup]),
+        opciones.length ? h('button', { type: 'button', class: 'texto', onclick: alternar }, cambiandoEste ? 'Listo' : elegido ? 'Cambiar' : 'Elegir') : null,
+      ),
+      !opciones.length
+        ? h('p', { class: 'suave chico', style: { margin: '4px 0 0' } }, `No lo encontré en ${SUPERS[sup]}.`)
+        : cambiandoEste
+          ? h(
+              'div',
+              { class: 'opciones' },
+              opciones.map((o) => tarjetaProducto(o, { elegido: o.sku === elegido?.sku, onclick: () => elegirAlternativa(it, sup, o.sku) })),
+              h('button', { type: 'button', class: `opcion-producto ninguno${!elegido ? ' elegido' : ''}`, onclick: () => elegirAlternativa(it, sup, '') }, `🚫 No comprarlo en ${SUPERS[sup]}`),
+            )
+          : elegido
+            ? tarjetaProducto(elegido)
+            : h('p', { class: 'suave chico', style: { margin: '4px 0 0' } }, `No lo vas a comprar en ${SUPERS[sup]}.`),
     );
   }
 
   async function elegirAlternativa(it, sup, sku) {
     it.refs = { ...(it.refs ?? {}) };
     if (!sku) delete it.refs[sup];
-    else it.refs[sup] = it.alternativas[sup].find((o) => o.sku === sku);
+    else it.refs[sup] = [it.refs[sup], ...(it.alternativas?.[sup] ?? [])].find((o) => o?.sku === sku) ?? it.refs[sup];
     // Ya no es necesariamente el mismo EAN en todos los súper.
     const eans = new Set(Object.values(it.refs).map((r) => r.ean));
     it.ean = eans.size === 1 && Object.keys(it.refs).length > 1 ? [...eans][0] : null;
     await guardar();
+    cambiando.delete(`${it.clave}|${sup}`);
     dibujarItems();
   }
 

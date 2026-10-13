@@ -5,7 +5,7 @@ import { pesos } from '../../lib/formato.js';
 import { crearDireccion } from '../direcciones.js';
 import { direccionActiva, direcciones, enviosActivos, estado, guardarConfig } from '../estado.js';
 import { firebaseConfigurado, salir } from '../firebase.js';
-import { aviso, h, montar } from '../ui.js';
+import { aplicarTema, aviso, h, montar, temaActual } from '../ui.js';
 import { seccionMedios } from './medios.js';
 
 export async function vistaAjustes(app) {
@@ -129,6 +129,19 @@ export async function vistaAjustes(app) {
         h('tbody', null, filas.map((f) => h('tr', null, h('td', null, SUPERS[f.s]), h('td', null, f.costo), h('td', null, f.minimo)))),
       ),
       h('button', { class: 'primario ancho', type: 'submit', style: { marginTop: '12px' } }, 'Guardar'),
+    ),
+    h(
+      'div',
+      { class: 'tarjeta' },
+      h('h2', { style: { marginTop: 0 } }, 'Apariencia'),
+      h('p', { class: 'suave', style: { marginTop: 0 } }, 'Cómo se ve la app en este celular.'),
+      h(
+        'div',
+        { class: 'chips', role: 'group', 'aria-label': 'Apariencia' },
+        [['claro', '☀️ Clara'], ['oscuro', '🌙 Oscura'], ['auto', '📱 Como el celular']].map(([valor, texto]) =>
+          h('button', { type: 'button', class: `chip-medio${temaActual() === valor ? ' activo' : ''}`, 'aria-pressed': String(temaActual() === valor), onclick: () => { aplicarTema(valor); vistaAjustes(app); } }, texto),
+        ),
+      ),
     ),
     h(
       'div',
